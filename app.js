@@ -17,7 +17,7 @@ app
           console.error(err);
         } else {
           app.listen(PORT);
-          console.log('Web Server is Listening at port ' + port);
+          console.log('Web Server is Listening at port ' + PORT);
         }
       });
       
