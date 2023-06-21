@@ -1,0 +1,13 @@
+###
+GET http://localhost:3000/users/64936ebd96b98f6b630486ab
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "email": "fakeemail@email.com",
+    "firstName": "Jackson",
+    "lastName": "five",
+    "method": "github"
+}
+
