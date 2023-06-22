@@ -133,7 +133,7 @@
             }
           }
         },
-        "/assets//model/{modelName}": {
+        "/assets/model/{modelName}": {
             "get": {
               "description": "Get all assets that match a model name (ie. 'VC-6000').",
               "example":"'Vista', 'Auto-Arm', 'MechZ-202'",
