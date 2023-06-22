@@ -113,7 +113,7 @@
               "description": "OK"
             }
           }
-        }
+        },
       },
       "/assets/pdate/{purchaseDate}": {
           "get": {
@@ -133,7 +133,7 @@
             }
           }
         },
-        "/assets/model/{modelName}": {
+        "/assets//model/{modelName}": {
             "get": {
               "description": "Get all assets that match a model name (ie. 'VC-6000').",
               "example":"'Vista', 'Auto-Arm', 'MechZ-202'",
@@ -338,7 +338,7 @@
           }
       },
   
-      "/assets/update/{id}": {
+      "/assets/update/{assetId}": {
           "put": {
               "description": "Update single asset by id (ie. 'AS-004'). Requires a valid Auth0 login token. asset ID must be in the format 'Title_Year', where Title is case-insensitive, alphanumeric and at least 2 characters long, and Year is numeric, and between 1900 and the current year.",
               "example":"'AS-004', 'AS-010', 'AS-291'",
@@ -386,7 +386,7 @@
               }
           }
       },
-      "/assets/delete/{id}": {
+      "/assets/delete/{assetId}": {
         "delete": {
           "description": "Delete a single asset by id (ie. 'avatar_2009'). Requires a valid Auth0 login token. asset ID must be in the format 'Title_Year', where Title is case-insensitive, alphanumeric and at least 2 characters long, and Year is numeric, and between 1900 and the current year.",
           "example":"'AS-004', 'AS-101', 'AS-101'",
