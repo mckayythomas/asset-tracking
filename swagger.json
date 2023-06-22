@@ -5,10 +5,10 @@
       "description": "CSE 341 Final Project Asset API MongoDB Mongoose with Auth0. All routes are protected, and /create, /update, and /delete require specific permissions.",
       "version": "1.0"
     },
-    "host": "localhost:3000",
+    "host": "https://cse-341-spring23-asset-tracking.onrender.com",
     "basePath": "",
     "schemes": [
-      "http"
+      "https"
     ],
     "paths": {
       "/": {
