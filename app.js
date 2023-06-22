@@ -3,9 +3,24 @@ const app = express();
 const bodyParser = require('body-parser');
 const PORT = process.env.port || 3000;
 const db = require('./db/connect.js')
+const session = require('express-session');
+const passport = require('passport')
+require('./controllers/auth/google.js');
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session())
+
+
+app.use(bodyParser.json())
+
 
 app
-    .use(bodyParser.json())
     .use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
