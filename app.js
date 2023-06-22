@@ -1,11 +1,10 @@
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
 const PORT = process.env.port || 3000;
 const db = require('./db/connect.js')
 
 app
-    .use(bodyParser.json())
+    .use(express.json())
     .use((req, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         next();
