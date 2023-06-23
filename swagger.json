@@ -1,0 +1,570 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Asset API MongoDB Mongoose with Auth0",
+      "description": "CSE 341 Final Project Asset API MongoDB Mongoose with Auth0. All routes are protected, and /create, /update, and /delete require specific permissions.",
+      "version": "1.0"
+    },
+    "host": "https://cse-341-spring23-asset-tracking.onrender.com",
+    "basePath": "",
+    "schemes": [
+      "https"
+    ],
+    "paths": {
+      "/": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/api-docs": {
+        "get": {
+          "description": "The API documentation for CSE 341 Final Project Asset API MongoDB",
+          "parameters": [],
+          "responses": {}
+        }
+      },
+      "/assets": {
+        "get": {
+          "description": "Get all assets in MongoDB asset API",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/assets/{id}": {
+        "get": {
+          "description": "Get single asset by id (ie. 'AS010'). Asset ID must be two alpha characters, ie. 'AS' that are case-insensitive, followed by three digits, padded left with zeros (ie. '005').",
+          "example":"'AS010', 'AS004', 'AS012'",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/assets/assetId/{assetId}": {
+        "get": {
+          "description": "Get single asset by id (ie. 'AS010'). Asset ID must be two alpha characters, ie. 'AS' that are case-insensitive, followed by three digits, padded left with zeros (ie. '005').",
+          "example":"'AS010', 'AS004', 'AS012'",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/assets/serial/{serialNumber}": {
+        "get": {
+          "description": "Get all asset by serial number",
+          "example":"EQP-001, EQP-002, EQP-003",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/assets/brand/{brand}": {
+        "get": {
+          "description": "Get all assets by Brand (ie. 'Sony', or 'IBM') - case insensitive. Note: Title is unique, so only a single asset is returned. Title is case insensitive, and must contain only alphanumeric characters and have a minimum length of 2",
+          "example":"'Sony', 'IBM', 'Apple'",
+          "parameters": [
+            {
+              "name": "brand",
+              "in": "path",
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/assets/pdate/{purchaseDate}": {
+          "get": {
+            "description": "Get all assets that match a purchase date (ie. '2022-08-02') Must be a valid date.",
+            "example":"'2022-08-02', '2021-12-10', '2020-07-05'",
+            "parameters": [
+              {
+                "name": "purchaseDate",
+                "in": "path",
+                "type": "date"
+              }
+            ],
+            "responses": {
+              "200": {
+                "description": "OK"
+              }
+            }
+          }
+        },
+        "/assets/model/{modelName}": {
+            "get": {
+              "description": "Get all assets that match a model name (ie. 'VC-6000').",
+              "example":"'Vista', 'Auto-Arm', 'MechZ-202'",
+              "parameters": [
+                {
+                  "name": "modelName",
+                  "in": "path",
+                  "type": "date"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            }
+          },
+          "/assets/modelnum/{modelNum}": {
+            "get": {
+              "description": "Get all assets that match a model number (ie. '659100').",
+              "example":"'K-100', 'M-200', 'Z-300'",
+              "parameters": [
+                {
+                  "name": "modelNum",
+                  "in": "path",
+                  "type": "string"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            }
+          },
+          "/assets/price/{price}": {
+            "get": {
+              "description": "Get all assets that match a purchase price, integer only (ie. '139000').",
+              "example":"'2301000'",
+              "parameters": [
+                {
+                  "name": "price",
+                  "in": "path",
+                  "type": "number"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            }
+          },
+          "/assets/desc/{description}": {
+            "get": {
+              "description": "Get all assets that match a partial description.",
+              "example":"'with 4k display'",
+              "parameters": [
+                {
+                  "name": "description",
+                  "in": "path",
+                  "type": "string"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            }
+          },
+          "/assets/status/{status}": {
+            "get": {
+              "description": "Get all assets that match a status.",
+              "example":"'active', 'storage', 'repair'",
+              "parameters": [
+                {
+                  "name": "status",
+                  "in": "path",
+                  "type": "string"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            }
+          },
+          "/assets/condition/{condition}": {
+            "get": {
+              "description": "Get all assets that match a condition.",
+              "example":"'good', 'fair', 'excellent', 'poor'",
+              "parameters": [
+                {
+                  "name": "condition",
+                  "in": "path",
+                  "type": "string"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            }
+          },
+          "/assets/building/{building}": {
+            "get": {
+              "description": "Get all assets that match a building.",
+              "example":"'21 West A', '23 South B'",
+              "parameters": [
+                {
+                  "name": "building",
+                  "in": "path",
+                  "type": "string"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            }
+          },
+          "/assets/location/{location}": {
+            "get": {
+              "description": "Get all assets that match a location (street address - '235 West Route 153'.",
+              "example":"'1 Tesla Ave', '3987 Beltway'",
+              "parameters": [
+                {
+                  "name": "location",
+                  "in": "path",
+                  "type": "string"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            }
+          },
+          "/assets/user/{user}": {
+            "get": {
+              "description": "Get all assets that are assigned to a user.",
+              "example":"'rsmithson@tesla.com', 'apetersen@tesla.com', 'lrichards@tesla.com'",
+              "parameters": [
+                {
+                  "name": "user",
+                  "in": "path",
+                  "type": "string"
+                }
+              ],
+              "responses": {
+                "200": {
+                  "description": "OK"
+                }
+              }
+            }
+          },
+        "/assets/create": {
+          "post": {
+            "description": "Create an asset. This is a protected route. Requires a valid Auth0 login token.",
+            "parameters": [
+              {
+                "name": "body",
+                "in": "body",
+                "schema": {
+                  "type": "array",
+                  "example": [
+                    {
+                      "AssetId": "AS-004",
+                      "SerialNumber": "EQ-934R2",
+                      "Brand": "Sony",
+                      "PurchaseDate": "18 Dec 2019",
+                      "Model": "Vista",
+                      "ModelNum": "VA-934",
+                      "PurchasePrice": "13900",
+                      "image": "https://images-na.ssl-images-amazon.com/images/I/71%2B%2B%2B%2Bq%2BqgL._AC_SL1500_.jpg",
+                      "PhysicalDescription": "4k display, 32GB RAM, 1TB SSD",
+                      "Status": "active",
+                      "Condition": "good",
+                      "Building": "West 3B",
+                      "User": "rsmithson@tesla.com"
+                    }
+                  ]
+                }
+              }
+            ],
+              "responses": {
+                      "201": {
+                      "description": "Record creation successful."
+                      },
+                      "400": {
+                      "description": "Record creation unsuccessful. Bad Request - Invalid input or duplicate record found"
+                      },
+                      "500": {
+                      "description": "Record creation unsuccessful. Internal Server Error"
+                      }
+              }
+          }
+      },
+  
+      "/assets/update/{assetId}": {
+          "put": {
+              "description": "Update single asset by id (ie. 'AS-004'). Requires a valid Auth0 login token. asset ID must be in the format 'Title_Year', where Title is case-insensitive, alphanumeric and at least 2 characters long, and Year is numeric, and between 1900 and the current year.",
+              "example":"'AS-004', 'AS-010', 'AS-291'",
+              "parameters": [
+                  {
+                      "name": "id",
+                      "in": "path",
+                      "required": true,
+                      "type": "string"
+                  },
+                  {
+                      "name": "body",
+                      "in": "body",
+                      "schema": {
+                        "type": "array",
+                        "example": [
+                        {
+                            "SerialNumber": "EQ-934R2",
+                            "Brand": "Sony",
+                            "PurchaseDate": "18 Dec 2019",
+                            "Model": "Vista",
+                            "ModelNum": "VA-934",
+                            "PurchasePrice": "13900",
+                            "image": "https://images-na.ssl-images-amazon.com/images/I/71%2B%2B%2B%2Bq%2BqgL._AC_SL1500_.jpg",
+                            "PhysicalDescription": "4k display, 32GB RAM, 1TB SSD",
+                            "Status": "active",
+                            "Condition": "good",
+                            "Building": "West 3B",
+                            "User": "rsmithson@tesla.com"
+                            }
+                        ]
+                      }
+                    }
+                  ],
+              "responses": {
+                  "204": {
+                  "description": "Update unsuccessful, no Content or record not found."
+                  },
+                  "201": {
+                      "description": "Update successful, record updated."
+                  },
+                  "500": {
+                  "description": "Update unsuccessful, Internal Server Error"
+                  }
+              }
+          }
+      },
+      "/assets/delete/{assetId}": {
+        "delete": {
+          "description": "Delete a single asset by id (ie. 'avatar_2009'). Requires a valid Auth0 login token. asset ID must be in the format 'Title_Year', where Title is case-insensitive, alphanumeric and at least 2 characters long, and Year is numeric, and between 1900 and the current year.",
+          "example":"'AS-004', 'AS-101', 'AS-101'",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Record successfully deleted"
+            },
+            "500": {
+              "description": "Record deletion unsuccessful. Internal Server Error"
+            },
+            "404": {
+              "description": "Deletion unsuccessful, record Not Found"
+            }
+          }
+        }
+      },
+      "/buildings": {
+                "post": {
+          "description": "Create a new building record",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "example": [
+                {
+                  "buildingId": "B001",
+                  "locationId": "L001",
+                  "name": "Main Building",
+                  "floors": 4,
+                  "departments": [
+                    "Research and Development",
+                    "Information Technology",
+                    "Human Resources"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "get": {
+          "description": "Return a list of all buildings",
+        "responses": {
+          "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/buildings/{Id}": {
+        "get": {
+          "description": "Return a building matching the Id of the query",
+          "parameters": [
+            {
+              "name": "user",
+              "in": "path",
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        },
+        "put": {
+          "description": "Update single building by id. Requires a valid Auth0 login token.",
+          "parameters": [
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "array",
+                "example": [
+                {
+                  "buildingId": "B001",
+                  "locationId": "L001",
+                  "name": "Main Building",
+                  "floors": 4,
+                  "departments": [
+                    "Research and Development",
+                    "Information Technology",
+                    "Human Resources"
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "responses": {
+              "204": {
+              "description": "Update successful, no content to return."
+              },
+              "201": {
+                  "description": "Update successful, record updated."
+              },
+              "500": {
+              "description": "Update unsuccessful, Internal Server Error"
+              }
+          }
+        }
+      },
+      "/buildings/name/{name}": {
+        "get": {
+          "parameters": [
+            {
+              "name": "user",
+              "in": "path",
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "500": {
+            "description": "Get unsuccessful. Internal Server Error"
+            },
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/buildings/location/{location}": {
+        "get": {
+          "parameters": [
+            {
+              "name": "user",
+              "in": "path",
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "500": {
+            "description": "Get unsuccessful. Internal Server Error"
+            },
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/buildings/delete/{Id}": {
+        "delete": {
+          "description": "Delete a single building by Id. Requires a valid Auth0 login token.",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Record successfully deleted"
+            },
+            "500": {
+              "description": "Record deletion unsuccessful. Internal Server Error"
+            },
+            "404": {
+              "description": "Deletion unsuccessful, record Not Found"
+            }
+          }
+        }
+      }
+    }
+  }
