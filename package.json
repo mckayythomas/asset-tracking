@@ -1,34 +1,53 @@
 {
-  "name": "asset-tracking",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "start": "node dist/app.js",
-    "start-dev": "nodemon src/app.ts",
-    "build": "tsc"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/mckayythomas/asset-tracking.git"
-  },
-  "author": "McKay Thomas, Scott Lefoll, Miguel López, Emory Hubbard, Josh Liddiard",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/mckayythomas/asset-tracking/issues"
-  },
-  "homepage": "https://github.com/mckayythomas/asset-tracking#readme",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "express-session": "^1.17.3",
-    "mongodb": "^5.6.0",
-    "passport": "^0.6.0",
-    "passport-google-oauth20": "^2.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.3.1",
-    "nodemon": "^2.0.22"
-  }
+    "name": "asset-tracking",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "start": "node dist/app.js",
+        "start-dev": "nodemon src/app.ts",
+        "build": "tsc",
+        "format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc",
+        "lint": "eslint . --ext .ts",
+        "lint:fix": "eslint --fix"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mckayythomas/asset-tracking.git"
+    },
+    "author": "McKay Thomas, Scott Lefoll, Miguel López, Emory Hubbard, Josh Liddiard",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mckayythomas/asset-tracking/issues"
+    },
+    "homepage": "https://github.com/mckayythomas/asset-tracking#readme",
+    "dependencies": {
+        "@apollo/server": "^4.7.5",
+        "cors": "^2.8.5",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "express-session": "^1.17.3",
+        "graphql": "^16.7.1",
+        "graphql-passport": "^0.6.5",
+        "mongoose": "^7.3.1",
+        "passport": "^0.6.0",
+        "passport-google-oauth20": "^2.0.0",
+        "typescript": "^5.1.5",
+        "validator": "^13.9.0"
+    },
+    "devDependencies": {
+        "@types/cors": "^2.8.13",
+        "@types/express": "^4.17.17",
+        "@types/express-session": "^1.17.7",
+        "@types/mongoose": "^5.11.97",
+        "@types/node": "^20.3.1",
+        "@types/passport-google-oauth20": "^2.0.11",
+        "@types/validator": "^13.7.17",
+        "eslint": "^8.43.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "nodemon": "^2.0.22",
+        "prettier": "^2.8.8",
+        "ts-node": "^10.9.1"
+    }
 }
