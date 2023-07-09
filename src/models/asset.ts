@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-const { Schema } = mongoose;
 
 // Define Mongoose address schema
 const addressSchema = new Schema({
