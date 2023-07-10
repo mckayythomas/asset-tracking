@@ -30,13 +30,13 @@ const assetSchema = `
         physicalDescription: String!
 
         "The building of the asset."
-        building: String!
+        building: Building
 
         "The department the asset is assigned to."
-        department: String!
+        department: Department
 
         "The user assigned to the asset."
-        image: String!
+        user: User
     }
 
     "Input to create a new asset. All fields are required and represent the initial properties of the asset."
@@ -73,7 +73,7 @@ const assetSchema = `
         department: String!
 
         "The user assigned to the asset."
-        image: String!
+        user: String!
     }
 
     "Input for the update of an asset. The only required field is the database id for the asset."
@@ -83,7 +83,7 @@ const assetSchema = `
         _id: ID!
 
         "The unique identifier for the asset used internally."
-        assetID: String
+        assetId: String
 
         "The serial number, assigned by the manufacturer, of the asset."
         serialNumber: String
@@ -113,7 +113,12 @@ const assetSchema = `
         department: String
 
         "The user assigned to the asset."
-        image: String
+        user: String
+    }
+
+    type User {
+        id: ID!
+        email: String!
     }
 
     type Query {
@@ -127,6 +132,11 @@ const assetSchema = `
         "Retrieve assets in database by a specific field and value."
         getAssetsByParam(fieldName: String!, fieldValue: String!): [Asset!]!
 
+        "Retrieve user information from Google OAuth using the token."
+        me: User!
+
+        "Test query to check if the server is running."
+        hello(name: String): String!
     }
 
     type Mutation {

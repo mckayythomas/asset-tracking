@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-const { Schema } = mongoose;
 
 // Define Mongoose address schema
 const addressSchema = new Schema({
@@ -32,6 +31,7 @@ const assetSchema = new Schema({
 }
 );
 
-const Asset = mongoose.model('Asset', assetSchema);
+const Asset = mongoose.model('Asset', assetSchema, "asset");
 
 export {Asset};
+

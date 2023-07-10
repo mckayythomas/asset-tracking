@@ -1,5 +1,5 @@
 import { Asset } from "../../models/asset";
-// import { Building } from "../../models/building";
+import { Building } from "../../models/building";
 import { Department } from "../../models/department";
 import { User } from "../../models/user";
 import { GraphQLError } from "graphql";
@@ -26,22 +26,22 @@ const assetResolvers = {
             } catch (error) {
                 throw new GraphQLError("Cannot find locations!");
             }
-        }
+        },
     },
     Asset: {
-        // building: async (parent: any) => {
-        //     try {
-        //         const building = await Building.find({ _id: parent.building });
-        //         return building;
-        //     } catch (error) {
-        //         throw new GraphQLError(
-        //             "Cannot find building, please review the building id!"
-        //         );
-        //     }
-        // },
+        building: async (parent: any) => {
+            try {
+                const building = await Building.findById(parent.building);
+                return building;
+            } catch (error) {
+                throw new GraphQLError(
+                    "Cannot find building, please review the building id!"
+                );
+            }
+        },
         department: async (parent: any) => {
             try {
-                const department = await Department.find({ _id: parent.department });
+                const department = await Department.findById(parent.department);
                 return department;
             } catch (error) {
                 throw new GraphQLError(
@@ -51,7 +51,8 @@ const assetResolvers = {
         },
         user: async (parent: any) => {
             try {
-                const user = await User.find({ _id: parent.user });
+                const user = await User.findById(parent.user);
+                return user;
                 return user;
             } catch (error) {
                 throw new GraphQLError(

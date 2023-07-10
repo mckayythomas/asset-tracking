@@ -33,6 +33,14 @@ const googleCallBack = async (
     return done(null, user);
 };
 
+// __mocks__/googleOAuth.ts
+export const verify = jest.fn().mockImplementation(() => {
+    return Promise.resolve({
+      userId: 'fakeUserId',
+      email: 'fakeemail@gmail.com',
+    });
+});
+
 passport.use(new GoogleStrategy(googleOptions, googleCallBack));
 passport.serializeUser((user: any, done) => done(null, user));
 passport.deserializeUser((user: any, done) => done(null, user));
