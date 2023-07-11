@@ -29,7 +29,8 @@ const assetResolvers = {
         },
     },
     Asset: {
-        building: async (parent: any) => {
+        building: async (parent: any, args: any, context: any) => {
+            checkAuthentication(context);
             try {
                 const building = await Building.findById(parent.building);
                 return building;
@@ -39,7 +40,8 @@ const assetResolvers = {
                 );
             }
         },
-        department: async (parent: any) => {
+        department: async (parent: any, args: any, context: any) => {
+            checkAuthentication(context);
             try {
                 const department = await Department.findById(parent.department);
                 return department;
@@ -49,7 +51,8 @@ const assetResolvers = {
                 );
             }
         },
-        user: async (parent: any) => {
+        user: async (parent: any, args: any, context: any) => {
+            checkAuthentication(context);
             try {
                 const user = await User.findById(parent.user);
                 return user;
