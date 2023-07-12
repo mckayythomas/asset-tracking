@@ -9,7 +9,7 @@ const buildingResolvers = {
                 checkAuthentication(context);
                 const buildings = await Building.find();
                 return buildings;
-            } 
+            }
             catch (error) {
                 throw new GraphQLError('Failed to get buildings details');
             }

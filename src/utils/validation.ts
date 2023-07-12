@@ -3,7 +3,9 @@ import { Request, Response, NextFunction } from 'express';
 import { ObjectId } from "mongodb";
 
 export const checkId = (Id: string) => {
-    if (!ObjectId.isValid(Id)) {
+    try {
+        const objectId = new ObjectId(Id);
+    } catch (error) {
         throw new GraphQLError("Please use a valid id!", {
             extensions: { code: "BAD_USER_INPUT" }
         });
