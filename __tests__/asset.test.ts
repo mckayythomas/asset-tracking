@@ -3,6 +3,7 @@ import sinon, { SinonStub } from "sinon";
 import {describe, expect, test, jest,  beforeEach, afterEach} from '@jest/globals';
 import { assetResolvers } from '../src/graphql/resolvers/assetResolvers';
 import { mockAuthenticationContext } from '../src/utils/validation';
+import { ObjectId } from 'mongodb';
 import { Types } from 'mongoose';
 import { sum } from '../src/graphql/resolvers/sum';
 import { Asset } from '../src/models/asset';
@@ -242,9 +243,36 @@ describe('assetResolvers module', () => {
         const mockContext = mockAuthenticationContext({});
         const result = await assetResolvers.Query.getAssetsByParams(null, { searchParams }, mockContext);
         const expectedAssets = mockData.filter((asset) =>
-            Object.entries(searchParams).every(([key, value]) =>
-                asset[key as keyof typeof asset] === value
-            )
+            Object.entries(searchParams).every(([key, value]) => {
+                if (key === 'purchasePrice') {
+                  if (typeof value === 'object' && value !== null && 'operator' in value && 'value' in value) {
+                    const { operator, value: compareValue } = value as { operator: string; value: number };
+                    const assetValue = Number(asset[key as keyof typeof asset]);
+                    switch (operator) {
+                        case '>':
+                            return assetValue > compareValue;
+                        case '<':
+                            return assetValue < compareValue;
+                        case '>=':
+                            return assetValue >= compareValue;
+                        case '<=':
+                            return assetValue <= compareValue;
+                        case '==':
+                            return assetValue === compareValue;
+                        case '!=':
+                            return assetValue !== compareValue;
+                        default:
+                            return false;
+                    }
+                  } else {
+                    const assetValue = asset[key as keyof typeof asset];
+                    return assetValue === value;
+                  }
+                } else {
+                  const assetValue = asset[key as keyof typeof asset];
+                  return assetValue === value;
+                }
+            })
         );
         expect(result).toEqual(expectedAssets);
         console.log("getAssetsByParams:", getAssetsByParams, "result:", result);

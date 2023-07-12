@@ -32,9 +32,10 @@ const assetResolvers = {
                   query = query.select(fields);
                 }
 
-                const asset = await query.exec();
+                const asset = await query;
                 return asset;
             } catch (error) {
+                console.error("getAssetById error: ", error); // Log the error for debugging purposes
                 throw new GraphQLError("An error occurred. Please try again.");
             }
         },
@@ -43,50 +44,49 @@ const assetResolvers = {
             const { searchParams, resultFields } = args;
             console.log("Search Params:", searchParams);
 
-            try {
-                let searchQuery: any = {};
+            let searchQuery: any = {};
 
-                // Iterate over the params and map these operators [<, >, =]  to these [$lt, $gt, $eq].
-                for (const field in searchParams) {
-                    if (searchParams.hasOwnProperty(field)) {
-                        const value = searchParams[field];
+            // Iterate over the params and map these operators [<, >, =] to these [$lt, $gt, $eq].
+            for (const field in searchParams) {
+                if (searchParams.hasOwnProperty(field)) {
+                    const value = searchParams[field];
 
-                        // Map the operators
-                        if (value.operator === "<") {
-                            searchQuery[field] = { $lt: value.value };
-                        } else if (value.operator === ">") {
-                            searchQuery[field] = { $gt: value.value };
-                        } else if (value.operator === "=") {
-                            searchQuery[field] = { $eq: value.value };
-                        } else if (value.operator === "<=") {
-                            searchQuery[field] = { $lte: value.value };
-                        } else if (value.operator === ">=") {
-                            searchQuery[field] = { $gte: value.value };
-                        }
+                    // Map the operators
+                    if (value.operator === "<") {
+                        searchQuery[field] = { $lt: value.value };
+                    } else if (value.operator === ">") {
+                        searchQuery[field] = { $gt: value.value };
+                    } else if (value.operator === "=") {
+                        searchQuery[field] = { $eq: value.value };
+                    } else if (value.operator === "<=") {
+                        searchQuery[field] = { $lte: value.value };
+                    } else if (value.operator === ">=") {
+                        searchQuery[field] = { $gte: value.value };
                     }
                 }
+            }
 
-                let query: any = Asset.find(searchQuery);
+            // Preparing the query
+            let query = Asset.find(searchQuery);
 
-                // Limit the result fields if specified
-                if (resultFields && Array.isArray(resultFields) && resultFields.length > 0) {
-                    const fields = resultFields.reduce((acc: any, field: string) => {
-                        acc[field] = 1;
-                        return acc;
-                    }, {});
-                    query = query.select(fields);
-                }
+            // If resultFields is specified, modify the query to only select those fields
+            if (resultFields && Array.isArray(resultFields) && resultFields.length > 0) {
+                const fields = resultFields.reduce((acc: any, field: string) => {
+                    acc[field] = 1;
+                    return acc;
+                }, {});
+                query = query.select(fields);
+            }
 
-                console.log("Search Query:", searchQuery);
-                const assets = await query.exec();
-                console.log("Found Assets:", assets);
+            // Executing the query
+            try {
+                const assets = await query;
                 return assets;
             } catch (error) {
-                console.error("Error retrieving assets:", error);
+                console.error("getAssetsByParams error: ", error);
                 throw new GraphQLError("Cannot find assets!");
             }
         },
-
     },
     Asset: {
         building: async (parent: any, args: any, context: any) => {
