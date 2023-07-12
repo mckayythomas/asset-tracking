@@ -1,15 +1,32 @@
-import { server } from "../src/app";
-import { gql } from "@apollo/client";
-import { describe, expect, test} from "@jest/globals"
+import { userResolvers } from "../src/graphql/resolvers/userResolvers";
+import { User } from "../src/models/user";
+import { fakeLogin } from "../src/test-utils/fakeContext";
 
-it("Checks that the get user resolver returns correct fields", async () => {
-    const result = await server.executeOperation({
-        query: gql`
-            query {
-                getUser(userId: "64973a6b121e7cd9f5d94421")
-            }
-        `
+jest.mock("../src/models/user");
+
+describe("userResolver test", () => {
+    let findMock: jest.Mock;
+
+    beforeEach(() => {
+        findMock = jest.fn();
+        User.find = findMock;
     });
-    expect(result).toBeDefined();
-    expect(result).toBe("64973a6b121e7cd9f5d94421")
-});
+
+    let getUserTest = "Check if getUser function returns appropiate user data.";
+    test(getUserTest, async () => {
+        const mockData = [
+            {
+                _id: "abc",
+                googleId: "123",
+                displayName: "Greg Greg",
+                firstName: "Greg",
+                lastName: "Greg",
+                picture: "thispiciscool.jpg"
+            }
+        ];
+        findMock.mockResolvedValue(mockData);
+        const context = fakeLogin(true);
+        const result = await userResolvers.Query.getUser(null, null, context);
+        expect(result).toEqual(mockData);
+    })
+})
