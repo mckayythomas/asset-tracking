@@ -46,11 +46,10 @@ const assetResolvers = {
 
             let searchQuery: any = {};
 
-            // Iterate over the params and map these operators [<, >, =] to these [$lt, $gt, $eq].
+            // Iterate over the params - map [<, >, =] to these [$lt, $gt, $eq].
             for (const field in searchParams) {
                 if (searchParams.hasOwnProperty(field)) {
                     const value = searchParams[field];
-
                     // Map the operators
                     if (value.operator === "<") {
                         searchQuery[field] = { $lt: value.value };
@@ -62,6 +61,10 @@ const assetResolvers = {
                         searchQuery[field] = { $lte: value.value };
                     } else if (value.operator === ">=") {
                         searchQuery[field] = { $gte: value.value };
+                    } else if (value.operator === "!=") {
+                        searchQuery[field] = { $ne: value.value };
+                    } else if (value.operator === "=") {
+                        searchQuery[field] = { $eq: value.value };
                     }
                 }
             }
@@ -71,14 +74,13 @@ const assetResolvers = {
 
             // If resultFields is specified, modify the query to only select those fields
             if (resultFields && Array.isArray(resultFields) && resultFields.length > 0) {
-                const fields = resultFields.reduce((acc: any, field: string) => {
-                    acc[field] = 1;
-                    return acc;
-                }, {});
-                query = query.select(fields);
+            const fields = resultFields.reduce((acc: any, field: string) => {
+                acc[field] = 1;
+                return acc;
+            }, {});
+            query = query.select(fields).exec() as typeof query;
             }
 
-            // Executing the query
             try {
                 const assets = await query;
                 return assets;

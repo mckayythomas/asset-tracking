@@ -35,6 +35,112 @@ describe('assetResolvers module', () => {
         findByIdStub.restore();
       });
 
+    let getAssetsTest = 'getAssets returns an array of assets';
+    test(getAssetsTest, async () => {
+        const mockData = [
+          {
+            _id: objId1,
+            assetId: 'A1',
+            serialNumber: 'SN1',
+            brand: 'Brand1',
+            purchaseDate: '2023-01-01',
+            model: 'Model1',
+            modelNumber: 'MN1',
+            purchasePrice: 15000,
+            image: 'image1.jpg',
+            physicalDescription: 'Description1',
+            building: 'Building1',
+            department: 'Department1',
+            user: 'User1'
+          },
+          {
+            _id: objId2,
+            assetId: 'A2',
+            serialNumber: 'SN2',
+            brand: 'Brand2',
+            purchaseDate: '2023-02-02',
+            model: 'Model2',
+            modelNumber: 'MN2',
+            purchasePrice: 25000,
+            image: 'image2.jpg',
+            physicalDescription: 'Description2',
+            building: 'Building2',
+            department: 'Department2',
+            user: 'User2'
+          },
+        ];
+
+        findStub.returns(mockData);
+
+        const mockContext = mockAuthenticationContext({});
+        const result = await assetResolvers.Query.getAssets(mockContext);
+        expect(result).toEqual(mockData);
+        console.log("getAssetsTest:", getAssetsTest, "result:", result);
+        console.log("************************************************");
+    });
+
+    let getAssetByIdTest = 'getAssetById returns a single asset by ID';
+    test(getAssetByIdTest, async () => {
+        const mockData = [
+          {
+            _id: objId1,
+            assetId: 'A1',
+            serialNumber: 'SN1',
+            brand: 'Brand1',
+            purchaseDate: '2023-01-01',
+            model: 'Model1',
+            modelNumber: 'MN1',
+            purchasePrice: 15000,
+            image: 'image1.jpg',
+            physicalDescription: 'Description1',
+            building: 'Building1',
+            department: 'Department1',
+            user: 'User1'
+          },
+          {
+            _id: objId2,
+            assetId: 'A2',
+            serialNumber: 'SN2',
+            brand: 'Brand2',
+            purchaseDate: '2023-02-02',
+            model: 'Model2',
+            modelNumber: 'MN2',
+            purchasePrice: 25000,
+            image: 'image2.jpg',
+            physicalDescription: 'Description2',
+            building: 'Building2',
+            department: 'Department2',
+            user: 'User2'
+          },
+          {
+            _id: objId3,
+            assetId: 'A3',
+            serialNumber: 'SN7',
+            brand: 'Brand5',
+            purchaseDate: '2021-02-02',
+            model: 'Model3',
+            modelNumber: 'MN5',
+            purchasePrice: 20000,
+            image: 'image3.jpg',
+            physicalDescription: 'Description3',
+            building: 'Building3',
+            department: 'Department3',
+            user: 'User3'
+          },
+        ];
+
+        findByIdStub.returns(mockData[0]);
+
+        const mockContext = mockAuthenticationContext({});
+        let id = objId1;
+        let result = await assetResolvers.Query.getAssetById(null, { _id: id }, mockContext);
+        let expectedAsset = mockData.find((asset) => asset._id === id);
+        expect(result).toEqual(expectedAsset);
+        console.log("getAssetByIdTest: query id = ", id);
+        console.log("result = ", result);
+        console.log("************************************************");
+    }, 20000); // 20 seconds
+
     let getAssetsByParams = 'getAssetsByParams returns assets by parameter - value pairs';
     test(getAssetsByParams, async () => {
         const mockData = [

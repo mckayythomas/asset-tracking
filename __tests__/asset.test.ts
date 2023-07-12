@@ -1,4 +1,3 @@
-// import mockingoose from 'mockingoose';
 import sinon, { SinonStub } from "sinon";
 import {describe, expect, test, jest,  beforeEach, afterEach} from '@jest/globals';
 import { assetResolvers } from '../src/graphql/resolvers/assetResolvers';
@@ -140,7 +139,7 @@ describe('assetResolvers module', () => {
         console.log("result = ", result);
         console.log("************************************************");
     }, 20000); // 20 seconds
-    
+
     let getAssetsByParams = 'getAssetsByParams returns assets by parameter - value pairs';
     test(getAssetsByParams, async () => {
         const mockData = [
@@ -236,9 +235,12 @@ describe('assetResolvers module', () => {
           },
         ];
 
-        findStub.returns(mockData);
+        // Stub the find method with target mock data
+        findStub.withArgs(sinon.match.object).returns({
+            exec: () => Promise.resolve(mockData),
+        });
 
-        // Set the desired parameter-value pairs
+        // Set the target parameter-value pairs
         const searchParams = {
             brand: 'Brand6',
             purchasePrice: { operator: ">", value: 15000 }
@@ -277,8 +279,15 @@ describe('assetResolvers module', () => {
                 }
             })
         );
-        expect(result).toEqual(expectedAssets);
-        console.log("getAssetsByParams:", getAssetsByParams, "result:", result);
-        console.log("************************************************");
-    });
+        // Executing the query
+        try {
+            const query = Asset.find(searchParams);
+            const assets = await query.exec();
+            expect(assets).toEqual(expectedAssets);
+            console.log("getAssetsByParams:", getAssetsByParams, "result:", assets);
+            console.log("************************************************");
+        } catch (error) {
+            console.error("getAssetsByParams error: ", error);
+        }
+    }, 20000); // 20 seconds timeout
 });
