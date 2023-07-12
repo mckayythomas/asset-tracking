@@ -9,6 +9,7 @@ const userResolvers = {
             checkAuthentication(context);
             const id = args.userId;
             checkId(id);
+            console.log(args.userId)
             try {
                 const user = await User.findById(id);
                 return user;

@@ -1,14 +1,13 @@
-export const fakeLogin = (isAuthenticated: boolean): any => {
-    return {
-        req: {
-            isAuthenticated: () => isAuthenticated,
-            user: isAuthenticated ? {
-                googleId: "123456789",
-                displayName: "Greg Greg",
-                firstName: "Greg",
-                lastName: "Greg",
-                picture: "thispicrocks.jpg"
-            } : null,
-        },
+export const fakeLogin = (context: any) => {
+        context = { ...context };
+        context.user = { id: "fakeUser" };
+        context.isAuthenticated = () => true;
+        return context;
+};
+
+export const fakeArguments = (userId: string) => {
+    const args = {
+        userId: userId
     };
+    return args;
 };
