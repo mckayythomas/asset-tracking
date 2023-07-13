@@ -28,7 +28,7 @@ export const checkAuthentication = (request: Request) => {
     }
 };
 
-// Middleware to mock authenticate that is used during testing
+// mock authenticate context
 export const mockAuthenticationContext = (context: any) => {
     context.user = { id: 'testUserId' };
     context.isAuthenticated = () => true;

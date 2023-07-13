@@ -76,42 +76,38 @@ const assetSchema = `
         user: String!
     }
 
-    "Input for the update of an asset. The only required field is the database id for the asset."
+    "Input for the update of an asset. All fields are optional and represent the properties of the asset to be updated"
     input AssetUpdateData {
-
-        "The unique identifier of the asset within the database."
-        _id: ID!
-
         "The unique identifier for the asset used internally."
         assetId: String
-
+    
         "The serial number, assigned by the manufacturer, of the asset."
         serialNumber: String
-
+    
         "The brand name of the asset."
         brand: String
-
+    
         "The purchase date for the asset."
         purchaseDate: String
-
+    
         "The model name of the asset."
         model: String
-
+    
         "The model number of the asset."
         modelNumber: String
-
+    
         "The image file for the asset."
         image: String
-
+    
         "The physical description of the asset."
         physicalDescription: String
-
+    
         "The building of the asset."
         building: String
-
+    
         "The department the asset is assigned to."
         department: String
-
+    
         "The user assigned to the asset."
         user: String
     }
@@ -144,8 +140,8 @@ const assetSchema = `
         "Create a new asset document in database."
         newAsset( input: AssetCreateData! ): ID!
 
-        "Update a asset document in database."
-        updateAsset( input: AssetUpdateData! ): Asset!
+        "Update an asset document in database."
+        updateAsset(_id: ID!, updateData: AssetUpdateData!): Asset
 
         "Delete a asset document in database."
         deleteAsset( assetId: ID! ): ID!

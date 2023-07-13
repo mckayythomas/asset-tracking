@@ -3,6 +3,7 @@ import { Building } from "../../models/building";
 import { Department } from "../../models/department";
 import { User } from "../../models/user";
 import { GraphQLError } from "graphql";
+import { IResolvers } from '@graphql-tools/utils';
 import { checkId, checkRequiredFields, checkAuthentication } from "../../utils/validation";
 
 const assetResolvers = {
@@ -35,7 +36,7 @@ const assetResolvers = {
                 const asset = await query;
                 return asset;
             } catch (error) {
-                console.error("getAssetById error: ", error); // Log the error for debugging purposes
+                console.error("getAssetById error: ", error); 
                 throw new GraphQLError("An error occurred. Please try again.");
             }
         },
@@ -69,10 +70,8 @@ const assetResolvers = {
                 }
             }
 
-            // Preparing the query
             let query = Asset.find(searchQuery);
 
-            // If resultFields is specified, modify the query to only select those fields
             if (resultFields && Array.isArray(resultFields) && resultFields.length > 0) {
             const fields = resultFields.reduce((acc: any, field: string) => {
                 acc[field] = 1;
@@ -118,7 +117,6 @@ const assetResolvers = {
             try {
                 const user = await User.findById(parent.user);
                 return user;
-                return user;
             } catch (error) {
                 throw new GraphQLError(
                     "Cannot find user, please review the user id!"
@@ -130,16 +128,39 @@ const assetResolvers = {
         newAsset: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
             checkRequiredFields(args, []);
+            try {
+                const newAsset = new Asset(args);
+                return await newAsset.save();
+            } catch (error) {
+                console.error('Error creating new asset:', error);
+                throw new GraphQLError('An error occurred while creating the new asset.');
+            }
         },
         updateAsset: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            checkRequiredFields(args, []);
+            checkRequiredFields(args, ['_id']);
+            try {
+              const assetData = await Asset.findById(args._id);
+              if (!assetData) {
+                throw new GraphQLError('Asset not found.');
+              }
+              const asset = new Asset(assetData);
+              Object.assign(asset, args.updateData);
+              const updatedAsset = await asset.save();
+              return updatedAsset.toObject();
+            } catch (error) {
+              console.error('Error updating the asset:', error);
+              throw new GraphQLError('An error occurred while updating the asset.');
+            }
         },
-        deleteAsset: async (parent: any, args: any, context: any) => {
-            checkAuthentication(context);
-            checkRequiredFields(args, []);
-        }
-    }
+
+        // deleteAsset: async (parent: any, args: any, context: any) => {
+        //     checkAuthentication(context);
+        //     checkRequiredFields(args, ['assetId']);
+        //     const deleteResult = await Asset.deleteOne({ assetId: args.assetId });
+        //     return deleteResult.deletedCount;
+        // }
+    },
 };
 
 export { assetResolvers };
