@@ -25,7 +25,7 @@ const locationSchema = `
     input LocationCreateData {
 
         "The unique identifier for the location used internally."
-        locationID: String!
+        locationId: String!
 
         "Name of the location."
         name: String!
@@ -47,7 +47,7 @@ const locationSchema = `
         _id: ID!
 
         "The unique identifier for the location used internally."
-        locationID: String
+        locationId: String
 
         "Name of the location."
         name: String
@@ -62,13 +62,24 @@ const locationSchema = `
         departments: [String]
     }
 
+    input FilterData {
+        "Physical address of the location."
+        address: String
+
+        "Category of the location."
+        type: String
+
+        "Department ID associated with the location."
+        department: String
+    }
+
     type Query {
 
         "Query to obtain a specific location by id."
         getLocation( locationId: ID! ): Location!
 
-        "Retrieve all the locations in database."
-        getLocations: [Location!]!
+        "Retrieve all the locations in the database filtered by a parameter. If there is no parameter, retrieve all existing locations."
+        getLocations( input: FilterData ): [Location!]!
     }
 
     type Mutation {
