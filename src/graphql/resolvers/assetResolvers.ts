@@ -152,8 +152,8 @@ const assetResolvers = {
         },
         deleteAsset: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            checkRequiredFields(args, ['assetId']);
-            const deleteResult = await Asset.deleteOne({ assetId: args.assetId });
+            checkRequiredFields(args, ['_id']);
+            const deleteResult = await Asset.deleteOne({ _id: args._id });
             return deleteResult.deletedCount;
         }
     },

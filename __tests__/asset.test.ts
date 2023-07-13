@@ -255,8 +255,6 @@ describe('assetResolvers module', () => {
     //   expect(result).toEqual(expectedData);
     // }, 20000);
 
-
-
     let newAssetTest = 'newAsset creates a new asset';
     test(newAssetTest, async () => {
         const mockData = {
@@ -269,11 +267,11 @@ describe('assetResolvers module', () => {
             purchasePrice: 15000,
             image: 'image1.jpg',
             physicalDescription: 'Description1',
+            status: 'Available',
+            condition: 'Good',
             building: 'Building1',
             department: 'Department1',
             user: 'User1',
-            condition: 'New',
-            status: 'In Use'
           };
 
         saveStub = sinon.stub(Asset.prototype, 'save');
@@ -303,6 +301,8 @@ describe('assetResolvers module', () => {
             purchasePrice: 15000,
             image: 'image1.jpg',
             physicalDescription: 'Description1',
+            status: 'Available',
+            condition: 'Good',
             building: 'Building1',
             department: 'Department1',
             user: 'User1'
@@ -328,12 +328,33 @@ describe('assetResolvers module', () => {
         saveStub.restore();
     }, 20000); // 20 seconds timeout
 
-    // let deleteAssetTest = 'deleteAsset deletes an asset';
-    // test(deleteAssetTest, async () => {
-    //     deleteOneStub.returns(Promise.resolve({ deletedCount: 1 }));
+    let deleteAssetTest = 'deleteAsset deletes an asset';
+    test(deleteAssetTest, async () => {
+        deleteOneStub.returns(Promise.resolve({ deletedCount: 1 }));
 
-    //     const mockContext = mockAuthenticationContext({});
-    //     const result = await assetResolvers.Mutation.deleteAsset({}, { assetId: 'A1' }, mockContext);
-    //     expect(result.deletedCount).toEqual(1);
-    // });
+        const mockData = {
+            _id: objId2,
+            assetId: 'A2',
+            serialNumber: 'SN2',
+            brand: 'Brand2',
+            purchaseDate: '2023-02-02',
+            model: 'Model2',
+            modelNumber: 'MN2',
+            purchasePrice: 25000,
+            image: 'image2.jpg',
+            physicalDescription: 'Description2',
+            status: 'Available',
+            condition: 'Good',
+            building: 'Building2',
+            department: 'Department2',
+            user: 'User2'
+          };
+
+        const mockContext = mockAuthenticationContext({});
+        const result = await assetResolvers.Mutation.deleteAsset({}, { _id: objId2 }, mockContext);
+        console.log("Delete Asset Test");
+        console.log("Expected result:", 1);
+        console.log("Received result:", result);
+        expect(result).toEqual(1);
+    });
 });

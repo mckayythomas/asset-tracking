@@ -161,8 +161,8 @@ const assetSchema = `
         "Update an asset document in database."
         updateAsset(_id: ID!, updateData: AssetUpdateData!): Asset
 
-        "Delete a asset document in database."
-        deleteAsset( assetId: ID! ): ID!
+        "Delete an asset document in database."
+        deleteAsset(_id: ID!): ID!
     }
 `;
 
