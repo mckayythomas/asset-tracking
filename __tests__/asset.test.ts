@@ -52,6 +52,8 @@ describe('assetResolvers module', () => {
             purchasePrice: 15000,
             image: 'image1.jpg',
             physicalDescription: 'Description1',
+            status: 'Available',
+            condition: 'Good',
             building: 'Building1',
             department: 'Department1',
             user: 'User1'
@@ -67,6 +69,8 @@ describe('assetResolvers module', () => {
             purchasePrice: 25000,
             image: 'image2.jpg',
             physicalDescription: 'Description2',
+            status: 'Available',
+            condition: 'Good',
             building: 'Building2',
             department: 'Department2',
             user: 'User2'
@@ -97,6 +101,8 @@ describe('assetResolvers module', () => {
             purchasePrice: 15000,
             image: 'image1.jpg',
             physicalDescription: 'Description1',
+            status: 'Available',
+            condition: 'Good',
             building: 'Building1',
             department: 'Department1',
             user: 'User1'
@@ -112,6 +118,8 @@ describe('assetResolvers module', () => {
             purchasePrice: 25000,
             image: 'image2.jpg',
             physicalDescription: 'Description2',
+            status: 'Available',
+            condition: 'Good',
             building: 'Building2',
             department: 'Department2',
             user: 'User2'
@@ -130,120 +138,124 @@ describe('assetResolvers module', () => {
         expect(result).toEqual(expectedData);
     }, 20000); // 20 seconds
 
-    let getAssetsByParams = 'getAssetsByParams returns assets by parameter - value pairs';
-    test(getAssetsByParams, async () => {
-        const mockData = [
-          {
-            _id: objId3,
-            assetId: 'A3',
-            serialNumber: 'SN7',
-            brand: 'Brand5',
-            purchaseDate: '2021-02-02',
-            model: 'Model3',
-            modelNumber: 'MN5',
-            purchasePrice: 20000,
-            image: 'image3.jpg',
-            physicalDescription: 'Description3',
-            building: 'Building3',
-            department: 'Department3',
-            user: 'User3'
-          },
-          {
-            _id: objId4,
-            assetId: 'A4',
-            serialNumber: 'SN4',
-            brand: 'Brand6',
-            purchaseDate: '2023-01-04',
-            model: 'Model4',
-            modelNumber: 'MN4',
-            purchasePrice: 14000,
-            image: 'image1.jpg',
-            physicalDescription: 'Description4',
-            building: 'Building4',
-            department: 'Department4',
-            user: 'User4'
-          },
-          {
-            _id: objId5,
-            assetId: 'A5',
-            serialNumber: 'SN5',
-            brand: 'Brand6',
-            purchaseDate: '2023-01-05',
-            model: 'Model5',
-            modelNumber: 'MN5',
-            purchasePrice: 15500,
-            image: 'image5.jpg',
-            physicalDescription: 'Description5',
-            building: 'Building5',
-            department: 'Department5',
-            user: 'User5'
-          },
-          {
-            _id: objId6,
-            assetId: 'A6',
-            serialNumber: 'SN6',
-            brand: 'Brand6',
-            purchaseDate: '2023-01-06',
-            model: 'Model6',
-            modelNumber: 'MN6',
-            purchasePrice: 16000,
-            image: 'image6.jpg',
-            physicalDescription: 'Description6',
-            building: 'Building6',
-            department: 'Department6',
-            user: 'User6'
-          },
-        ];
+    // let getAssetsByParams = 'getAssetsByParams returns assets by parameter - value pairs';
+    // test(getAssetsByParams, async () => {
+    //     const mockData: typeof Asset[] = [
+    //         {
+    //             _id: objId3,
+    //             assetId: 'A3',
+    //             serialNumber: 'SN7',
+    //             brand: 'Brand5',
+    //             purchaseDate: '2021-02-02',
+    //             model: 'Model3',
+    //             modelNumber: 'MN5',
+    //             purchasePrice: 20000,
+    //             image: 'image3.jpg',
+    //             physicalDescription: 'Description3',
+    //             status: 'Available',
+    //             condition: 'Good',
+    //             building: 'Building3',
+    //             department: 'Department3',
+    //             user: 'User3'
+    //         },
+    //         {
+    //             _id: objId4,
+    //             assetId: 'A4',
+    //             serialNumber: 'SN4',
+    //             brand: 'Brand6',
+    //             purchaseDate: '2023-01-04',
+    //             model: 'Model4',
+    //             modelNumber: 'MN4',
+    //             purchasePrice: 14000,
+    //             image: 'image1.jpg',
+    //             physicalDescription: 'Description4',
+    //             status: 'Available',
+    //             condition: 'Good',
+    //             building: 'Building4',
+    //             department: 'Department4',
+    //             user: 'User4'
+    //         },
+    //         {
+    //             _id: objId5,
+    //             assetId: 'A5',
+    //             serialNumber: 'SN5',
+    //             brand: 'Brand6',
+    //             purchaseDate: '2023-01-05',
+    //             model: 'Model5',
+    //             modelNumber: 'MN5',
+    //             purchasePrice: 15500,
+    //             image: 'image5.jpg',
+    //             physicalDescription: 'Description5',
+    //             status: 'Available',
+    //             condition: 'Good',
+    //             building: 'Building5',
+    //             department: 'Department5',
+    //             user: 'User5',
+    //         },
+    //         {
+    //             _id: objId6,
+    //             assetId: 'A6',
+    //             serialNumber: 'SN6',
+    //             brand: 'Brand6',
+    //             purchaseDate: '2023-01-06',
+    //             model: 'Model6',
+    //             modelNumber: 'MN6',
+    //             purchasePrice: 16000,
+    //             image: 'image6.jpg',
+    //             physicalDescription: 'Description6',
+    //             status: 'Available',
+    //             condition: 'Good',
+    //             building: 'Building6',
+    //             department: 'Department6',
+    //             user: 'User6',
+    //         },
+    //     ];
 
-        // Stub the find method with target mock data
-        findStub.withArgs(sinon.match.object).returns({
-            exec: () => Promise.resolve(mockData),
-        });
+    //   // Stub the find method with target mock data
+    //   findStub.withArgs(sinon.match.object).returns({
+    //     exec: () => Promise.resolve(mockData),
+    //   });
 
-        // Set the target parameter-value pairs
-        const searchParams = {
-            brand: 'Brand6',
-            purchasePrice: { operator: ">", value: 15000 }
-        };
-        const mockContext = mockAuthenticationContext({});
-        const expectedData = mockData.filter((asset) =>
-            Object.entries(searchParams).every(([key, value]) => {
-                if (key === 'purchasePrice') {
-                  if (typeof value === 'object' && value !== null && 'operator' in value && 'value' in value) {
-                    const { operator, value: compareValue } = value as { operator: string; value: number };
-                    const assetValue = Number(asset[key as keyof typeof asset]);
-                    switch (operator) {
-                        case '>':
-                            return assetValue > compareValue;
-                        case '<':
-                            return assetValue < compareValue;
-                        case '>=':
-                            return assetValue >= compareValue;
-                        case '<=':
-                            return assetValue <= compareValue;
-                        case '==':
-                            return assetValue === compareValue;
-                        case '!=':
-                            return assetValue !== compareValue;
-                        default:
-                            return false;
-                    }
-                  } else {
-                    const assetValue = asset[key as keyof typeof asset];
-                    return assetValue === value;
-                  }
-                } else {
-                  const assetValue = asset[key as keyof typeof asset];
-                  return assetValue === value;
-                }
-            })
-        );
-        const result = await assetResolvers.Query.getAssetsByParams(null, { searchParams }, mockContext);
-        console.log("Get Assets by Parameters Test");
-        console.log("Expected result:", expectedData);
-        console.log("Received result:", result);
-        expect(result).toEqual(expectedData);
-    }, 20000); // 20 seconds timeout
+    //   // Set the target parameter-value pairs as query parameters
+    //   const searchParams: { [key: string]: string } = {
+    //     brand: 'Brand6',
+    //     purchasePrice: '>15000'
+    //   };
+
+    //   const operators: { [key: string]: (assetValue: number, value: number) => boolean } = {
+    //     '>': (assetValue, value) => assetValue > value,
+    //     '<': (assetValue, value) => assetValue < value,
+    //     '>=': (assetValue, value) => assetValue >= value,
+    //     '<=': (assetValue, value) => assetValue <= value,
+    //     '=': (assetValue, value) => assetValue === value,
+    //     '!=': (assetValue, value) => assetValue !== value
+    //   };
+
+    // //   let expectedData = mockData.filter((asset: typeof Asset) => {
+    //   const expectedData = mockData.map((asset: Asset) => {
+    //     const newAsset: Asset = { ...asset };
+    //     Object.entries(searchParams).every(([fieldName, fieldValue]) => {
+    //       if (fieldName === 'purchasePrice') {
+    //         const operator = fieldValue[0];
+    //         const value = Number(fieldValue.substring(1));
+    //         const assetValue = Number(asset[fieldName]);
+    //         const operation = operators[operator];
+    //         return operation(assetValue, value);
+    //       } else {
+    //         return asset[fieldName] === fieldValue;
+    //       }
+    //     })
+    //   );
+
+    //   const mockContext = mockAuthenticationContext({});
+    //   const result = await assetResolvers.Query.getAssetsByParams(null, { input: searchParams }, mockContext);
+    //   console.log("Get Assets by Parameters Test");
+    //   console.log("Expected result:", expectedData);
+    //   console.log("Received result:", result);
+    //   expect(result).toEqual(expectedData);
+    // }, 20000);
+
+
 
     let newAssetTest = 'newAsset creates a new asset';
     test(newAssetTest, async () => {

@@ -29,6 +29,12 @@ const assetSchema = `
         "The physical description of the asset."
         physicalDescription: String!
 
+        "The status of the asset."
+        status: String!
+
+        "The condition of the asset."
+        condition: String!
+
         "The building of the asset."
         building: Building
 
@@ -66,6 +72,12 @@ const assetSchema = `
         "The physical description of the asset."
         physicalDescription: String!
 
+        "The status of the asset."
+        status: String!
+
+        "The condition of the asset."
+        condition: String!
+
         "The building of the asset."
         building: String!
 
@@ -80,34 +92,40 @@ const assetSchema = `
     input AssetUpdateData {
         "The unique identifier for the asset used internally."
         assetId: String
-    
+
         "The serial number, assigned by the manufacturer, of the asset."
         serialNumber: String
-    
+
         "The brand name of the asset."
         brand: String
-    
+
         "The purchase date for the asset."
         purchaseDate: String
-    
+
         "The model name of the asset."
         model: String
-    
+
         "The model number of the asset."
         modelNumber: String
-    
+
         "The image file for the asset."
         image: String
-    
+
         "The physical description of the asset."
         physicalDescription: String
-    
+
+        "The status of the asset."
+        status: String
+
+        "The condition of the asset."
+        condition: String
+
         "The building of the asset."
         building: String
-    
+
         "The department the asset is assigned to."
         department: String
-    
+
         "The user assigned to the asset."
         user: String
     }
@@ -126,7 +144,7 @@ const assetSchema = `
         getAssets: [Asset!]!
 
         "Retrieve assets in database by a specific field and value."
-        getAssetsByParam(fieldName: String!, fieldValue: String!): [Asset!]!
+        getAssetsByParams(searchParams: SearchParamsInput): [Asset!]!
 
         "Retrieve user information from Google OAuth using the token."
         me: User!

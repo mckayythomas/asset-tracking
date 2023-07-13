@@ -3,7 +3,6 @@ import { Building } from "../../models/building";
 import { Department } from "../../models/department";
 import { User } from "../../models/user";
 import { GraphQLError } from "graphql";
-import { IResolvers } from '@graphql-tools/utils';
 import { checkId, checkRequiredFields, checkAuthentication } from "../../utils/validation";
 
 const assetResolvers = {
@@ -26,11 +25,11 @@ const assetResolvers = {
                 let query: any = Asset.findById(id);
                 // Limit the result fields if specified
                 if (resultFields && Array.isArray(resultFields) && resultFields.length > 0) {
-                  const fields = resultFields.reduce((acc: any, field: string) => {
+                const fields = resultFields.reduce((acc: any, field: string) => {
                     acc[field] = 1;
                     return acc;
-                  }, {});
-                  query = query.select(fields);
+                }, {});
+                query = query.select(fields);
                 }
 
                 const asset = await query;
@@ -40,54 +39,52 @@ const assetResolvers = {
                 throw new GraphQLError("An error occurred. Please try again.");
             }
         },
+
         getAssetsByParams: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            const { searchParams, resultFields } = args;
+            const { searchParams } = args;
             console.log("Search Params:", searchParams);
+            const searchQuery: any = {};
 
-            let searchQuery: any = {};
-
-            // Iterate over the params - map [<, >, =] to these [$lt, $gt, $eq].
-            for (const field in searchParams) {
-                if (searchParams.hasOwnProperty(field)) {
-                    const value = searchParams[field];
-                    // Map the operators
-                    if (value.operator === "<") {
-                        searchQuery[field] = { $lt: value.value };
-                    } else if (value.operator === ">") {
-                        searchQuery[field] = { $gt: value.value };
-                    } else if (value.operator === "=") {
-                        searchQuery[field] = { $eq: value.value };
-                    } else if (value.operator === "<=") {
-                        searchQuery[field] = { $lte: value.value };
-                    } else if (value.operator === ">=") {
-                        searchQuery[field] = { $gte: value.value };
-                    } else if (value.operator === "!=") {
-                        searchQuery[field] = { $ne: value.value };
-                    } else if (value.operator === "=") {
-                        searchQuery[field] = { $eq: value.value };
-                    }
+            for (const fieldName in searchParams) {
+              if (searchParams.hasOwnProperty(fieldName)) {
+                const fieldValue = searchParams[fieldName];
+                if (fieldValue.includes(">")) {
+                  const operator = "$gt";
+                  const value = fieldValue.substring(1);
+                  searchQuery[fieldName] = { [operator]: value };
+                } else if (fieldValue.includes("<")) {
+                  const operator = "$lt";
+                  const value = fieldValue.substring(1);
+                  searchQuery[fieldName] = { [operator]: value };
+                } else if (fieldValue.includes(">=")) {
+                  const operator = "$gte";
+                  const value = fieldValue.substring(2);
+                  searchQuery[fieldName] = { [operator]: value };
+                } else if (fieldValue.includes("<=")) {
+                  const operator = "$lte";
+                  const value = fieldValue.substring(2);
+                  searchQuery[fieldName] = { [operator]: value };
+                } else if (fieldValue.includes("!=")) {
+                  const operator = "$ne";
+                  const value = fieldValue.substring(2);
+                  searchQuery[fieldName] = { [operator]: value };
+                } else {
+                  searchQuery[fieldName] = fieldValue;
                 }
+              }
             }
 
             let query = Asset.find(searchQuery);
-
-            if (resultFields && Array.isArray(resultFields) && resultFields.length > 0) {
-            const fields = resultFields.reduce((acc: any, field: string) => {
-                acc[field] = 1;
-                return acc;
-            }, {});
-            query = query.select(fields).exec() as typeof query;
-            }
-
             try {
-                const assets = await query;
-                return assets;
+              const assets = await query.exec();
+              return assets;
             } catch (error) {
-                console.error("getAssetsByParams error: ", error);
-                throw new GraphQLError("Cannot find assets!");
+              console.error("getAssetsByParams error: ", error);
+              throw new GraphQLError("Cannot find assets!");
             }
         },
+
     },
     Asset: {
         building: async (parent: any, args: any, context: any) => {
@@ -140,26 +137,25 @@ const assetResolvers = {
             checkAuthentication(context);
             checkRequiredFields(args, ['_id']);
             try {
-              const assetData = await Asset.findById(args._id);
-              if (!assetData) {
+            const assetData = await Asset.findById(args._id);
+            if (!assetData) {
                 throw new GraphQLError('Asset not found.');
-              }
-              const asset = new Asset(assetData);
-              Object.assign(asset, args.updateData);
-              const updatedAsset = await asset.save();
-              return updatedAsset.toObject();
+            }
+            const asset = new Asset(assetData);
+            Object.assign(asset, args.updateData);
+            const updatedAsset = await asset.save();
+            return updatedAsset.toObject();
             } catch (error) {
-              console.error('Error updating the asset:', error);
-              throw new GraphQLError('An error occurred while updating the asset.');
+            console.error('Error updating the asset:', error);
+            throw new GraphQLError('An error occurred while updating the asset.');
             }
         },
-
-        // deleteAsset: async (parent: any, args: any, context: any) => {
-        //     checkAuthentication(context);
-        //     checkRequiredFields(args, ['assetId']);
-        //     const deleteResult = await Asset.deleteOne({ assetId: args.assetId });
-        //     return deleteResult.deletedCount;
-        // }
+        deleteAsset: async (parent: any, args: any, context: any) => {
+            checkAuthentication(context);
+            checkRequiredFields(args, ['assetId']);
+            const deleteResult = await Asset.deleteOne({ assetId: args.assetId });
+            return deleteResult.deletedCount;
+        }
     },
 };
 
