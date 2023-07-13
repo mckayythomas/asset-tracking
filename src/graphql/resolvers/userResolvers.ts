@@ -2,17 +2,24 @@ import { User } from '../../models/user';
 import { GraphQLError } from 'graphql';
 import { checkId, checkRequiredFields, checkAuthentication } from "../../utils/validation";
 import { ObjectId } from 'mongoose';
+import { error } from 'console';
 
 const userResolvers = {
     Query: {
         getUser: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
             const id = args.userId;
+            console.log(id)
             checkId(id);
-            console.log(args.userId)
             try {
                 const user = await User.findById(id);
-                return user;
+                if (user) {
+                    console.log(user)
+                    return user;
+                } else {
+                    throw error
+                }
+
             } catch (error) {
                 throw new GraphQLError("Cannot find user. Try again.");
             }

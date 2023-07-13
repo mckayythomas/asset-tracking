@@ -1,38 +1,32 @@
 import { userResolvers } from "../src/graphql/resolvers/userResolvers";
 import { User } from "../src/models/user";
-import { fakeLogin, fakeArguments } from "../src/test-utils/fakeContext";
+import { mockContext, fakeArguments } from "../src/test-utils/mockContext";
+import { initDb, closeDb } from "../src/db/connection";
+import assert from "assert";
 
 jest.mock("../src/models/user");
 
-describe("userResolver test", () => {
-    let findMock: jest.Mock;
-
-    beforeEach(() => {
-        findMock = jest.fn();
-        User.find = findMock;
+describe("userResolver testing", () => {
+    beforeAll(async () => {
+        initDb((err: Error | null) => {
+            if (err) {
+                console.error(err);
+            }
+        }) 
     });
 
-    let getUserTest = "Check if getUser function returns appropiate user data.";
-    test(getUserTest, async () => {
-        const mockData = [
-            {
-                _id: "64973a6b121e7cd9f5d94421",
-                googleId: "123",
-                displayName: "Greg Greg",
-                firstName: "Greg",
-                lastName: "Greg",
-                picture: "thispiciscool.jpg"
-            }
-        ];
-        findMock.mockResolvedValue(mockData);
+    afterAll(async () => {
+        closeDb();
+    });
 
-        const context = fakeLogin(true);
-        const args = fakeArguments(mockData[0]._id);
-
-        const result = await userResolvers.Query.getUser(null, args, context);
+    it("Gets a user from getUser resolver based on userId", async () => {
+        const context = mockContext({});
+        console.log(context);
+        const params = { userId: "64973a6b121e7cd9f5d94421" };
+        const result: any = await userResolvers.Query.getUser( null, params, context );
         console.log(result)
+        // expect(result.error).toBeUndefined();
+        assert(result.displayName === "McKay Thomas");
+    });
 
-        expect(result).toEqual(mockData);
-        console.log(result)
-    })
-})
+});

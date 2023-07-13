@@ -1,6 +1,5 @@
-export const fakeLogin = (context: any) => {
+export const mockContext = (context: any) => {
         context = { ...context };
-        context.user = { id: "fakeUser" };
         context.isAuthenticated = () => true;
         return context;
 };

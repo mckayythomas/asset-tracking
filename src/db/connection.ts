@@ -26,4 +26,11 @@ const getDb = (): Connection => {
     return _db;
 };
 
-export { initDb, getDb };
+const closeDb = (): void => {
+    if (_db) {
+        _db.close();
+        console.log("Database connection closed successfully.")
+    }
+};
+
+export { initDb, getDb, closeDb };
