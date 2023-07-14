@@ -47,32 +47,32 @@ const assetResolvers = {
             const searchQuery: any = {};
 
             for (const fieldName in searchParams) {
-              if (searchParams.hasOwnProperty(fieldName)) {
-                const fieldValue = searchParams[fieldName];
-                if (fieldValue.includes(">")) {
-                  const operator = "$gt";
-                  const value = fieldValue.substring(1);
-                  searchQuery[fieldName] = { [operator]: value };
-                } else if (fieldValue.includes("<")) {
-                  const operator = "$lt";
-                  const value = fieldValue.substring(1);
-                  searchQuery[fieldName] = { [operator]: value };
-                } else if (fieldValue.includes(">=")) {
-                  const operator = "$gte";
-                  const value = fieldValue.substring(2);
-                  searchQuery[fieldName] = { [operator]: value };
-                } else if (fieldValue.includes("<=")) {
-                  const operator = "$lte";
-                  const value = fieldValue.substring(2);
-                  searchQuery[fieldName] = { [operator]: value };
-                } else if (fieldValue.includes("!=")) {
-                  const operator = "$ne";
-                  const value = fieldValue.substring(2);
-                  searchQuery[fieldName] = { [operator]: value };
-                } else {
-                  searchQuery[fieldName] = fieldValue;
+                if (searchParams.hasOwnProperty(fieldName)) {
+                  const fieldValue = searchParams[fieldName];
+                  if (fieldValue.includes(">=")) {
+                    const operator = "$gte";
+                    const value = fieldValue.substring(2);
+                    searchQuery[fieldName] = { [operator]: value };
+                  } else if (fieldValue.includes("<=")) {
+                    const operator = "$lte";
+                    const value = fieldValue.substring(2);
+                    searchQuery[fieldName] = { [operator]: value };
+                  } else if (fieldValue.includes("!=")) {
+                    const operator = "$ne";
+                    const value = fieldValue.substring(2);
+                    searchQuery[fieldName] = { [operator]: value };
+                  } else if (fieldValue.includes(">")) {
+                    const operator = "$gt";
+                    const value = fieldValue.substring(1);
+                    searchQuery[fieldName] = { [operator]: value };
+                  } else if (fieldValue.includes("<")) {
+                    const operator = "$lt";
+                    const value = fieldValue.substring(1);
+                    searchQuery[fieldName] = { [operator]: value };
+                  } else {
+                    searchQuery[fieldName] = fieldValue;
+                  }
                 }
-              }
             }
 
             let query = Asset.find(searchQuery);

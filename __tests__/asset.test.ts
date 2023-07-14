@@ -1,9 +1,9 @@
-import sinon, { SinonStub } from "sinon";
+import sinon, { SinonStub, SinonStubbedInstance, stub  } from "sinon";
 import {describe, expect, test, jest,  beforeEach, afterEach} from '@jest/globals';
 import { assetResolvers } from '../src/graphql/resolvers/assetResolvers';
 import { mockAuthenticationContext } from '../src/utils/validation';
 import { ObjectId } from 'mongodb';
-import { Types } from 'mongoose';
+import { Types, Model } from 'mongoose';
 import { sum } from '../src/graphql/resolvers/sum';
 import { Asset } from '../src/models/asset';
 
@@ -138,9 +138,9 @@ describe('assetResolvers module', () => {
         expect(result).toEqual(expectedData);
     }, 20000); // 20 seconds
 
-    // let getAssetsByParams = 'getAssetsByParams returns assets by parameter - value pairs';
-    // test(getAssetsByParams, async () => {
-    //     const mockData: typeof Asset[] = [
+    // const getAssetsByParamsTest = 'getAssetsByParams accurately returns assets by parameter - value pairs';
+    // test(getAssetsByParamsTest, async () => {
+    //     const mockData = [
     //         {
     //             _id: objId3,
     //             assetId: 'A3',
@@ -211,10 +211,140 @@ describe('assetResolvers module', () => {
     //         },
     //     ];
 
-    //   // Stub the find method with target mock data
-    //   findStub.withArgs(sinon.match.object).returns({
-    //     exec: () => Promise.resolve(mockData),
-    //   });
+    //     // Set the target parameter-value pairs as query parameters.
+    //     const searchParams: { [key: string]: string } = {
+    //         brand: 'Brand6',
+    //         purchasePrice: '>15000'
+    //     };
+
+    //     const operators: { [key: string]: (assetValue: number, value: number) => boolean } = {
+    //         '>': (assetValue, value) => assetValue > value,
+    //         '<': (assetValue, value) => assetValue < value,
+    //         '>=': (assetValue, value) => assetValue >= value,
+    //         '<=': (assetValue, value) => assetValue <= value,
+    //         '=': (assetValue, value) => assetValue === value,
+    //         '!=': (assetValue, value) => assetValue !== value
+    //     };
+
+    //     interface AssetDocument {
+    //         assetId: string;
+    //         serialNumber: string;
+    //         brand: string;
+    //         purchaseDate: string;
+    //         model: string;
+    //         modelNumber: string;
+    //         purchasePrice: number;
+    //         image: string;
+    //         physicalDescription: string;
+    //         status: string;
+    //         condition: string;
+    //         building: string;
+    //         department: string;
+    //         user: string;
+    //       }
+
+    //     const findStub: SinonStub = sinon.stub(Asset, 'find') as SinonStub;
+
+    //     const expectedData: AssetDocument[] = mockData.filter((asset: AssetDocument) => {
+    //         return Object.entries(searchParams).every(([fieldName, fieldValue]) => {
+    //             if (fieldName === 'purchasePrice') {
+    //                 const operator = fieldValue[0];
+    //                 const value = Number(fieldValue.substring(1));
+    //                 const assetValue = Number(asset[fieldName as keyof AssetDocument]);
+    //                 const operation = operators[operator];
+    //                 return operation(assetValue, value);
+    //             } else {
+    //                 return asset[fieldName as keyof AssetDocument] === fieldValue;
+    //             }
+    //         });
+    //     });
+
+    //     // Here is the corrected stub setup.
+    //     findStub.withArgs(sinon.match.object).returns({
+    //         exec: jest.fn().mockResolvedValue(expectedData),
+    //     });
+
+    //     const mockContext = mockAuthenticationContext({});
+    //     const result = await assetResolvers.Query.getAssetsByParams(null, { searchParams }, mockContext);
+    //     console.log("Get Assets by Parameters Test");
+    //     console.log("Expected result:", expectedData);
+    //     console.log("Received result:", result);
+    //     expect(result).toEqual(expectedData);
+    // }, 20000);
+
+    // getAssetByParams BAK
+    // let getAssetsByParams = 'getAssetsByParams returns assets by parameter - value pairs';
+    // test(getAssetsByParams, async () => {
+    //     const mockData = [
+    //         {
+    //             _id: objId3,
+    //             assetId: 'A3',
+    //             serialNumber: 'SN7',
+    //             brand: 'Brand5',
+    //             purchaseDate: '2021-02-02',
+    //             model: 'Model3',
+    //             modelNumber: 'MN5',
+    //             purchasePrice: 20000,
+    //             image: 'image3.jpg',
+    //             physicalDescription: 'Description3',
+    //             status: 'Available',
+    //             condition: 'Good',
+    //             building: 'Building3',
+    //             department: 'Department3',
+    //             user: 'User3'
+    //         },
+    //         {
+    //             _id: objId4,
+    //             assetId: 'A4',
+    //             serialNumber: 'SN4',
+    //             brand: 'Brand6',
+    //             purchaseDate: '2023-01-04',
+    //             model: 'Model4',
+    //             modelNumber: 'MN4',
+    //             purchasePrice: 14000,
+    //             image: 'image1.jpg',
+    //             physicalDescription: 'Description4',
+    //             status: 'Available',
+    //             condition: 'Good',
+    //             building: 'Building4',
+    //             department: 'Department4',
+    //             user: 'User4'
+    //         },
+    //         {
+    //             _id: objId5,
+    //             assetId: 'A5',
+    //             serialNumber: 'SN5',
+    //             brand: 'Brand6',
+    //             purchaseDate: '2023-01-05',
+    //             model: 'Model5',
+    //             modelNumber: 'MN5',
+    //             purchasePrice: 15500,
+    //             image: 'image5.jpg',
+    //             physicalDescription: 'Description5',
+    //             status: 'Available',
+    //             condition: 'Good',
+    //             building: 'Building5',
+    //             department: 'Department5',
+    //             user: 'User5',
+    //         },
+    //         {
+    //             _id: objId6,
+    //             assetId: 'A6',
+    //             serialNumber: 'SN6',
+    //             brand: 'Brand6',
+    //             purchaseDate: '2023-01-06',
+    //             model: 'Model6',
+    //             modelNumber: 'MN6',
+    //             purchasePrice: 16000,
+    //             image: 'image6.jpg',
+    //             physicalDescription: 'Description6',
+    //             status: 'Available',
+    //             condition: 'Good',
+    //             building: 'Building6',
+    //             department: 'Department6',
+    //             user: 'User6',
+    //         },
+    //     ];
 
     //   // Set the target parameter-value pairs as query parameters
     //   const searchParams: { [key: string]: string } = {
@@ -231,24 +361,45 @@ describe('assetResolvers module', () => {
     //     '!=': (assetValue, value) => assetValue !== value
     //   };
 
-    // //   let expectedData = mockData.filter((asset: typeof Asset) => {
-    //   const expectedData = mockData.map((asset: Asset) => {
-    //     const newAsset: Asset = { ...asset };
-    //     Object.entries(searchParams).every(([fieldName, fieldValue]) => {
+    //   interface AssetDocument {
+    //     assetId: string;
+    //     serialNumber: string;
+    //     brand: string;
+    //     purchaseDate: string;
+    //     model: string;
+    //     modelNumber: string;
+    //     purchasePrice: number;
+    //     image: string;
+    //     physicalDescription: string;
+    //     status: string;
+    //     condition: string;
+    //     building: string;
+    //     department: string;
+    //     user: string;
+    //   }
+
+    //   const findStub: SinonStub = sinon.stub(Asset, 'find') as SinonStub;
+
+    //   const expectedData = mockData.filter((asset: AssetDocument) => {
+    //     return Object.entries(searchParams).every(([fieldName, fieldValue]) => {
     //       if (fieldName === 'purchasePrice') {
     //         const operator = fieldValue[0];
     //         const value = Number(fieldValue.substring(1));
-    //         const assetValue = Number(asset[fieldName]);
+    //         const assetValue = Number(asset[fieldName as keyof AssetDocument]);
     //         const operation = operators[operator];
     //         return operation(assetValue, value);
     //       } else {
-    //         return asset[fieldName] === fieldValue;
+    //         return asset[fieldName as keyof AssetDocument] === fieldValue;
     //       }
-    //     })
-    //   );
+    //     });
+    //   });
+
+    //   findStub.withArgs(sinon.match.object).returns({
+    //     exec: jest.fn().mockResolvedValue(mockData),
+    //   });
 
     //   const mockContext = mockAuthenticationContext({});
-    //   const result = await assetResolvers.Query.getAssetsByParams(null, { input: searchParams }, mockContext);
+    //   const result = await assetResolvers.Query.getAssetsByParams(null, { searchParams }, mockContext);
     //   console.log("Get Assets by Parameters Test");
     //   console.log("Expected result:", expectedData);
     //   console.log("Received result:", result);
