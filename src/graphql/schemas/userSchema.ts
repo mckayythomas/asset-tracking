@@ -50,9 +50,6 @@ const userSchema = `
         "The unique identifier of the user within the database."
         _id: ID!
 
-        "The user's unique ID associated with their google account."
-        googleId: String
-
         "The users display name for their account."
         displayName: String
 
@@ -74,9 +71,6 @@ const userSchema = `
     }
 
     type Mutation {
-
-        "Create a user profile"
-        newUser( input: UserCreateData! ): User!
 
         "Update a user profile."
         updateUser( input: UserUpdateData! ): User!

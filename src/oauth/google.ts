@@ -27,7 +27,7 @@ const googleCallBack = async (
 
             user = await newUser.save();
         } catch (error) {
-            console.error(error)
+            console.error(error);
             throw new Error("Failed to create user!");
         }
     }

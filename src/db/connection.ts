@@ -29,7 +29,7 @@ const getDb = (): Connection => {
 const closeDb = (): void => {
     if (_db) {
         _db.close();
-        console.log("Database connection closed successfully.")
+        console.log("Database connection closed successfully.");
     }
 };
 

@@ -25,3 +25,9 @@ export const checkAuthentication = (request: Request) => {
         throw new GraphQLError("You're not logged in!");
     }
 };
+
+export const mockContext = (context: any) => {
+    context = { ...context };
+    context.isAuthenticated = () => true;
+    return context;
+};
