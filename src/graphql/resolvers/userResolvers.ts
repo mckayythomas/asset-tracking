@@ -1,6 +1,6 @@
 import { User } from '../../models/user';
 import { GraphQLError } from 'graphql';
-import { checkId, checkRequiredFields, checkAuthentication } from "../../utils/validation";
+import { checkId, checkAuthentication } from "../../utils/validation";
 import { ObjectId } from 'mongoose';
 import { error } from 'console';
 
@@ -13,11 +13,12 @@ const userResolvers = {
             checkId(id);
             try {
                 const user = await User.findById(id);
+                console.log(user);
                 if (user) {
                     console.log(user)
                     return user;
                 } else {
-                    throw error
+                    throw new GraphQLError("User not found")
                 }
 
             } catch (error) {
