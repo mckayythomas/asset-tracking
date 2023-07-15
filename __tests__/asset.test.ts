@@ -31,7 +31,6 @@ describe('assetResolvers module', () => {
         expect(result).toHaveLength(40);
         expect(result[0]).toHaveProperty('brand');
         expect(result[0]).toHaveProperty('model');
-
     });
 
     testDesc = 'getAssetById returns an array of assets';
@@ -47,6 +46,22 @@ describe('assetResolvers module', () => {
       expect(result).toHaveProperty('model');
       expect(result).toHaveProperty('assetId', 'AS039');
       expect(result).toHaveProperty('serialNumber', 'EQP039');
+    });
+
+    testDesc = 'getAssetsByParams returns an array of assets';
+    modelName = 'Asset';
+    test(modelName, async () => {
+      const searchParams = {
+        brand: 'ABB',
+        status: 'Active'
+      };
+      const mockContext = mockAuthenticationContext({});
+      const result = await assetResolvers.Query.getAssetsByParams(null, { searchParams }, mockContext);
+      expect(result).toHaveLength(4); 
+      result.forEach((asset) => {
+        expect(asset).toHaveProperty('brand', 'ABB');
+        expect(asset).toHaveProperty('status', 'Active');
+      });
     });
 
     testDesc = 'newAsset creates an asset';

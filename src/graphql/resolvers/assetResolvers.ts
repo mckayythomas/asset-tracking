@@ -27,6 +27,23 @@ const assetResolvers = {
                 throw new GraphQLError("Cannot find locations!");
             }
         },
+        getAssetsByParams: async (parent: any, args: any, context: any) => {
+            checkAuthentication(context);
+            const { searchParams } = args;
+            console.log("Search Params:", searchParams);
+            const searchQuery: any = {};
+            for (const [fieldName, fieldValue] of Object.entries(searchParams)) {
+            searchQuery[fieldName] = fieldValue;
+            }
+
+            try {
+            const assets = await Asset.find(searchQuery).exec();
+            return assets;
+            } catch (error) {
+            console.error("getAssetsByParams error:", error);
+            throw new GraphQLError("Cannot find assets!");
+            }
+        },
     },
     Asset: {
         building: async (parent: any, args: any, context: any) => {
