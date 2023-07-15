@@ -1,17 +1,11 @@
 import mongoose from 'mongoose';
-import supertest from 'supertest';
+// import supertest from 'supertest';
 import { ObjectId } from 'mongoose';
 import {describe, expect, test, jest,  beforeEach, afterEach} from '@jest/globals';
 import { assetResolvers } from '../src/graphql/resolvers/assetResolvers';
 import { mockAuthenticationContext } from '../src/utils/validation';
 import { sum } from '../src/graphql/resolvers/sum';
 import { Asset } from '../src/models/asset';
-
-describe('sum module', () => {
-  test('adds 1 + 2 to equal 3', () => {
-    expect(sum(1, 2)).toBe(3);
-  });
-});
 
 // test to check if server is active
 // let testDesc = 'getAssets returns an array of assets';
