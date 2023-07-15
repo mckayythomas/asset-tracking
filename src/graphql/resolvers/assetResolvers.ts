@@ -7,84 +7,26 @@ import { checkId, checkRequiredFields, checkAuthentication } from "../../utils/v
 
 const assetResolvers = {
     Query: {
-        getAssets: async (context: any) => {
-            checkAuthentication(context);
-            try {
-                let assets = await Asset.find();
-                return assets;
-            } catch (error) {
-                throw new GraphQLError("Cannot find assets!");
-            }
-        },
         getAssetById: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            const { id, resultFields } = args;
+            const id = args._id;
             checkId(id);
-
             try {
-                let query: any = Asset.findById(id);
-                // Limit the result fields if specified
-                if (resultFields && Array.isArray(resultFields) && resultFields.length > 0) {
-                const fields = resultFields.reduce((acc: any, field: string) => {
-                    acc[field] = 1;
-                    return acc;
-                }, {});
-                query = query.select(fields);
-                }
-
-                const asset = await query;
+                const asset = await Asset.findById(id);
                 return asset;
             } catch (error) {
-                console.error("getAssetById error: ", error); 
-                throw new GraphQLError("An error occurred. Please try again.");
+                throw new GraphQLError("An error occurs, please try again.");
             }
         },
-
-        getAssetsByParams: async (parent: any, args: any, context: any) => {
+        getAssets: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            const { searchParams } = args;
-            console.log("Search Params:", searchParams);
-            const searchQuery: any = {};
-
-            for (const fieldName in searchParams) {
-                if (searchParams.hasOwnProperty(fieldName)) {
-                  const fieldValue = searchParams[fieldName];
-                  if (fieldValue.includes(">=")) {
-                    const operator = "$gte";
-                    const value = fieldValue.substring(2);
-                    searchQuery[fieldName] = { [operator]: value };
-                  } else if (fieldValue.includes("<=")) {
-                    const operator = "$lte";
-                    const value = fieldValue.substring(2);
-                    searchQuery[fieldName] = { [operator]: value };
-                  } else if (fieldValue.includes("!=")) {
-                    const operator = "$ne";
-                    const value = fieldValue.substring(2);
-                    searchQuery[fieldName] = { [operator]: value };
-                  } else if (fieldValue.includes(">")) {
-                    const operator = "$gt";
-                    const value = fieldValue.substring(1);
-                    searchQuery[fieldName] = { [operator]: value };
-                  } else if (fieldValue.includes("<")) {
-                    const operator = "$lt";
-                    const value = fieldValue.substring(1);
-                    searchQuery[fieldName] = { [operator]: value };
-                  } else {
-                    searchQuery[fieldName] = fieldValue;
-                  }
-                }
-            }
-
-            let query = Asset.find(searchQuery);
             try {
-              const assets = await query.exec();
-              return assets;
+                const assets = await Asset.find();
+                return assets;
             } catch (error) {
-              console.error("getAssetsByParams error: ", error);
-              throw new GraphQLError("Cannot find assets!");
+                throw new GraphQLError("Cannot find locations!");
             }
         },
-
     },
     Asset: {
         building: async (parent: any, args: any, context: any) => {
@@ -114,6 +56,7 @@ const assetResolvers = {
             try {
                 const user = await User.findById(parent.user);
                 return user;
+                return user;
             } catch (error) {
                 throw new GraphQLError(
                     "Cannot find user, please review the user id!"
@@ -123,10 +66,11 @@ const assetResolvers = {
     },
     Mutation: {
         newAsset: async (parent: any, args: any, context: any) => {
+            console.log(args);
             checkAuthentication(context);
             checkRequiredFields(args, []);
             try {
-                const newAsset = new Asset(args);
+                const newAsset = new Asset(args.input);
                 return await newAsset.save();
             } catch (error) {
                 console.error('Error creating new asset:', error);
@@ -156,7 +100,7 @@ const assetResolvers = {
             const deleteResult = await Asset.deleteOne({ _id: args._id });
             return deleteResult.deletedCount;
         }
-    },
+    }
 };
 
 export { assetResolvers };

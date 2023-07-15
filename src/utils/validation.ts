@@ -3,9 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 import { ObjectId } from "mongodb";
 
 export const checkId = (Id: string) => {
-    try {
-        const objectId = new ObjectId(Id);
-    } catch (error) {
+    if (!ObjectId.isValid(Id)) {
         throw new GraphQLError("Please use a valid id!", {
             extensions: { code: "BAD_USER_INPUT" }
         });
@@ -28,7 +26,7 @@ export const checkAuthentication = (request: Request) => {
     }
 };
 
-// mock authenticate context
+// Middleware to mock authenticate that is used during testing
 export const mockAuthenticationContext = (context: any) => {
     context.user = { id: 'testUserId' };
     context.isAuthenticated = () => true;

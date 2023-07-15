@@ -1,18 +1,10 @@
-import sinon, { SinonStub, SinonStubbedInstance, stub  } from "sinon";
+import mongoose from 'mongoose';
+import { ObjectId } from 'mongoose';
 import {describe, expect, test, jest,  beforeEach, afterEach} from '@jest/globals';
 import { assetResolvers } from '../src/graphql/resolvers/assetResolvers';
 import { mockAuthenticationContext } from '../src/utils/validation';
-import { ObjectId } from 'mongodb';
-import { Types, Model } from 'mongoose';
 import { sum } from '../src/graphql/resolvers/sum';
 import { Asset } from '../src/models/asset';
-
-let objId1 = new Types.ObjectId('60d5ecb8b392d70a349fea1d');
-let objId2 = new Types.ObjectId('60d5ecb8b392d70a349fea2e');
-let objId3 = new Types.ObjectId('60d5ecb8b392d70a349fea3f');
-let objId4 = new Types.ObjectId('60d5ecb8b392d70a349fea4d');
-let objId5 = new Types.ObjectId('60d5ecb8b392d70a349fea5e');
-let objId6 = new Types.ObjectId('60d5ecb8b392d70a349fea6f');
 
 describe('sum module', () => {
   test('adds 1 + 2 to equal 3', () => {
@@ -21,491 +13,130 @@ describe('sum module', () => {
 });
 
 describe('assetResolvers module', () => {
-    let findStub: SinonStub;
-    let findByIdStub: SinonStub;
-    let saveStub: SinonStub;
-    let deleteOneStub: SinonStub;
+    let testCounter: number = 0;
 
     beforeEach(() => {
-        findStub = sinon.stub(Asset, 'find');
-        findByIdStub = sinon.stub(Asset, 'findById');
-        deleteOneStub = sinon.stub(Asset, 'deleteOne');
-      });
 
-      afterEach(() => {
-        findStub.restore();
-        findByIdStub.restore();
-        deleteOneStub.restore();
-      });
-
-    let getAssetsTest = 'getAssets returns an array of assets';
-    test(getAssetsTest, async () => {
-        const mockData = [
-          {
-            _id: objId1,
-            assetId: 'A1',
-            serialNumber: 'SN1',
-            brand: 'Brand1',
-            purchaseDate: '2023-01-01',
-            model: 'Model1',
-            modelNumber: 'MN1',
-            purchasePrice: 15000,
-            image: 'image1.jpg',
-            physicalDescription: 'Description1',
-            status: 'Available',
-            condition: 'Good',
-            building: 'Building1',
-            department: 'Department1',
-            user: 'User1'
-          },
-          {
-            _id: objId2,
-            assetId: 'A2',
-            serialNumber: 'SN2',
-            brand: 'Brand2',
-            purchaseDate: '2023-02-02',
-            model: 'Model2',
-            modelNumber: 'MN2',
-            purchasePrice: 25000,
-            image: 'image2.jpg',
-            physicalDescription: 'Description2',
-            status: 'Available',
-            condition: 'Good',
-            building: 'Building2',
-            department: 'Department2',
-            user: 'User2'
-          },
-        ];
-
-        findStub.returns(mockData);
-
-        const mockContext = mockAuthenticationContext({});
-        const result = await assetResolvers.Query.getAssets(mockContext);
-        console.log("Get Assets Test");
-        console.log("Expected result:", mockData);
-        console.log("Received result:", result);
-        expect(result).toEqual(mockData);
     });
 
-    let getAssetByIdTest = 'getAssetById returns a single asset by ID';
-    test(getAssetByIdTest, async () => {
-        const mockData = [
-          {
-            _id: objId1,
-            assetId: 'A1',
-            serialNumber: 'SN1',
-            brand: 'Brand1',
-            purchaseDate: '2023-01-01',
-            model: 'Model1',
-            modelNumber: 'MN1',
-            purchasePrice: 15000,
-            image: 'image1.jpg',
-            physicalDescription: 'Description1',
-            status: 'Available',
-            condition: 'Good',
-            building: 'Building1',
-            department: 'Department1',
-            user: 'User1'
-          },
-          {
-            _id: objId2,
-            assetId: 'A2',
-            serialNumber: 'SN2',
-            brand: 'Brand2',
-            purchaseDate: '2023-02-02',
-            model: 'Model2',
-            modelNumber: 'MN2',
-            purchasePrice: 25000,
-            image: 'image2.jpg',
-            physicalDescription: 'Description2',
-            status: 'Available',
-            condition: 'Good',
-            building: 'Building2',
-            department: 'Department2',
-            user: 'User2'
-          },
-        ];
+    afterEach(() => {
 
-        findByIdStub.returns(mockData[0]);
-
-        const mockContext = mockAuthenticationContext({});
-        let id = objId1;
-        let result = await assetResolvers.Query.getAssetById(null, { _id: id }, mockContext);
-        let expectedData = mockData.find((asset) => asset._id === id);
-        console.log("Get Asset By ID Test");
-        console.log("Expected result:", expectedData);
-        console.log("Received result:", result);
-        expect(result).toEqual(expectedData);
-    }, 20000); // 20 seconds
-
-    // const getAssetsByParamsTest = 'getAssetsByParams accurately returns assets by parameter - value pairs';
-    // test(getAssetsByParamsTest, async () => {
-    //     const mockData = [
-    //         {
-    //             _id: objId3,
-    //             assetId: 'A3',
-    //             serialNumber: 'SN7',
-    //             brand: 'Brand5',
-    //             purchaseDate: '2021-02-02',
-    //             model: 'Model3',
-    //             modelNumber: 'MN5',
-    //             purchasePrice: 20000,
-    //             image: 'image3.jpg',
-    //             physicalDescription: 'Description3',
-    //             status: 'Available',
-    //             condition: 'Good',
-    //             building: 'Building3',
-    //             department: 'Department3',
-    //             user: 'User3'
-    //         },
-    //         {
-    //             _id: objId4,
-    //             assetId: 'A4',
-    //             serialNumber: 'SN4',
-    //             brand: 'Brand6',
-    //             purchaseDate: '2023-01-04',
-    //             model: 'Model4',
-    //             modelNumber: 'MN4',
-    //             purchasePrice: 14000,
-    //             image: 'image1.jpg',
-    //             physicalDescription: 'Description4',
-    //             status: 'Available',
-    //             condition: 'Good',
-    //             building: 'Building4',
-    //             department: 'Department4',
-    //             user: 'User4'
-    //         },
-    //         {
-    //             _id: objId5,
-    //             assetId: 'A5',
-    //             serialNumber: 'SN5',
-    //             brand: 'Brand6',
-    //             purchaseDate: '2023-01-05',
-    //             model: 'Model5',
-    //             modelNumber: 'MN5',
-    //             purchasePrice: 15500,
-    //             image: 'image5.jpg',
-    //             physicalDescription: 'Description5',
-    //             status: 'Available',
-    //             condition: 'Good',
-    //             building: 'Building5',
-    //             department: 'Department5',
-    //             user: 'User5',
-    //         },
-    //         {
-    //             _id: objId6,
-    //             assetId: 'A6',
-    //             serialNumber: 'SN6',
-    //             brand: 'Brand6',
-    //             purchaseDate: '2023-01-06',
-    //             model: 'Model6',
-    //             modelNumber: 'MN6',
-    //             purchasePrice: 16000,
-    //             image: 'image6.jpg',
-    //             physicalDescription: 'Description6',
-    //             status: 'Available',
-    //             condition: 'Good',
-    //             building: 'Building6',
-    //             department: 'Department6',
-    //             user: 'User6',
-    //         },
-    //     ];
-
-    //     // Set the target parameter-value pairs as query parameters.
-    //     const searchParams: { [key: string]: string } = {
-    //         brand: 'Brand6',
-    //         purchasePrice: '>15000'
-    //     };
-
-    //     const operators: { [key: string]: (assetValue: number, value: number) => boolean } = {
-    //         '>': (assetValue, value) => assetValue > value,
-    //         '<': (assetValue, value) => assetValue < value,
-    //         '>=': (assetValue, value) => assetValue >= value,
-    //         '<=': (assetValue, value) => assetValue <= value,
-    //         '=': (assetValue, value) => assetValue === value,
-    //         '!=': (assetValue, value) => assetValue !== value
-    //     };
-
-    //     interface AssetDocument {
-    //         assetId: string;
-    //         serialNumber: string;
-    //         brand: string;
-    //         purchaseDate: string;
-    //         model: string;
-    //         modelNumber: string;
-    //         purchasePrice: number;
-    //         image: string;
-    //         physicalDescription: string;
-    //         status: string;
-    //         condition: string;
-    //         building: string;
-    //         department: string;
-    //         user: string;
-    //       }
-
-    //     const findStub: SinonStub = sinon.stub(Asset, 'find') as SinonStub;
-
-    //     const expectedData: AssetDocument[] = mockData.filter((asset: AssetDocument) => {
-    //         return Object.entries(searchParams).every(([fieldName, fieldValue]) => {
-    //             if (fieldName === 'purchasePrice') {
-    //                 const operator = fieldValue[0];
-    //                 const value = Number(fieldValue.substring(1));
-    //                 const assetValue = Number(asset[fieldName as keyof AssetDocument]);
-    //                 const operation = operators[operator];
-    //                 return operation(assetValue, value);
-    //             } else {
-    //                 return asset[fieldName as keyof AssetDocument] === fieldValue;
-    //             }
-    //         });
-    //     });
-
-    //     // Here is the corrected stub setup.
-    //     findStub.withArgs(sinon.match.object).returns({
-    //         exec: jest.fn().mockResolvedValue(expectedData),
-    //     });
-
-    //     const mockContext = mockAuthenticationContext({});
-    //     const result = await assetResolvers.Query.getAssetsByParams(null, { searchParams }, mockContext);
-    //     console.log("Get Assets by Parameters Test");
-    //     console.log("Expected result:", expectedData);
-    //     console.log("Received result:", result);
-    //     expect(result).toEqual(expectedData);
-    // }, 20000);
-
-    // getAssetByParams BAK
-    // let getAssetsByParams = 'getAssetsByParams returns assets by parameter - value pairs';
-    // test(getAssetsByParams, async () => {
-    //     const mockData = [
-    //         {
-    //             _id: objId3,
-    //             assetId: 'A3',
-    //             serialNumber: 'SN7',
-    //             brand: 'Brand5',
-    //             purchaseDate: '2021-02-02',
-    //             model: 'Model3',
-    //             modelNumber: 'MN5',
-    //             purchasePrice: 20000,
-    //             image: 'image3.jpg',
-    //             physicalDescription: 'Description3',
-    //             status: 'Available',
-    //             condition: 'Good',
-    //             building: 'Building3',
-    //             department: 'Department3',
-    //             user: 'User3'
-    //         },
-    //         {
-    //             _id: objId4,
-    //             assetId: 'A4',
-    //             serialNumber: 'SN4',
-    //             brand: 'Brand6',
-    //             purchaseDate: '2023-01-04',
-    //             model: 'Model4',
-    //             modelNumber: 'MN4',
-    //             purchasePrice: 14000,
-    //             image: 'image1.jpg',
-    //             physicalDescription: 'Description4',
-    //             status: 'Available',
-    //             condition: 'Good',
-    //             building: 'Building4',
-    //             department: 'Department4',
-    //             user: 'User4'
-    //         },
-    //         {
-    //             _id: objId5,
-    //             assetId: 'A5',
-    //             serialNumber: 'SN5',
-    //             brand: 'Brand6',
-    //             purchaseDate: '2023-01-05',
-    //             model: 'Model5',
-    //             modelNumber: 'MN5',
-    //             purchasePrice: 15500,
-    //             image: 'image5.jpg',
-    //             physicalDescription: 'Description5',
-    //             status: 'Available',
-    //             condition: 'Good',
-    //             building: 'Building5',
-    //             department: 'Department5',
-    //             user: 'User5',
-    //         },
-    //         {
-    //             _id: objId6,
-    //             assetId: 'A6',
-    //             serialNumber: 'SN6',
-    //             brand: 'Brand6',
-    //             purchaseDate: '2023-01-06',
-    //             model: 'Model6',
-    //             modelNumber: 'MN6',
-    //             purchasePrice: 16000,
-    //             image: 'image6.jpg',
-    //             physicalDescription: 'Description6',
-    //             status: 'Available',
-    //             condition: 'Good',
-    //             building: 'Building6',
-    //             department: 'Department6',
-    //             user: 'User6',
-    //         },
-    //     ];
-
-    //   // Set the target parameter-value pairs as query parameters
-    //   const searchParams: { [key: string]: string } = {
-    //     brand: 'Brand6',
-    //     purchasePrice: '>15000'
-    //   };
-
-    //   const operators: { [key: string]: (assetValue: number, value: number) => boolean } = {
-    //     '>': (assetValue, value) => assetValue > value,
-    //     '<': (assetValue, value) => assetValue < value,
-    //     '>=': (assetValue, value) => assetValue >= value,
-    //     '<=': (assetValue, value) => assetValue <= value,
-    //     '=': (assetValue, value) => assetValue === value,
-    //     '!=': (assetValue, value) => assetValue !== value
-    //   };
-
-    //   interface AssetDocument {
-    //     assetId: string;
-    //     serialNumber: string;
-    //     brand: string;
-    //     purchaseDate: string;
-    //     model: string;
-    //     modelNumber: string;
-    //     purchasePrice: number;
-    //     image: string;
-    //     physicalDescription: string;
-    //     status: string;
-    //     condition: string;
-    //     building: string;
-    //     department: string;
-    //     user: string;
-    //   }
-
-    //   const findStub: SinonStub = sinon.stub(Asset, 'find') as SinonStub;
-
-    //   const expectedData = mockData.filter((asset: AssetDocument) => {
-    //     return Object.entries(searchParams).every(([fieldName, fieldValue]) => {
-    //       if (fieldName === 'purchasePrice') {
-    //         const operator = fieldValue[0];
-    //         const value = Number(fieldValue.substring(1));
-    //         const assetValue = Number(asset[fieldName as keyof AssetDocument]);
-    //         const operation = operators[operator];
-    //         return operation(assetValue, value);
-    //       } else {
-    //         return asset[fieldName as keyof AssetDocument] === fieldValue;
-    //       }
-    //     });
-    //   });
-
-    //   findStub.withArgs(sinon.match.object).returns({
-    //     exec: jest.fn().mockResolvedValue(mockData),
-    //   });
-
-    //   const mockContext = mockAuthenticationContext({});
-    //   const result = await assetResolvers.Query.getAssetsByParams(null, { searchParams }, mockContext);
-    //   console.log("Get Assets by Parameters Test");
-    //   console.log("Expected result:", expectedData);
-    //   console.log("Received result:", result);
-    //   expect(result).toEqual(expectedData);
-    // }, 20000);
-
-    let newAssetTest = 'newAsset creates a new asset';
-    test(newAssetTest, async () => {
-        const mockData = {
-            assetId: 'A9',
-            serialNumber: 'SN1',
-            brand: 'Brand1',
-            purchaseDate: '2023-01-01',
-            model: 'Model1',
-            modelNumber: 'MN1',
-            purchasePrice: 15000,
-            image: 'image1.jpg',
-            physicalDescription: 'Description1',
-            status: 'Available',
-            condition: 'Good',
-            building: 'Building1',
-            department: 'Department1',
-            user: 'User1',
-          };
-
-        saveStub = sinon.stub(Asset.prototype, 'save');
-        saveStub.returns(Promise.resolve(mockData));
-        const mockContext = mockAuthenticationContext({});
-        const result = await assetResolvers.Mutation.newAsset(null, mockData, mockContext);
-
-        const resultWithoutId: any = { ...result };
-        console.log("resultWithoutId:", resultWithoutId);
-        delete resultWithoutId._id;
-        console.log("New Asset Test");
-        console.log("Expected result:", mockData);
-        console.log("Received result:", resultWithoutId);
-        expect(resultWithoutId).toEqual(mockData);
-        saveStub.restore();
-    }, 20000); // 20 seconds timeout
-
-    let updateAssetTest = 'updateAsset modifies an existing asset';
-    test(updateAssetTest, async () => {
-        const originalMockData = {
-            assetId: 'A1',
-            serialNumber: 'SN1',
-            brand: 'Brand1',
-            purchaseDate: '2023-01-01',
-            model: 'Model1',
-            modelNumber: 'MN1',
-            purchasePrice: 15000,
-            image: 'image1.jpg',
-            physicalDescription: 'Description1',
-            status: 'Available',
-            condition: 'Good',
-            building: 'Building1',
-            department: 'Department1',
-            user: 'User1'
-        };
-
-        const modifiedMockData = {
-            ...originalMockData,
-            purchasePrice: 20000,
-            department: 'Research & Development',
-            user: 'Rich Gervais'
-        };
-
-        findByIdStub.returns(Promise.resolve(originalMockData));
-        const saveStub = sinon.stub(Asset.prototype, 'save');
-        saveStub.returns(Promise.resolve({ ...modifiedMockData, toObject: () => modifiedMockData }));
-
-        const mockContext = mockAuthenticationContext({});
-        const result = await assetResolvers.Mutation.updateAsset({}, { _id: objId6, updateData: modifiedMockData }, mockContext);
-        console.log("Update Asset Test");
-        console.log("Expected result:", modifiedMockData);
-        console.log("Received result:", result);
-        expect(result).toEqual(modifiedMockData);
-        saveStub.restore();
-    }, 20000); // 20 seconds timeout
-
-    let deleteAssetTest = 'deleteAsset deletes an asset';
-    test(deleteAssetTest, async () => {
-        deleteOneStub.returns(Promise.resolve({ deletedCount: 1 }));
-
-        const mockData = {
-            _id: objId2,
-            assetId: 'A2',
-            serialNumber: 'SN2',
-            brand: 'Brand2',
-            purchaseDate: '2023-02-02',
-            model: 'Model2',
-            modelNumber: 'MN2',
-            purchasePrice: 25000,
-            image: 'image2.jpg',
-            physicalDescription: 'Description2',
-            status: 'Available',
-            condition: 'Good',
-            building: 'Building2',
-            department: 'Department2',
-            user: 'User2'
-          };
-
-        const mockContext = mockAuthenticationContext({});
-        const result = await assetResolvers.Mutation.deleteAsset({}, { _id: objId2 }, mockContext);
-        console.log("Delete Asset Test");
-        console.log("Expected result:", 1);
-        console.log("Received result:", result);
-        expect(result).toEqual(1);
     });
+
+    let testDesc = 'getAssets returns an array of assets';
+    let modelName = 'Asset';
+    test(modelName, async () => {
+        const mockContext = mockAuthenticationContext({});
+        const result = await assetResolvers.Query.getAssets(null, null, mockContext);
+        expect(result).toHaveLength(40);
+        expect(result[0]).toHaveProperty('brand');
+        expect(result[0]).toHaveProperty('model');
+
+    });
+
+    testDesc = 'getAssetById returns an array of assets';
+    modelName = 'Asset';
+    test(modelName, async () => {
+      const _id = '648279b55ac374af573948d9';
+      const objectId = new mongoose.Types.ObjectId(_id);
+      const mockContext = mockAuthenticationContext({});
+      const result = await assetResolvers.Query.getAssetById(null, { _id }, mockContext);
+      expect(result).not.toBeNull();
+      expect(typeof result).toBe('object');
+      expect(result).toHaveProperty('brand');
+      expect(result).toHaveProperty('model');
+      expect(result).toHaveProperty('assetId', 'AS039');
+      expect(result).toHaveProperty('serialNumber', 'EQP039');
+    });
+
+    testDesc = 'newAsset creates an asset';
+    modelName = 'Asset';
+    test(modelName, async () => {
+      const assetInput = {
+        assetId: 'AS099',
+        serialNumber: 'EQP099',
+        brand: 'ABB',
+        purchaseDate: new Date('2020-06-02'),
+        model: 'IRB 2600',
+        modelNumber: 'ABB-IRB2300',
+        purchasePrice: 35000,
+        image: 'https://example.com/images/eqp010.jpg',
+        physicalDescription: 'Green industrial robot with a compact footprint.',
+        status: 'Active',
+        condition: 'Good',
+        building: '64827e605ac374af5739491b',
+        department: '64827a7d5ac374af573948eb',
+        user: '649642893014a3e11b469f18',
+      };
+
+      const mockContext = mockAuthenticationContext({});
+      const result = await assetResolvers.Mutation.newAsset(null, { input: assetInput }, mockContext);
+
+      // Perform assertions on the result
+      expect(result).toHaveProperty('_id');
+      expect(result).toHaveProperty('assetId', 'AS099');
+      expect(result).toHaveProperty('serialNumber', 'EQP099');
+      expect(result).toHaveProperty('brand', 'ABB');
+      expect(result).toHaveProperty('purchaseDate', assetInput.purchaseDate);
+      expect(result).toHaveProperty('model', 'IRB 2600');
+      expect(result).toHaveProperty('modelNumber', 'ABB-IRB2300');
+      expect(result).toHaveProperty('purchasePrice', 35000);
+      expect(result).toHaveProperty('image', 'https://example.com/images/eqp010.jpg');
+      expect(result).toHaveProperty('physicalDescription', 'Green industrial robot with a compact footprint.');
+      expect(result).toHaveProperty('status', 'Active');
+      expect(result).toHaveProperty('condition', 'Good');
+      expect(result).toHaveProperty('building', '64827e605ac374af5739491b');
+      expect(result).toHaveProperty('department', '64827a7d5ac374af573948eb');
+      expect(result).toHaveProperty('user', '649642893014a3e11b469f18');
+    });
+
+    testDesc = 'updateAsset modifies an existing asset';
+    modelName = 'Asset';
+    test(modelName, async () => {
+      const mockContext = mockAuthenticationContext({});
+      const assetsBeforeUpdate = await assetResolvers.Query.getAssets(null, null, mockContext);
+      // Select an existing asset to update
+      const assetToUpdate = assetsBeforeUpdate[0];
+      // Define the new data to update the asset
+      const updateData = {
+        _id: assetToUpdate._id,
+        brand: 'New Brand',
+        model: 'New Model',
+        purchasePrice: 50000,
+      };
+
+      // Update the asset
+      const updatedAsset = await assetResolvers.Mutation.updateAsset(null, {
+        _id: assetToUpdate._id,
+        updateData,
+      }, mockContext);
+
+      // Retrieve the updated asset from the database
+      const retrievedAsset = await assetResolvers.Query.getAssetById(null, { _id: assetToUpdate._id }, mockContext);
+
+      // Convert the updatedAsset and retrievedAsset to plain objects
+      const updatedAssetObject = JSON.parse(JSON.stringify(updatedAsset));
+      const retrievedAssetObject = JSON.parse(JSON.stringify(retrievedAsset));
+
+      // Perform assertions on the updated asset
+      expect(updatedAssetObject).toEqual(retrievedAssetObject);
+      expect(updatedAssetObject).toHaveProperty('brand', 'New Brand');
+      expect(updatedAssetObject).toHaveProperty('model', 'New Model');
+      expect(updatedAssetObject).toHaveProperty('purchasePrice', 50000);
+    });
+
+    testDesc = 'deleteAsset deletes asset';
+    modelName = 'Asset';
+    test(modelName, async () => {
+        const mockContext = mockAuthenticationContext({});
+        const assetsBeforeUpdate = await assetResolvers.Query.getAssets(null, null, mockContext);
+        // Select the 6th existing asset to delete
+        const assetToDelete = assetsBeforeUpdate[5];
+        const id = assetToDelete._id;
+        const result = await assetResolvers.Mutation.deleteAsset(null, { _id: id }, mockContext);
+        expect(result).toBe(1);
+        const deletedAsset = await Asset.findById(id);
+        expect(deletedAsset).toBeNull();
+ });
+
 });

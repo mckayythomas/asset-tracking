@@ -29,12 +29,6 @@ const assetSchema = `
         "The physical description of the asset."
         physicalDescription: String!
 
-        "The status of the asset."
-        status: String!
-
-        "The condition of the asset."
-        condition: String!
-
         "The building of the asset."
         building: Building
 
@@ -72,12 +66,6 @@ const assetSchema = `
         "The physical description of the asset."
         physicalDescription: String!
 
-        "The status of the asset."
-        status: String!
-
-        "The condition of the asset."
-        condition: String!
-
         "The building of the asset."
         building: String!
 
@@ -88,8 +76,12 @@ const assetSchema = `
         user: String!
     }
 
-    "Input for the update of an asset. All fields are optional and represent the properties of the asset to be updated"
+    "Input for the update of an asset. The only required field is the database id for the asset."
     input AssetUpdateData {
+
+        "The unique identifier of the asset within the database."
+        _id: ID!
+
         "The unique identifier for the asset used internally."
         assetId: String
 
@@ -114,12 +106,6 @@ const assetSchema = `
         "The physical description of the asset."
         physicalDescription: String
 
-        "The status of the asset."
-        status: String
-
-        "The condition of the asset."
-        condition: String
-
         "The building of the asset."
         building: String
 
@@ -138,13 +124,13 @@ const assetSchema = `
     type Query {
 
         "Query to obtain a specific asset by id."
-        getAsset( assetId: ID! ): Asset!
+        getAssetById( _id: ID! ): Asset!
 
         "Retrieve all the assets in database."
         getAssets: [Asset!]!
 
         "Retrieve assets in database by a specific field and value."
-        getAssetsByParams(searchParams: SearchParamsInput): [Asset!]!
+        getAssetsByParam(fieldName: String!, fieldValue: String!): [Asset!]!
 
         "Retrieve user information from Google OAuth using the token."
         me: User!
@@ -158,11 +144,11 @@ const assetSchema = `
         "Create a new asset document in database."
         newAsset( input: AssetCreateData! ): ID!
 
-        "Update an asset document in database."
-        updateAsset(_id: ID!, updateData: AssetUpdateData!): Asset
+        "Update a asset document in database."
+        updateAsset( input: AssetUpdateData! ): Asset!
 
-        "Delete an asset document in database."
-        deleteAsset(_id: ID!): ID!
+        "Delete a asset document in database."
+        deleteAsset( assetId: ID! ): ID!
     }
 `;
 
