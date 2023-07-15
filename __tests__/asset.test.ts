@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import supertest from 'supertest';
 import { ObjectId } from 'mongoose';
 import {describe, expect, test, jest,  beforeEach, afterEach} from '@jest/globals';
 import { assetResolvers } from '../src/graphql/resolvers/assetResolvers';
@@ -11,6 +12,15 @@ describe('sum module', () => {
     expect(sum(1, 2)).toBe(3);
   });
 });
+
+// test to check if server is active
+// let testDesc = 'getAssets returns an array of assets';
+// describe('Server', () => {
+//     test('should return 200 status code when server is active', async () => {
+//       const response = await supertest(app).get('/');
+//       expect(response.status).toBe(200);
+//     });
+//   });
 
 describe('assetResolvers module', () => {
     let testCounter: number = 0;
