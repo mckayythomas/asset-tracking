@@ -27,9 +27,9 @@ describe('assetResolvers module', () => {
 
     });
 
-    let testDesc = 'getAssets returns an array of assets';
+    let testDesc = 'getAssets returns an array of all assets';
     let modelName = 'Asset';
-    test(modelName, async () => {
+    test(testDesc, async () => {
         const mockContext = mockAuthenticationContext({});
         const result = await assetResolvers.Query.getAssets(null, null, mockContext);
         expect(result).toHaveLength(40);
@@ -37,9 +37,9 @@ describe('assetResolvers module', () => {
         expect(result[0]).toHaveProperty('model');
     });
 
-    testDesc = 'getAssetById returns an array of assets';
+    testDesc = 'getAssetById returns a single asset matching the OID';
     modelName = 'Asset';
-    test(modelName, async () => {
+    test(testDesc, async () => {
       const _id = '648279b55ac374af573948d9';
       const objectId = new mongoose.Types.ObjectId(_id);
       const mockContext = mockAuthenticationContext({});
@@ -52,9 +52,9 @@ describe('assetResolvers module', () => {
       expect(result).toHaveProperty('serialNumber', 'EQP039');
     });
 
-    testDesc = 'getAssetsByParams returns an array of assets';
+    testDesc = 'getAssetsByParams returns an array of assets matching field value(s)';
     modelName = 'Asset';
-    test(modelName, async () => {
+    test(testDesc, async () => {
       const searchParams = {
         brand: 'ABB',
         status: 'Active'
@@ -68,9 +68,9 @@ describe('assetResolvers module', () => {
       });
     });
 
-    testDesc = 'newAsset creates an asset';
+    testDesc = 'newAsset creates an asset with the specified data';
     modelName = 'Asset';
-    test(modelName, async () => {
+    test(testDesc, async () => {
       const assetInput = {
         assetId: 'AS099',
         serialNumber: 'EQP099',
@@ -111,7 +111,7 @@ describe('assetResolvers module', () => {
 
     testDesc = 'updateAsset modifies an existing asset';
     modelName = 'Asset';
-    test(modelName, async () => {
+    test(testDesc, async () => {
       const mockContext = mockAuthenticationContext({});
       const assetsBeforeUpdate = await assetResolvers.Query.getAssets(null, null, mockContext);
       // Select an existing asset to update
@@ -146,7 +146,7 @@ describe('assetResolvers module', () => {
 
     testDesc = 'deleteAsset deletes asset';
     modelName = 'Asset';
-    test(modelName, async () => {
+    test(testDesc, async () => {
         const mockContext = mockAuthenticationContext({});
         const assetsBeforeUpdate = await assetResolvers.Query.getAssets(null, null, mockContext);
         // Select the 6th existing asset to delete
