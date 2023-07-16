@@ -39,6 +39,7 @@ export const checkAuthentication = (request: Request) => {
 };
 
 export const mockContext = (context: any) => {
+    context = { ...context };
     context.isAuthenticated = () => true;
     return context;
 };
