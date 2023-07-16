@@ -10,7 +10,7 @@
         "format": "prettier --write ./**/*.{js,jsx,ts,tsx,css,md,json} --config ./.prettierrc",
         "lint": "eslint . --ext .ts",
         "lint:fix": "eslint --fix",
-        "test": "jest --coverage --config jest.config.ts ./__tests__"
+        "test": "jest --config jest.config.ts ./__tests__"
     },
     "repository": {
         "type": "git",

@@ -21,14 +21,7 @@ const initDb = (callback: (err: Error | null, db?: Connection) => void): void =>
 
 const closeDb = () => {
     if (_db) {
-        mongoose
-            .disconnect()
-            .then(() => {
-                _db = undefined;
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        _db.close();
     }
 };
 

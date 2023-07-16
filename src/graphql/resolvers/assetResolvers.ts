@@ -44,9 +44,7 @@ const assetResolvers = {
                 const department = await Department.find({ _id: parent.department });
                 return department;
             } catch (error) {
-                throw new GraphQLError(
-                    "Cannot find department, please review the department id!"
-                );
+                throw new GraphQLError("Cannot find department, please review the department id!");
             }
         },
         user: async (parent: any) => {
@@ -54,9 +52,7 @@ const assetResolvers = {
                 const user = await User.find({ _id: parent.user });
                 return user;
             } catch (error) {
-                throw new GraphQLError(
-                    "Cannot find user, please review the user id!"
-                );
+                throw new GraphQLError("Cannot find user, please review the user id!");
             }
         }
     },
