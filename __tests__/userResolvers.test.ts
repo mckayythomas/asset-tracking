@@ -84,7 +84,7 @@ describe("userResolver testing", () => {
 
     it("Checks that updating with wrong id throws errors and doesn't work", async () => {
         const context = mockContext({});
-        const params = { input: { _id: "falseId", displaName: "User Test" } };
+        const params = { input: { _id: "falseId", displayName: "User Test" } };
         await expect(userResolvers.Mutation.updateUser(null, params, context)).rejects.toThrowError(
             GraphQLError
         );
@@ -92,7 +92,7 @@ describe("userResolver testing", () => {
 
     it("Checks that having missing parameters or null parameters turns back an error.", async () => {
         const context = mockContext({});
-        const params = { input: { _id: "falseId", displaName: null } };
+        const params = { input: { _id: "falseId", displayName: null } };
         await expect(userResolvers.Mutation.updateUser(null, params, context)).rejects.toThrowError(
             GraphQLError
         );

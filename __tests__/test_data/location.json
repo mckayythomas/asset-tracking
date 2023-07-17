@@ -1,0 +1,222 @@
+[
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394902"
+        },
+        "locationId": "L004",
+        "name": "Gigafactory 1",
+        "address": "1 Electric Avenue, Sparks, Nevada",
+        "type": "Manufacturing",
+        "departments": ["64827a715ac374af573948e8", "64827a5d5ac374af573948e2"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394907"
+        },
+        "locationId": "L009",
+        "name": "New York City Showroom",
+        "address": "860 Washington St, New York, New York",
+        "type": "Sales",
+        "departments": ["Sales and Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394908"
+        },
+        "locationId": "L010",
+        "name": "Berlin Gigafactory",
+        "address": "Gruenheide, Germany",
+        "type": "Manufacturing",
+        "departments": ["Production", "Battery Production", "Powertrain Assembly"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394905"
+        },
+        "locationId": "L007",
+        "name": "Hawthorne Office",
+        "address": "12000 Crenshaw Blvd, Hawthorne, California",
+        "type": "Administration",
+        "departments": ["Finance", "Legal", "Operations"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af573948ff"
+        },
+        "locationId": "L001",
+        "name": "Tesla Headquarters",
+        "address": "3500 Deer Creek Road, Palo Alto, California",
+        "type": "Administration",
+        "departments": ["Research and Development", "Information Technology", "Human Resources"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394909"
+        },
+        "locationId": "L011",
+        "name": "Shanghai Gigafactory",
+        "address": "No. 1688 Lianhua Road, Pudong, Shanghai, China",
+        "type": "Manufacturing",
+        "departments": ["Production", "Battery Production", "Powertrain Assembly"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af5739490a"
+        },
+        "locationId": "L012",
+        "name": "R&D Lab",
+        "address": "1801 Page Mill Road, Palo Alto, California",
+        "type": "Research and Development",
+        "departments": ["Engineering", "Autonomous Driving", "Software Development"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af5739490c"
+        },
+        "locationId": "L014",
+        "name": "Tesla Factory Store",
+        "address": "145 Tesla Road, Somerset, England",
+        "type": "Sales",
+        "departments": ["Sales and Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394911"
+        },
+        "locationId": "L019",
+        "name": "Miami Showroom",
+        "address": "5301 NW 36th St, Miami, Florida",
+        "type": "Sales",
+        "departments": ["Sales and Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394912"
+        },
+        "locationId": "L020",
+        "name": "Toronto Showroom",
+        "address": "302 Adelaide St W, Toronto, Ontario, Canada",
+        "type": "Sales",
+        "departments": ["Sales and Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394900"
+        },
+        "locationId": "L002",
+        "name": "Fremont Factory",
+        "address": "45500 Fremont Blvd, Fremont, California",
+        "type": "Manufacturing",
+        "departments": ["Body Shop", "Assembly Line", "Quality Assurance"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394903"
+        },
+        "locationId": "L005",
+        "name": "Research and Development Center",
+        "address": "800 Mathilda Ave, Sunnyvale, California",
+        "type": "Research and Development",
+        "departments": ["Engineering", "Autonomous Driving", "Battery Research"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394904"
+        },
+        "locationId": "L006",
+        "name": "Austin Factory",
+        "address": "13000 Harold Green Road, Austin, Texas",
+        "type": "Manufacturing",
+        "departments": ["Production", "Quality Control", "Supply Chain"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394906"
+        },
+        "locationId": "L008",
+        "name": "Conference Center",
+        "address": "500 Convention Way, San Jose, California",
+        "type": "Conference",
+        "departments": ["Event Management", "Conference Services"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394901"
+        },
+        "locationId": "L003",
+        "name": "Los Angeles Showroom",
+        "address": "1001 N San Vicente Blvd, Los Angeles, California",
+        "type": "Sales",
+        "departments": ["Sales and Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af5739490b"
+        },
+        "locationId": "L013",
+        "name": "London Showroom",
+        "address": "48 Charrington Street, London, United Kingdom",
+        "type": "Sales",
+        "departments": ["Sales and Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af5739490d"
+        },
+        "locationId": "L015",
+        "name": "Tokyo Showroom",
+        "address": "1-17-11, Minami-Azabu, Minato-ku, Tokyo, Japan",
+        "type": "Sales",
+        "departments": ["Sales and Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af5739490e"
+        },
+        "locationId": "L016",
+        "name": "Amsterdam Store",
+        "address": "Stadionplein 12, 1076 CM Amsterdam, Netherlands",
+        "type": "Sales",
+        "departments": ["Sales and Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af5739490f"
+        },
+        "locationId": "L017",
+        "name": "Chicago Showroom",
+        "address": "1053 W Grand Ave, Chicago, Illinois",
+        "type": "Sales",
+        "departments": ["Sales and Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827c375ac374af57394910"
+        },
+        "locationId": "L018",
+        "name": "Dallas Showroom",
+        "address": "5330 West Lovers Lane, Dallas, Texas",
+        "type": "Sales",
+        "departments": ["Sales and Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827d0d5ac374af57394914"
+        },
+        "locationId": "L021",
+        "name": "Testing Facility 1",
+        "address": "1234 Test Road, Fremont, California",
+        "type": "Testing",
+        "departments": ["Vehicle Testing", "Safety Testing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827d0d5ac374af57394915"
+        },
+        "locationId": "L022",
+        "name": "Testing Facility 2",
+        "address": "5678 Test Avenue, Austin, Texas",
+        "type": "Testing",
+        "departments": ["Vehicle Dynamics", "Performance Testing"]
+    }
+]

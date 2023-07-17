@@ -32,6 +32,6 @@ const assetSchema = new Schema(
     }
 );
 
-const Asset = mongoose.model("Asset", assetSchema);
+const Asset = mongoose.model("Asset", assetSchema, "asset");
 
-export { Asset };
+export { Asset, assetSchema };
