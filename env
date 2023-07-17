@@ -1,6 +1,1 @@
-MONGODB_URI = mongodb+srv://mckay_thomas:12345AB@cluster0.8elmu.mongodb.net/test
 
-GOOGLE_CLIENT_ID = 398771256679-vfo48gqmhnrho19v7hc4rnl33arb7760.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET = 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
-
-GOOGLE_CALLBACK_URI = /auth/google/callback
