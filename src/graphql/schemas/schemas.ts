@@ -12,6 +12,6 @@ const typeDefs = mergeTypeDefs([assetSchema,
                                 buildingSchema]);
 
 
-import { booleanArg, extendType, nonNull } from 'nexus';
+
 
 export { typeDefs };

@@ -86,9 +86,7 @@ const assetResolvers = {
                 const department = await Department.findById(new mongoose.Types.ObjectId(parent.department));
                 return department;
             } catch (error) {
-                throw new GraphQLError(
-                    "Cannot find department, please review the department id!"
-                );
+                throw new GraphQLError("Cannot find department, please review the department id!");
             }
         },
         user: async (parent: any, args: any, context: any) => {
@@ -100,9 +98,7 @@ const assetResolvers = {
                 return user;
                 return user;
             } catch (error) {
-                throw new GraphQLError(
-                    "Cannot find user, please review the user id!"
-                );
+                throw new GraphQLError("Cannot find user, please review the user id!");
             }
         }
     },

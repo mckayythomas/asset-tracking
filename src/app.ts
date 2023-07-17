@@ -84,15 +84,16 @@ async function startServer() {
         if (err) {
             console.error(err);
         } else {
-            app.listen(port);
+            server = app.listen(port);
             console.log(`Web Server is listening at http://localhost:${port}/graphql`);
             return server;
         }
     });
+    return app;
 }
 
 startServer().catch((error) => {
     console.error("Error starting the server:", error);
 });
 
-export { server };
+export { server, startServer };

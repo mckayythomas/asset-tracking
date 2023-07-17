@@ -1,24 +1,18 @@
-import type { Config } from '@jest/types';
+import type { Config } from "@jest/types";
 
 const config: Config.InitialOptions = {
-    preset: 'ts-jest',
-    testEnvironment: 'node',
+    preset: "ts-jest",
+    testEnvironment: "node",
     roots: ["<rootDir>"],
     transform: {
-        "^.+\\.tsx?$": ['ts-jest', { diagnostics: false }],
+        "^.+\\.tsx?$": ["ts-jest", { diagnostics: false }]
     },
-    // testMatch: ["**/__tests__/*.test.ts"],
-    testRegex: "(/__tests__/.*\\.test)\\.ts$",
+    testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx)$",
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
     collectCoverage: true,
-    coveragePathIgnorePatterns: ["/node_modules/"],
+    coveragePathIgnorePatterns: ["/node_modules/", "<rootDir>/src/db/", "<rootDir>/src/utils/"],
     clearMocks: true,
-    globals: {
-    },
-    setupFilesAfterEnv: ['<rootDir>/__tests__/setup.ts']
-
+    globals: {}
 };
 
 export default config;
-
-

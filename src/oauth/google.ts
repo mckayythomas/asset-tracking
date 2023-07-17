@@ -14,7 +14,7 @@ const googleCallBack = async (
     profile: any,
     done: any
 ) => {
-    let user: any = await User.find({ googleId: profile.id });
+    let user: any = await User.findOne({ googleId: profile.id });
     if (!user) {
         try {
             const newUser = new User({
@@ -27,6 +27,7 @@ const googleCallBack = async (
 
             user = await newUser.save();
         } catch (error) {
+            console.error(error);
             throw new Error("Failed to create user!");
         }
     }
