@@ -11,7 +11,6 @@ const assetResolvers = {
     Query: {
         getAssetById: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            console.log("getAssetById");
             const id = args._id;
             checkId(id);
             try {
@@ -26,17 +25,12 @@ const assetResolvers = {
         },
         getAssets: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            console.log("getAssets");
             try {
                 const assetsTest = await Asset.find().exec();
-                console.log("Number of Test Asset records:", assetsTest.length);
-                console.log("First Test Asset:", assetsTest[0]);
                 const assets = await Asset.find();
                 if (!assets) {
                     throw new GraphQLError('No Assets found.');
                 } else {
-                    console.log("Number of Asset records:", assets.length);
-                    console.log("First Asset:", assets[0]);
                     return assets;
                 }
             } catch (error) {
@@ -45,16 +39,13 @@ const assetResolvers = {
         },
         getAssetsByParams: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            console.log("getAssetsByParams");
             const { fieldParams } = args;
-            console.log("Field Params:", fieldParams);
             const searchQuery: any = {};
 
             for (const { fieldName, fieldValue } of fieldParams) {
               searchQuery[fieldName] = fieldValue;
             }
 
-            console.log("Search Query:", searchQuery);
             try {
               const assets = await Asset.find(searchQuery).exec();
               return assets;
@@ -67,9 +58,7 @@ const assetResolvers = {
     Asset: {
         building: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            console.log("Asset.building");
             try {
-                console.log("parent building:", parent.building);
                 const building = await Building.findById(new mongoose.Types.ObjectId(parent.building));
                 return building;
             } catch (error) {
@@ -80,9 +69,7 @@ const assetResolvers = {
         },
         department: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            console.log("Asset.department");
             try {
-                console.log("parent department:", parent.department);
                 const department = await Department.findById(new mongoose.Types.ObjectId(parent.department));
                 return department;
             } catch (error) {
@@ -91,9 +78,7 @@ const assetResolvers = {
         },
         user: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            console.log("Asset.user");
             try {
-                console.log("parent user:", parent.user);
                 const user = await User.findById(new mongoose.Types.ObjectId(parent.user));
                 return user;
                 return user;
@@ -105,15 +90,10 @@ const assetResolvers = {
     Mutation: {
         newAsset: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            console.log("newAsset");
-            console.log(args);
             checkRequiredFields(args, []);
             try {
                 const newAsset = new Asset(args.input);
                 const savedAsset = await newAsset.save();
-                console.log("savedAsset _id:", savedAsset._id);
-                console.log("savedAsset _id type:", typeof savedAsset._id);
-                console.log("savedAsset _id string representation:", savedAsset._id.toString());
                 // return await newAsset.save();
                 return {
                     ...savedAsset.toObject(),
@@ -126,7 +106,6 @@ const assetResolvers = {
         },
         updateAsset: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            console.log("updateAsset");
             checkRequiredFields(args, ['_id', 'updateData']);
             try {
                 const assetData = await Asset.findById(args._id);
@@ -143,7 +122,6 @@ const assetResolvers = {
         },
         deleteAsset: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            console.log("deleteAsset");
             checkRequiredFields(args, ['_id']);
             try {
                 const assetData = await Asset.findById(args._id);

@@ -5,8 +5,7 @@ import { buildingResolvers } from "./buildingResolvers";
 import { departmentResolvers } from "./departmentResolvers";
 import { userResolvers } from "./userResolvers";
 
-const resolvers = mergeResolvers([[
-  locationResolvers, userResolvers],
+const resolvers = mergeResolvers([
   assetResolvers,
   buildingResolvers,
   userResolvers,

@@ -1,4 +1,4 @@
-// original version
+// Miguel - original version
 import express from "express";
 import cors from "cors";
 import passport from "passport";
@@ -14,10 +14,10 @@ import "./oauth/google";
 
 const port = process.env.PORT || 3000;
 const app = express();
-let server: ApolloServer;
+let serverApp;
 
 async function startServer() {
-    server = new ApolloServer({
+    const server = new ApolloServer({
         typeDefs,
         resolvers,
         plugins: [ApolloServerPluginLandingPageLocalDefault()],
@@ -37,15 +37,12 @@ async function startServer() {
     });
 
     app.use(
-        session({
-            secret: process.env.SECRET as string,
-            resave: false,
-            saveUninitialized: false,// Use the MongoStore for session storage
-        })
+        session({ secret: process.env.SECRET as string, resave: false, saveUninitialized: false })
     );
     app.use(passport.initialize());
     app.use(passport.session());
     await server.start();
+
     app.use("/graphql", (req, res, next) => {
         if (!req.isAuthenticated()) {
           return res.redirect("/login?message=Please log in to access the GraphQL API.");
@@ -58,7 +55,7 @@ async function startServer() {
         cors(),
         express.json(),
         expressMiddleware(server, {
-            context: async ({ req, res }) => buildContext({ req, res }),
+            context: async ({ req, res }) => buildContext({ req, res })
         })
     );
 
@@ -70,6 +67,7 @@ async function startServer() {
             res.send('Welcome to the Asset Tracking API. Please login.');
         }
     });
+    
     app.get("/login", passport.authenticate("google", { scope: ["profile"] }));
     app.get(
         "/auth/google/callback",
@@ -84,9 +82,8 @@ async function startServer() {
         if (err) {
             console.error(err);
         } else {
-            server = app.listen(port);
+            serverApp = app.listen(port);
             console.log(`Web Server is listening at http://localhost:${port}/graphql`);
-            return server;
         }
     });
     return app;
@@ -96,4 +93,4 @@ startServer().catch((error) => {
     console.error("Error starting the server:", error);
 });
 
-export { server, startServer };
+export { serverApp, startServer };
