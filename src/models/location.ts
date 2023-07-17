@@ -5,7 +5,7 @@ const locationSchema = new Schema({
     name: { type: String, required: true },
     address: { type: String, required: true },
     type: { type: String, required: true },
-    departments: { type: Array, required: true }
+    departments: [{ type: String, required: true }],
 });
 
 const Location = mongoose.model("Location", locationSchema, "location");

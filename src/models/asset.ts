@@ -1,4 +1,5 @@
 import mongoose, { Schema } from "mongoose";
+import { isRequiredArgument } from 'graphql';
 
 // Define Mongoose address schema
 const addressSchema = new Schema({
@@ -32,6 +33,7 @@ const assetSchema = new Schema(
     }
 );
 
-const Asset = mongoose.model("Asset", assetSchema);
+const Asset = mongoose.model('Asset', assetSchema, "asset");
 
-export { Asset };
+export {Asset, assetSchema};
+

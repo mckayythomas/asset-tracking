@@ -13,6 +13,7 @@ const initDb = (callback: (err: Error | null, db?: Connection) => void): void =>
         .then((client) => {
             _db = client.connection;
             callback(null, _db);
+            console.log("Connected to MongoDB");
         })
         .catch((err) => {
             callback(err);

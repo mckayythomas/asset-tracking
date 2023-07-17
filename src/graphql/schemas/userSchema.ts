@@ -40,8 +40,8 @@ const userSchema = `
         lastName: String!
 
         "The users profile picture associated with their account."
-        picture: String!    
-    
+        picture: String!
+
     }
 
     "Input for the update of a user. The only required field is the database id for the user."
@@ -49,6 +49,9 @@ const userSchema = `
 
         "The unique identifier of the user within the database."
         _id: ID!
+
+        "The user's unique ID associated with their google account."
+        googleId: String
 
         "The users display name for their account."
         displayName: String
@@ -67,10 +70,13 @@ const userSchema = `
 
         "Query to obtain a specific user's info by id."
         getUser( userId: ID! ): User!
-        
+
     }
 
     type Mutation {
+
+        "Create a user profile"
+        newUser( input: UserCreateData! ): User!
 
         "Update a user profile."
         updateUser( input: UserUpdateData! ): User!
