@@ -67,7 +67,7 @@ async function startServer() {
             res.send('Welcome to the Asset Tracking API. Please login.');
         }
     });
-    
+
     app.get("/login", passport.authenticate("google", { scope: ["profile"] }));
     app.get(
         "/auth/google/callback",
