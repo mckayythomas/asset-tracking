@@ -1,4 +1,3 @@
-// Miguel - original version
 import express from "express";
 import cors from "cors";
 import passport from "passport";
@@ -21,19 +20,7 @@ async function startServer() {
         typeDefs,
         resolvers,
         plugins: [ApolloServerPluginLandingPageLocalDefault()],
-        introspection: true,
-    });
-
-    // Middleware to handle URL encoding
-    app.use(express.urlencoded({ extended: true }));
-
-    // Middleware to redirect to the trailing slash version of the URL
-    app.use((req, res, next) => {
-        if (!req.originalUrl.endsWith("/")) {
-            res.redirect(301, req.originalUrl + "/");
-        } else {
-            next();
-        }
+        introspection: true
     });
 
     app.use(
@@ -42,14 +29,6 @@ async function startServer() {
     app.use(passport.initialize());
     app.use(passport.session());
     await server.start();
-
-    app.use("/graphql", (req, res, next) => {
-        if (!req.isAuthenticated()) {
-          return res.redirect("/login?message=Please log in to access the GraphQL API.");
-        } else {
-          next();
-        }
-    });
     app.use(
         "/graphql",
         cors(),
@@ -58,15 +37,6 @@ async function startServer() {
             context: async ({ req, res }) => buildContext({ req, res })
         })
     );
-
-    // Custom welcome message for the root URL
-    app.get("/", (req, res) => {
-        if (req.isAuthenticated()) {
-            res.send(req.user + ', Welcome to the Asset Tracking API.');
-        } else {
-            res.send('Welcome to the Asset Tracking API. Please login.');
-        }
-    });
 
     app.get("/login", passport.authenticate("google", { scope: ["profile"] }));
     app.get(
