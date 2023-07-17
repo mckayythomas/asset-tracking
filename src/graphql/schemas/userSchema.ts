@@ -40,8 +40,8 @@ const userSchema = `
         lastName: String!
 
         "The users profile picture associated with their account."
-        picture: String!    
-    
+        picture: String!
+
     }
 
     "Input for the update of a user. The only required field is the database id for the user."

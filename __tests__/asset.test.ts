@@ -55,13 +55,13 @@ describe('assetResolvers module', () => {
     testDesc = 'getAssetsByParams returns an array of assets matching field value(s)';
     modelName = 'Asset';
     test(testDesc, async () => {
-      const searchParams = {
-        brand: 'ABB',
-        status: 'Active'
-      };
+      const fieldParams = [
+        { fieldName: 'brand', fieldValue: 'ABB' },
+        { fieldName: 'status', fieldValue: 'Active' },
+      ];
       const mockContext = mockAuthenticationContext({});
-      const result = await assetResolvers.Query.getAssetsByParams(null, { searchParams }, mockContext);
-      expect(result).toHaveLength(4); 
+      const result = await assetResolvers.Query.getAssetsByParams(null, { fieldParams }, mockContext);
+      expect(result).toHaveLength(4);
       result.forEach((asset) => {
         expect(asset).toHaveProperty('brand', 'ABB');
         expect(asset).toHaveProperty('status', 'Active');

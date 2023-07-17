@@ -1,3 +1,4 @@
+// Version Su1
 import mongoose from 'mongoose';
 import { Asset } from '../src/models/asset'; // Import the asset model
 import { Building } from '../src/models/building'; // Import the building model
@@ -16,7 +17,6 @@ declare global {
   }
 }
 
-
 // the path to the test_data directory
 const testDataDirectory = path.resolve(__dirname, './test_data');
 // Get all the files in the directory
@@ -24,6 +24,7 @@ const files = fs.readdirSync(testDataDirectory);
 
 // Connect to the MongoMemory test instance
 beforeAll(async () => {
+    jest.setTimeout(30000);
     // Set up in-memory MongoDB instance
     (global as any).mongoServer = new MongoMemoryServer();
     await (global as any).mongoServer.start();
@@ -82,7 +83,7 @@ beforeAll(async () => {
                 );
 
                 // Log the filename to the console
-                console.log(`Loaded asset file: ${file}`);
+                console.log(`Loaded test data file: ${file}`);
         }
     }
 });

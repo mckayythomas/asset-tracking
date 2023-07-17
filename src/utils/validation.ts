@@ -22,7 +22,7 @@ export const checkRequiredFields = (data: any, fields: string[] = []) => {
 
 export const checkAuthentication = (request: Request) => {
     if (!request.isAuthenticated()) {
-        throw new GraphQLError("You're not logged in!");
+        throw new GraphQLError("You're not logged in3!");
     }
 };
 

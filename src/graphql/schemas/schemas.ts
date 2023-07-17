@@ -5,7 +5,12 @@ import { departmentSchema } from "./departmentSchema";
 import { locationSchema } from "./locationSchema";
 import { userSchema } from "./userSchema";
 
-const typeDefs = mergeTypeDefs([locationSchema, departmentSchema]);
+const typeDefs = mergeTypeDefs([assetSchema,
+                                userSchema,
+                                locationSchema,
+                                departmentSchema,
+                                buildingSchema]);
+
 
 import { booleanArg, extendType, nonNull } from 'nexus';
 

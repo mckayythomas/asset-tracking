@@ -1,5 +1,6 @@
 import { GraphQLError } from 'graphql';
-import Building from '../../models/building';
+// import Building from '../../models/building';
+import { Building } from '../../models/building';
 import { checkId, checkRequiredFields, checkAuthentication } from '../../utils/validation';
 
 const buildingResolvers = {

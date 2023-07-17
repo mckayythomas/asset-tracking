@@ -1,4 +1,3 @@
-// original version
 import express from "express";
 import cors from "cors";
 import passport from "passport";
@@ -11,7 +10,10 @@ import { typeDefs } from "./graphql/schemas/schemas";
 import { resolvers } from "./graphql/resolvers/resolvers";
 import { buildContext } from "graphql-passport";
 import "./oauth/google";
+import connectMongo from "connect-mongo";
+import mongoose from "mongoose";
 
+const MongoStore = connectMongo(session);
 const port = process.env.PORT || 3000;
 const app = express();
 let server: ApolloServer;
@@ -40,7 +42,8 @@ async function startServer() {
         session({
             secret: process.env.SECRET as string,
             resave: false,
-            saveUninitialized: false,// Use the MongoStore for session storage
+            saveUninitialized: false,
+            store: new MongoStore({ mongooseConnection: mongoose.connection }), // Use the MongoStore for session storage
         })
     );
     app.use(passport.initialize());
@@ -48,9 +51,9 @@ async function startServer() {
     await server.start();
     app.use("/graphql", (req, res, next) => {
         if (!req.isAuthenticated()) {
-          return res.redirect("/login?message=Please log in to access the GraphQL API.");
+            return res.redirect("/login?message=Please log in to access the GraphQL API.");
         } else {
-          next();
+            next();
         }
     });
     app.use(
@@ -65,9 +68,10 @@ async function startServer() {
     // Custom welcome message for the root URL
     app.get("/", (req, res) => {
         if (req.isAuthenticated()) {
-            res.send(req.user + ', Welcome to the Asset Tracking API.');
+            console.log("User object:", req.user);
+            res.send(req.user + ", Welcome to the Asset Tracking API.");
         } else {
-            res.send('Welcome to the Asset Tracking API. Please login.');
+            res.send("Welcome to the Asset Tracking API. Please login.");
         }
     });
     app.get("/login", passport.authenticate("google", { scope: ["profile"] }));
