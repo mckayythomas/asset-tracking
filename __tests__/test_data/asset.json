@@ -1,0 +1,762 @@
+[
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948b5"
+        },
+        "assetId": "AS010",
+        "serialNumber": "EQP010",
+        "brand": "ABB",
+        "purchaseDate": "2022-08-02",
+        "model": "IRB 2600",
+        "modelNumber": "ABB-IRB2600",
+        "purchasePrice": 58000,
+        "image": "https://example.com/images/eqp010.jpg",
+        "physicalDescription": "Blue and white industrial robot with a compact footprint.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739491b",
+        "department": "64827a7d5ac374af573948eb",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948af"
+        },
+        "assetId": "AS004",
+        "serialNumber": "EQP004",
+        "brand": "KUKA",
+        "purchaseDate": "2021-12-05",
+        "model": "KR 210 R2700",
+        "modelNumber": "KUKA-KR210",
+        "purchasePrice": 62000,
+        "image": "https://example.com/images/eqp004.jpg",
+        "physicalDescription": "Large orange industrial robot with multiple articulating joints.",
+        "status": "Active",
+        "condition": "Fair",
+        "building": "64827e605ac374af5739492d",
+        "department": "64827a7d5ac374af573948eb",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948b7"
+        },
+        "assetId": "AS012",
+        "serialNumber": "EQP012",
+        "brand": "KUKA",
+        "purchaseDate": "2022-11-17",
+        "model": "KR 16 R1610",
+        "modelNumber": "KUKA-KR16R1610",
+        "purchasePrice": 55000,
+        "image": "https://example.com/images/eqp012.jpg",
+        "physicalDescription": "Orange robotic arm with a high-performance controller and advanced motion capabilities.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394925",
+        "department": "64827a5d5ac374af573948e2",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948b8"
+        },
+        "assetId": "AS013",
+        "serialNumber": "EQP013",
+        "brand": "Fanuc",
+        "purchaseDate": "2023-02-05",
+        "model": "CR-35iA",
+        "modelNumber": "Fanuc-CR35iA",
+        "purchasePrice": 68000,
+        "image": "https://example.com/images/eqp013.jpg",
+        "physicalDescription": "Large green collaborative robot with a long reach and integrated vision system.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739491c",
+        "department": "64827ac75ac374af573948ee",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948b0"
+        },
+        "assetId": "AS005",
+        "serialNumber": "EQP005",
+        "brand": "ABB",
+        "purchaseDate": "2022-02-18",
+        "model": "IRB 6600",
+        "modelNumber": "ABB-IRB6600",
+        "purchasePrice": 75000,
+        "image": "https://example.com/images/eqp005.jpg",
+        "physicalDescription": "Red and black industrial robot with six degrees of freedom.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739491f",
+        "department": "64827a5d5ac374af573948e0",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948b3"
+        },
+        "assetId": "AS008",
+        "serialNumber": "EQP008",
+        "brand": "Fanuc",
+        "purchaseDate": "2022-05-30",
+        "model": "R-2000iC",
+        "modelNumber": "Fanuc-R2000iC",
+        "purchasePrice": 60000,
+        "image": "https://example.com/images/eqp008.jpg",
+        "physicalDescription": "Yellow and black industrial robot with a large working envelope.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394922",
+        "department": "64827a5d5ac374af573948e0",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948b6"
+        },
+        "assetId": "AS011",
+        "serialNumber": "EQP011",
+        "brand": "Yaskawa",
+        "purchaseDate": "2023-05-08",
+        "model": "Motoman GP25",
+        "modelNumber": "Yaskawa-GP25",
+        "purchasePrice": 42000,
+        "image": "https://example.com/images/eqp011.jpg",
+        "physicalDescription": "Black and yellow robotic arm with a versatile payload capacity.",
+        "status": "Active",
+        "condition": "Excellent",
+        "building": "64827e605ac374af57394920",
+        "department": "64827a7d5ac374af573948ec",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948b1"
+        },
+        "assetId": "AS006",
+        "serialNumber": "EQP006",
+        "brand": "Yaskawa",
+        "purchaseDate": "2022-07-09",
+        "model": "Motoman MH5",
+        "modelNumber": "Yaskawa-MH5",
+        "purchasePrice": 52000,
+        "image": "https://example.com/images/eqp006.jpg",
+        "physicalDescription": "Small white and blue industrial robot with a compact design.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394924",
+        "department": "64827a7d5ac374af573948ec",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948b4"
+        },
+        "assetId": "AS009",
+        "serialNumber": "EQP009",
+        "brand": "Universal Robots",
+        "purchaseDate": "2023-03-14",
+        "model": "UR10e",
+        "modelNumber": "UR-10e",
+        "purchasePrice": 45000,
+        "image": "https://example.com/images/eqp009.jpg",
+        "physicalDescription": "Red collaborative robot with a medium-sized arm and black joints.",
+        "status": "Active",
+        "condition": "Fair",
+        "building": "64827e605ac374af5739491e",
+        "department": "64827a5d5ac374af573948e1",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948b9"
+        },
+        "assetId": "AS014",
+        "serialNumber": "EQP014",
+        "brand": "ABB",
+        "purchaseDate": "2022-10-10",
+        "model": "IRB 2600",
+        "modelNumber": "ABB-IRB2600",
+        "purchasePrice": 58000,
+        "image": "https://example.com/images/eqp014.jpg",
+        "physicalDescription": "White and blue robotic arm with six axes and a high payload capacity.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394921",
+        "department": "64827a5d5ac374af573948de",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948ba"
+        },
+        "assetId": "AS015",
+        "serialNumber": "EQP015",
+        "brand": "Universal Robots",
+        "purchaseDate": "2023-04-20",
+        "model": "UR3e",
+        "modelNumber": "UR-3e",
+        "purchasePrice": 32000,
+        "image": "https://example.com/images/eqp015.jpg",
+        "physicalDescription": "Small cobalt blue collaborative robot with a lightweight design.",
+        "status": "Active",
+        "condition": "Fair",
+        "building": "64827e605ac374af57394926",
+        "department": "64827a5d5ac374af573948dd",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948ac"
+        },
+        "assetId": "AS001",
+        "serialNumber": "EQP001",
+        "brand": "ABB",
+        "purchaseDate": "2022-03-15",
+        "model": "IRB 1200",
+        "modelNumber": "ABB-IRB1200",
+        "purchasePrice": 45000,
+        "image": "https://example.com/images/eqp001.jpg",
+        "physicalDescription": "Industrial robotic arm with a white and red exterior.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739492e",
+        "department": "64827a5d5ac374af573948dd",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948ad"
+        },
+        "assetId": "AS002",
+        "serialNumber": "EQP002",
+        "brand": "Fanuc",
+        "purchaseDate": "2021-09-28",
+        "model": "LR Mate 200iD",
+        "modelNumber": "Fanuc-LR200iD",
+        "purchasePrice": 55000,
+        "image": "https://example.com/images/eqp002.jpg",
+        "physicalDescription": "Compact robotic arm with a yellow body and black joints.",
+        "status": "Active",
+        "condition": "Excellent",
+        "building": "64827e605ac374af57394923",
+        "department": "64827a5d5ac374af573948dd",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948ae"
+        },
+        "assetId": "AS003",
+        "serialNumber": "EQP003",
+        "brand": "Universal Robots",
+        "purchaseDate": "2022-06-10",
+        "model": "UR5e",
+        "modelNumber": "UR-5e",
+        "purchasePrice": 38000,
+        "image": "https://example.com/images/eqp003.jpg",
+        "physicalDescription": "Cobalt blue collaborative robot with a human-like arm design.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394927",
+        "department": "64827a5d5ac374af573948de",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648276545ac374af573948b2"
+        },
+        "assetId": "AS007",
+        "serialNumber": "EQP007",
+        "brand": "KUKA",
+        "purchaseDate": "2023-01-22",
+        "model": "KR 6 R700",
+        "modelNumber": "KUKA-KR6R700",
+        "purchasePrice": 48000,
+        "image": "https://example.com/images/eqp007.jpg",
+        "physicalDescription": "Silver and black robotic arm with a lightweight design and high payload capacity.",
+        "status": "Active",
+        "condition": "Excellent",
+        "building": "64827e605ac374af57394928",
+        "department": "64827a5d5ac374af573948dd",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948c3"
+        },
+        "assetId": "AS017",
+        "serialNumber": "EQP017",
+        "brand": "Apple",
+        "purchaseDate": "2023-01-10",
+        "model": "MacBook Pro",
+        "modelNumber": "Apple-MBP",
+        "purchasePrice": 2000,
+        "image": "https://example.com/images/eqp017.jpg",
+        "physicalDescription": "Space gray laptop with a high-resolution Retina display and macOS operating system.",
+        "status": "Active",
+        "condition": "Excellent",
+        "building": "64827e605ac374af57394927",
+        "department": "64827a5d5ac374af573948df",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948c5"
+        },
+        "assetId": "AS019",
+        "serialNumber": "EQP019",
+        "brand": "HP",
+        "purchaseDate": "2023-03-08",
+        "model": "EliteBook 840 G8",
+        "modelNumber": "HP-EB840G8",
+        "purchasePrice": 1500,
+        "image": "https://example.com/images/eqp019.jpg",
+        "physicalDescription": "Silver laptop with a sleek design and business-grade security features.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394927",
+        "department": "64827a5d5ac374af573948df",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948cc"
+        },
+        "assetId": "AS026",
+        "serialNumber": "EQP026",
+        "brand": "Microsoft",
+        "purchaseDate": "2022-10-12",
+        "model": "Xbox Series X",
+        "modelNumber": "Microsoft-XSX",
+        "purchasePrice": 500,
+        "image": "https://example.com/images/eqp026.jpg",
+        "physicalDescription": "Black game console with high-fidelity graphics and fast loading times.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394922",
+        "department": "64827a5d5ac374af573948e0",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948cd"
+        },
+        "assetId": "AS027",
+        "serialNumber": "EQP027",
+        "brand": "LG",
+        "purchaseDate": "2023-01-15",
+        "model": "27UL850-W",
+        "modelNumber": "LG-27UL850-W",
+        "purchasePrice": 600,
+        "image": "https://example.com/images/eqp027.jpg",
+        "physicalDescription": "27-inch 4K monitor with an IPS panel and HDR support.",
+        "status": "Active",
+        "condition": "Excellent",
+        "building": "64827e605ac374af5739491f",
+        "department": "64827a5d5ac374af573948e5",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948d1"
+        },
+        "assetId": "AS031",
+        "serialNumber": "EQP031",
+        "brand": "Apple",
+        "purchaseDate": "2023-03-18",
+        "model": "AirPods Pro",
+        "modelNumber": "Apple-APPro",
+        "purchasePrice": 250,
+        "image": "https://example.com/images/eqp031.jpg",
+        "physicalDescription": "Wireless earbuds with active noise cancellation and a compact charging case.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394919",
+        "department": "64827a5d5ac374af573948dd",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948d7"
+        },
+        "assetId": "AS037",
+        "serialNumber": "EQP037",
+        "brand": "Samsung",
+        "purchaseDate": "2023-05-12",
+        "model": "G7 Odyssey",
+        "modelNumber": "Samsung-G7",
+        "purchasePrice": 700,
+        "image": "https://example.com/images/eqp037.jpg",
+        "physicalDescription": "27-inch gaming monitor with a curved display and high refresh rate.",
+        "status": "Active",
+        "condition": "Excellent",
+        "building": "64827e605ac374af57394923",
+        "department": "64827a5d5ac374af573948e1",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948c4"
+        },
+        "assetId": "AS018",
+        "serialNumber": "EQP018",
+        "brand": "Lenovo",
+        "purchaseDate": "2022-07-22",
+        "model": "ThinkPad X1 Carbon",
+        "modelNumber": "Lenovo-X1C",
+        "purchasePrice": 1800,
+        "image": "https://example.com/images/eqp018.jpg",
+        "physicalDescription": "Black ultrabook with a lightweight carbon fiber chassis and a durable design.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739491a",
+        "department": "64827a5d5ac374af573948e3",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948c9"
+        },
+        "assetId": "AS023",
+        "serialNumber": "EQP023",
+        "brand": "ASUS",
+        "purchaseDate": "2023-05-01",
+        "model": "ROG Strix G17",
+        "modelNumber": "ASUS-ROG",
+        "purchasePrice": 2200,
+        "image": "https://example.com/images/eqp023.jpg",
+        "physicalDescription": "Black gaming laptop with a high-refresh-rate display and powerful hardware.",
+        "status": "Active",
+        "condition": "Excellent",
+        "building": "64827e605ac374af5739491a",
+        "department": "64827a5d5ac374af573948e3",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948ca"
+        },
+        "assetId": "AS024",
+        "serialNumber": "EQP024",
+        "brand": "Acer",
+        "purchaseDate": "2022-08-18",
+        "model": "Predator Helios 300",
+        "modelNumber": "Acer-PH300",
+        "purchasePrice": 1800,
+        "image": "https://example.com/images/eqp024.jpg",
+        "physicalDescription": "Black and blue gaming laptop with a bold design and high-performance components.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739491d",
+        "department": "64827a5d5ac374af573948e4",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948cf"
+        },
+        "assetId": "AS029",
+        "serialNumber": "EQP029",
+        "brand": "Western Digital",
+        "purchaseDate": "2023-04-10",
+        "model": "My Passport",
+        "modelNumber": "WD-MYPASS",
+        "purchasePrice": 100,
+        "image": "https://example.com/images/eqp029.jpg",
+        "physicalDescription": "Portable external hard drive with ample storage capacity and reliable performance.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739491e",
+        "department": "64827a5d5ac374af573948e6",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948d4"
+        },
+        "assetId": "AS034",
+        "serialNumber": "EQP034",
+        "brand": "GoPro",
+        "purchaseDate": "2022-09-15",
+        "model": "HERO9 Black",
+        "modelNumber": "GoPro-HERO9",
+        "purchasePrice": 400,
+        "image": "https://example.com/images/eqp034.jpg",
+        "physicalDescription": "Action camera with 5K video recording capabilities and waterproof design.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739491b",
+        "department": "64827a5d5ac374af573948e2",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948d6"
+        },
+        "assetId": "AS036",
+        "serialNumber": "EQP036",
+        "brand": "Nikon",
+        "purchaseDate": "2022-10-25",
+        "model": "D850",
+        "modelNumber": "Nikon-D850",
+        "purchasePrice": 3000,
+        "image": "https://example.com/images/eqp036.jpg",
+        "physicalDescription": "Digital SLR camera with high-resolution sensor and versatile shooting capabilities.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739491c",
+        "department": "64827a5d5ac374af573948e2",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948d8"
+        },
+        "assetId": "AS038",
+        "serialNumber": "EQP038",
+        "brand": "LG",
+        "purchaseDate": "2022-12-30",
+        "model": "27GN950-B",
+        "modelNumber": "LG-27GN950-B",
+        "purchasePrice": 1000,
+        "image": "https://example.com/images/eqp038.jpg",
+        "physicalDescription": "27-inch 4K Nano IPS gaming monitor with fast response time and NVIDIA G-SYNC compatibility.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394921",
+        "department": "64827a5d5ac374af573948e4",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948da"
+        },
+        "assetId": "AS040",
+        "serialNumber": "EQP040",
+        "brand": "Corsair",
+        "purchaseDate": "2022-08-05",
+        "model": "VOID RGB Elite",
+        "modelNumber": "Corsair-VRE",
+        "purchasePrice": 100,
+        "image": "https://example.com/images/eqp040.jpg",
+        "physicalDescription": "Wired gaming headset with immersive 7.1 surround sound and comfortable ear cups.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394921",
+        "department": "64827a5d5ac374af573948e6",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948c2"
+        },
+        "assetId": "AS016",
+        "serialNumber": "EQP016",
+        "brand": "Dell",
+        "purchaseDate": "2022-11-02",
+        "model": "XPS 15",
+        "modelNumber": "Dell-XPS15",
+        "purchasePrice": 1700,
+        "image": "https://example.com/images/eqp016.jpg",
+        "physicalDescription": "Silver laptop with a 15-inch display and powerful specifications.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739491d",
+        "department": "64827a5d5ac374af573948e2",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948c6"
+        },
+        "assetId": "AS020",
+        "serialNumber": "EQP020",
+        "brand": "Microsoft",
+        "purchaseDate": "2022-09-14",
+        "model": "Surface Pro 7",
+        "modelNumber": "Microsoft-SP7",
+        "purchasePrice": 1200,
+        "image": "https://example.com/images/eqp020.jpg",
+        "physicalDescription": "Silver 2-in-1 device with a detachable keyboard and touch-sensitive display.",
+        "status": "Active",
+        "condition": "Fair",
+        "building": "64827e605ac374af5739491c",
+        "department": "64827a5d5ac374af573948dd",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948c7"
+        },
+        "assetId": "AS021",
+        "serialNumber": "EQP021",
+        "brand": "Samsung",
+        "purchaseDate": "2023-02-20",
+        "model": "Galaxy S21",
+        "modelNumber": "Samsung-GS21",
+        "purchasePrice": 1000,
+        "image": "https://example.com/images/eqp021.jpg",
+        "physicalDescription": "Phantom Gray smartphone with a stunning AMOLED display and powerful camera capabilities.",
+        "status": "Active",
+        "condition": "Excellent",
+        "building": "64827e605ac374af57394922",
+        "department": "64827a5d5ac374af573948e2",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948ce"
+        },
+        "assetId": "AS028",
+        "serialNumber": "EQP028",
+        "brand": "Samsung",
+        "purchaseDate": "2022-09-28",
+        "model": "T7 Portable SSD",
+        "modelNumber": "Samsung-T7SSD",
+        "purchasePrice": 150,
+        "image": "https://example.com/images/eqp028.jpg",
+        "physicalDescription": "Black portable SSD with fast transfer speeds and compact design.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394928",
+        "department": "64827a5d5ac374af573948e4",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948d0"
+        },
+        "assetId": "AS030",
+        "serialNumber": "EQP030",
+        "brand": "Logitech",
+        "purchaseDate": "2022-11-20",
+        "model": "MX Master 3",
+        "modelNumber": "Logitech-MX3",
+        "purchasePrice": 100,
+        "image": "https://example.com/images/eqp030.jpg",
+        "physicalDescription": "Wireless mouse with advanced features and ergonomic design.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394919",
+        "department": "64827a5d5ac374af573948e2",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948d2"
+        },
+        "assetId": "AS032",
+        "serialNumber": "EQP032",
+        "brand": "Bose",
+        "purchaseDate": "2022-08-10",
+        "model": "QuietComfort 35 II",
+        "modelNumber": "Bose-QC35II",
+        "purchasePrice": 300,
+        "image": "https://example.com/images/eqp032.jpg",
+        "physicalDescription": "Wireless noise-canceling headphones with excellent audio quality and comfort.",
+        "status": "Active",
+        "condition": "Excellent",
+        "building": "64827e605ac374af5739491d",
+        "department": "64827a5d5ac374af573948de",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948d5"
+        },
+        "assetId": "AS035",
+        "serialNumber": "EQP035",
+        "brand": "Canon",
+        "purchaseDate": "2023-02-28",
+        "model": "EOS R5",
+        "modelNumber": "Canon-EOSR5",
+        "purchasePrice": 4000,
+        "image": "https://example.com/images/eqp035.jpg",
+        "physicalDescription": "Mirrorless camera with high-resolution imaging and advanced autofocus.",
+        "status": "Active",
+        "condition": "Excellent",
+        "building": "64827e605ac374af57394925",
+        "department": "64827a5d5ac374af573948e4",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948cb"
+        },
+        "assetId": "AS025",
+        "serialNumber": "EQP025",
+        "brand": "Sony",
+        "purchaseDate": "2023-03-25",
+        "model": "PlayStation 5",
+        "modelNumber": "Sony-PS5",
+        "purchasePrice": 500,
+        "image": "https://example.com/images/eqp025.jpg",
+        "physicalDescription": "Black and white game console with advanced graphics capabilities and a DualSense controller.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739491e",
+        "department": "64827a5d5ac374af573948e4",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948d3"
+        },
+        "assetId": "AS033",
+        "serialNumber": "EQP033",
+        "brand": "Sony",
+        "purchaseDate": "2023-01-05",
+        "model": "WH-1000XM4",
+        "modelNumber": "Sony-WH1000XM4",
+        "purchasePrice": 350,
+        "image": "https://example.com/images/eqp033.jpg",
+        "physicalDescription": "Wireless noise-canceling headphones with adaptive sound control and long battery life.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739491a",
+        "department": "64827a5d5ac374af573948e0",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948d9"
+        },
+        "assetId": "AS039",
+        "serialNumber": "EQP039",
+        "brand": "Razer",
+        "purchaseDate": "2023-03-20",
+        "model": "BlackWidow V3",
+        "modelNumber": "Razer-BWV3",
+        "purchasePrice": 150,
+        "image": "https://example.com/images/eqp039.jpg",
+        "physicalDescription": "Mechanical gaming keyboard with customizable RGB lighting and programmable macro keys.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af5739491b",
+        "department": "64827a5d5ac374af573948e1",
+        "user": "649642893014a3e11b469f18"
+    },
+    {
+        "_id": {
+            "$oid": "648279b55ac374af573948c8"
+        },
+        "assetId": "AS022",
+        "serialNumber": "EQP022",
+        "brand": "Google",
+        "purchaseDate": "2022-12-06",
+        "model": "Pixelbook Go",
+        "modelNumber": "Google-PBG",
+        "purchasePrice": 1100,
+        "image": "https://example.com/images/eqp022.jpg",
+        "physicalDescription": "Just Black ultrabook with a sleek and portable design, running Chrome OS.",
+        "status": "Active",
+        "condition": "Good",
+        "building": "64827e605ac374af57394921",
+        "department": "64827a5d5ac374af573948e5",
+        "user": "649642893014a3e11b469f18"
+    }
+]

@@ -2,6 +2,7 @@ import { GraphQLError } from 'graphql';
 import { Building } from '../../models/building';
 import { checkId, checkRequiredFields, checkAuthentication } from '../../utils/validation';
 
+
 const buildingResolvers = {
     Query: {
         getBuildings: async (parent: any, args: any, context: any) => {

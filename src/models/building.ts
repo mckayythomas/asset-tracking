@@ -1,6 +1,7 @@
 import { isRequiredArgument } from 'graphql';
 import mongoose, { Schema, Document } from 'mongoose';
 
+
 const buildingSchema: Schema = new Schema({
     buildingId: { type: String, required: true },
     locationId: { type: String, required: true },

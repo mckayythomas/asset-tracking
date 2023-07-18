@@ -13,6 +13,7 @@ import "./oauth/google";
 
 const port = process.env.PORT || 3000;
 const app = express();
+let serverApp;
 
 async function startServer() {
     const server = new ApolloServer({
@@ -51,12 +52,15 @@ async function startServer() {
         if (err) {
             console.error(err);
         } else {
-            app.listen(port);
+            serverApp = app.listen(port);
             console.log(`Web Server is listening at http://localhost:${port}/graphql`);
         }
     });
+    return app;
 }
 
 startServer().catch((error) => {
     console.error("Error starting the server:", error);
 });
+
+export { serverApp, startServer };

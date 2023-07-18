@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import mongoose, { Connection } from "mongoose";
 
-let _db: Connection;
+let _db: Connection | undefined;
 
 const initDb = (callback: (err: Error | null, db?: Connection) => void): void => {
     if (_db) {
@@ -19,18 +19,17 @@ const initDb = (callback: (err: Error | null, db?: Connection) => void): void =>
         });
 };
 
+const closeDb = () => {
+    if (_db) {
+        _db.close();
+    }
+};
+
 const getDb = (): Connection => {
     if (!_db) {
         throw Error("Db not initialized");
     }
     return _db;
-};
-
-const closeDb = (): void => {
-    if (_db) {
-        _db.close();
-        console.log("Database connection closed successfully.");
-    }
 };
 
 export { initDb, getDb, closeDb };

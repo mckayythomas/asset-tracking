@@ -1,0 +1,232 @@
+[
+    {
+        "_id": {
+            "$oid": "64827e605ac374af57394918"
+        },
+        "buildingId": "B001",
+        "locationId": "L001",
+        "name": "Main Building",
+        "floors": 4,
+        "departments": ["Research and Development", "Information Technology", "Human Resources"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af57394919"
+        },
+        "buildingId": "B002",
+        "locationId": "L001",
+        "name": "Design Studio",
+        "floors": 2,
+        "departments": ["Design", "Engineering"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af5739491a"
+        },
+        "buildingId": "B003",
+        "locationId": "L002",
+        "name": "North Assembly Building",
+        "floors": 2,
+        "departments": ["Body Shop", "Assembly Line"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af57394921"
+        },
+        "buildingId": "B010",
+        "locationId": "L010",
+        "name": "Battery Production Building",
+        "floors": 1,
+        "departments": ["Battery Production"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af57394927"
+        },
+        "buildingId": "B016",
+        "locationId": "L013",
+        "name": "Service Center Building",
+        "floors": 2,
+        "departments": ["Service", "Maintenance"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af5739492d"
+        },
+        "buildingId": "B022",
+        "locationId": "L019",
+        "name": "Miami Showroom Building",
+        "floors": 1,
+        "departments": ["Sales", "Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af5739491d"
+        },
+        "buildingId": "B006",
+        "locationId": "L004",
+        "name": "Powertrain Assembly Building",
+        "floors": 2,
+        "departments": ["Powertrain Assembly"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af5739491c"
+        },
+        "buildingId": "B005",
+        "locationId": "L004",
+        "name": "Battery Production Building",
+        "floors": 1,
+        "departments": ["Battery Production", "Advanced Materials"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af57394922"
+        },
+        "buildingId": "B011",
+        "locationId": "L011",
+        "name": "Vehicle Assembly Building",
+        "floors": 2,
+        "departments": ["Production", "Quality Assurance"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af57394923"
+        },
+        "buildingId": "B012",
+        "locationId": "L011",
+        "name": "Battery Production Building",
+        "floors": 1,
+        "departments": ["Battery Production"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af57394925"
+        },
+        "buildingId": "B014",
+        "locationId": "L012",
+        "name": "Software Development Building",
+        "floors": 3,
+        "departments": ["Software Development", "Data Science"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af57394926"
+        },
+        "buildingId": "B015",
+        "locationId": "L013",
+        "name": "London Showroom Building",
+        "floors": 1,
+        "departments": ["Sales", "Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af57394928"
+        },
+        "buildingId": "B017",
+        "locationId": "L014",
+        "name": "Tesla Factory Store Building",
+        "floors": 1,
+        "departments": ["Sales", "Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af5739492b"
+        },
+        "buildingId": "B020",
+        "locationId": "L017",
+        "name": "Chicago Showroom Building",
+        "floors": 1,
+        "departments": ["Sales", "Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af57394920"
+        },
+        "buildingId": "B009",
+        "locationId": "L010",
+        "name": "Vehicle Assembly Building",
+        "floors": 2,
+        "departments": ["Production", "Quality Assurance"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af57394924"
+        },
+        "buildingId": "B013",
+        "locationId": "L012",
+        "name": "R&D Lab Building",
+        "floors": 2,
+        "departments": ["Engineering", "Autonomous Driving"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af5739492a"
+        },
+        "buildingId": "B019",
+        "locationId": "L016",
+        "name": "Amsterdam Store Building",
+        "floors": 1,
+        "departments": ["Sales", "Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af5739491b"
+        },
+        "buildingId": "B004",
+        "locationId": "L002",
+        "name": "South Assembly Building",
+        "floors": 3,
+        "departments": ["Quality Assurance", "Paint Shop"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af5739491e"
+        },
+        "buildingId": "B007",
+        "locationId": "L006",
+        "name": "Main Assembly Building",
+        "floors": 3,
+        "departments": ["Production", "Quality Control"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af5739491f"
+        },
+        "buildingId": "B008",
+        "locationId": "L006",
+        "name": "Battery Production Building",
+        "floors": 1,
+        "departments": ["Battery Production"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af57394929"
+        },
+        "buildingId": "B018",
+        "locationId": "L015",
+        "name": "Tokyo Showroom Building",
+        "floors": 1,
+        "departments": ["Sales", "Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af5739492c"
+        },
+        "buildingId": "B021",
+        "locationId": "L018",
+        "name": "Dallas Showroom Building",
+        "floors": 1,
+        "departments": ["Sales", "Marketing"]
+    },
+    {
+        "_id": {
+            "$oid": "64827e605ac374af5739492e"
+        },
+        "buildingId": "B023",
+        "locationId": "L020",
+        "name": "Toronto Showroom Building",
+        "floors": 1,
+        "departments": ["Sales", "Marketing"]
+    }
+]

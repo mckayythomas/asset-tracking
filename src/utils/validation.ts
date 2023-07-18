@@ -20,6 +20,18 @@ export const checkRequiredFields = (data: any, fields: string[] = []) => {
     }
 };
 
+export const checkValidFields = (data: any, validFields: string[] = []) => {
+    const fields: any = {};
+    if (data) {
+        for (const field of validFields) {
+            if (data[field]) {
+                fields[field] = data[field];
+            }
+        }
+    }
+    return fields;
+};
+
 export const checkAuthentication = (request: Request) => {
     if (!request.isAuthenticated()) {
         throw new GraphQLError("You're not logged in!");
@@ -28,6 +40,7 @@ export const checkAuthentication = (request: Request) => {
 
 export const mockContext = (context: any) => {
     context = { ...context };
+    context.user = { id: "testUserId" };
     context.isAuthenticated = () => true;
     return context;
 };
