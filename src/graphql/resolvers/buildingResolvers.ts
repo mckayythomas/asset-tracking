@@ -1,6 +1,7 @@
-import { GraphQLError } from "graphql";
-import { Building } from "../../models/building";
-import { checkId, checkRequiredFields, checkAuthentication } from "../../utils/validation";
+import { GraphQLError } from 'graphql';
+import { Building } from '../../models/building';
+import { checkId, checkRequiredFields, checkAuthentication } from '../../utils/validation';
+
 
 const buildingResolvers = {
     Query: {
@@ -9,20 +10,23 @@ const buildingResolvers = {
                 checkAuthentication(context);
                 const buildings = await Building.find();
                 return buildings;
-            } catch (error) {
-                throw new GraphQLError("Failed to get buildings details");
+            } 
+            catch (error) {
+                throw new GraphQLError('Failed to get buildings details');
             }
         },
-        getBuilding: async (parent: any, { id }: any, context: any) => {
+        getBuilding: async (parent: any, args: any, context: any) => {
             try {
                 checkAuthentication(context);
+                const id = args._id;
                 checkId(id);
                 const building = await Building.findById(id);
                 return building;
-            } catch (error) {
-                throw new GraphQLError("Failed to get building details");
             }
-        }
+            catch (error) {
+                throw new GraphQLError('Failed to get building details');
+            }
+        },
     },
     Mutation: {
         createBuilding: async (parent: any, args: any, context: any) => {
@@ -31,8 +35,9 @@ const buildingResolvers = {
                 checkRequiredFields(args);
                 const building = await Building.create(args);
                 return building;
-            } catch (error) {
-                throw new GraphQLError("Failed to create new building");
+            }
+            catch (error) {
+                throw new GraphQLError('Failed to create new building');
             }
         },
         updateBuilding: async (parent: any, args: any, context: any) => {
@@ -42,11 +47,12 @@ const buildingResolvers = {
                 checkId(id);
                 checkRequiredFields(updateData);
                 const building = await Building.findByIdAndUpdate(id, updateData, {
-                    new: true
+                    new: true,
                 });
                 return building;
-            } catch (error) {
-                throw new GraphQLError("Failed to update building");
+            }
+            catch (error) {
+                throw new GraphQLError('Failed to update building');
             }
         },
         deleteBuilding: async (parent: any, { id }: any, context: any) => {
@@ -55,11 +61,12 @@ const buildingResolvers = {
                 checkId(id);
                 const building = await Building.findByIdAndDelete(id);
                 return building;
-            } catch (error) {
-                throw new GraphQLError("Failed to delete building");
             }
-        }
-    }
+            catch (error) {
+                throw new GraphQLError('Failed to delete building');
+            }
+        },
+    },
 };
 
 export { buildingResolvers };
