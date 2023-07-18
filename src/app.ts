@@ -5,17 +5,13 @@ import session from "express-session";
 import { ApolloServer } from "@apollo/server";
 import { ApolloServerPluginLandingPageLocalDefault } from "@apollo/server/plugin/landingPage/default";
 import { expressMiddleware } from "@apollo/server/express4";
-import { initDb } from "./db/connection";
 import { typeDefs } from "./graphql/schemas/schemas";
 import { resolvers } from "./graphql/resolvers/resolvers";
 import { buildContext } from "graphql-passport";
 import "./oauth/google";
 
-const port = process.env.PORT || 3000;
-const app = express();
-let serverApp;
-
-async function startServer() {
+async function createApp() {
+    const app = express();
     const server = new ApolloServer({
         typeDefs,
         resolvers,
@@ -38,6 +34,10 @@ async function startServer() {
         })
     );
 
+    app.get("/", (req, res) => {
+        res.redirect("/graphql");
+    });
+
     app.get("/login", passport.authenticate("google", { scope: ["profile"] }));
     app.get(
         "/auth/google/callback",
@@ -48,19 +48,7 @@ async function startServer() {
         req.logout(() => res.redirect("/graphql"));
     });
 
-    initDb((err: Error | null) => {
-        if (err) {
-            console.error(err);
-        } else {
-            serverApp = app.listen(port);
-            console.log(`Web Server is listening at http://localhost:${port}/graphql`);
-        }
-    });
-    return app;
+    return { app, server };
 }
 
-startServer().catch((error) => {
-    console.error("Error starting the server:", error);
-});
-
-export { serverApp, startServer };
+export { createApp };
