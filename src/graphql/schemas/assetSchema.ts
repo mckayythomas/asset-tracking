@@ -172,7 +172,7 @@ const assetSchema = `
     type Mutation {
 
         "Create a new asset document in database."
-        newAsset( input: AssetCreateData! ): ID!
+        newAsset( input: AssetCreateData! ): Asset!
 
         "Update a asset document in database."
         updateAsset(_id: ID!, updateData: AssetUpdateData!): Asset!

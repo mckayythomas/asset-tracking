@@ -25,9 +25,6 @@ const buildingSchema = `
     input BuildingCreateData {
 
         "The unique identifier for the building used internally."
-        buildingID: String!
-
-        "The unique identifier for the building used internally."
         buildingId: String!
 
         "The unique identifier for the location used internally."
@@ -77,7 +74,7 @@ const buildingSchema = `
     type Mutation {
 
         "Create a new building document in database."
-        createBuilding( input: BuildingCreateData! ): ID!
+        createBuilding( input: BuildingCreateData! ): Building!
 
         "Update a building document in database."
         updateBuilding( input: BuildingUpdateData! ): Building!
