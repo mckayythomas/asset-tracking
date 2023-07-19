@@ -3,12 +3,14 @@ import { locationResolvers } from "./locationResolvers";
 import { userResolvers } from "./userResolvers";
 import { assetResolvers } from "./assetResolvers";
 import { buildingResolvers } from "./buildingResolvers";
+import { departmentResolvers } from "./departmentResolvers";
 
 const resolvers = mergeResolvers([
     locationResolvers,
     userResolvers,
     assetResolvers,
-    buildingResolvers
+    buildingResolvers,
+    departmentResolvers
 ]);
 
 export { resolvers };
