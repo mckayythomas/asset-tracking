@@ -37,7 +37,7 @@ const buildingSchema = `
         name: String!
 
         "Number of floors the building has."
-        type: Int!
+        floors: Int!
 
         "Arrays of department ID's associated with the building."
         departments: [String!]!
@@ -59,7 +59,7 @@ const buildingSchema = `
         name: String
 
         "Number of floors the building has."
-        type: Int!
+        floors: Int!
 
         "Arrays of department ID's associated with the building."
         departments: [String]
