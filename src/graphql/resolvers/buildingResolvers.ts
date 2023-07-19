@@ -19,6 +19,7 @@ const buildingResolvers = {
                 const id = args._id;
                 checkId(id);
                 const building = await Building.findById(id);
+                console.log(building)
                 return building;
             } catch (error) {
                 throw new GraphQLError("Failed to get building details");

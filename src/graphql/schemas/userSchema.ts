@@ -76,7 +76,7 @@ const userSchema = `
         updateUser( input: UserUpdateData! ): User!
 
         "Delete a user profile"
-        deleteUser( userId: ID! ): User!
+        deleteUser( userId: ID! ): ID!
 
     }
 `;

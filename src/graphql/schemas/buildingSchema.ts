@@ -8,14 +8,14 @@ const buildingSchema = `
         "The unique identifier for the building used internally."
         buildingId: String!
 
+        "The unique identifier for the location used internally."
+        locationId: String!
+
         "Name of the building."
         name: String!
 
-        "Physical address of the building."
-        address: String!
-
-        "Category of the building."
-        type: String!
+        "Number of floors the building has."
+        floors: Int!
 
         "Arrays of department ID's associated with the building."
         departments: [Department!]!
@@ -27,14 +27,17 @@ const buildingSchema = `
         "The unique identifier for the building used internally."
         buildingID: String!
 
+        "The unique identifier for the building used internally."
+        buildingId: String!
+
+        "The unique identifier for the location used internally."
+        locationId: String!
+
         "Name of the building."
         name: String!
 
-        "Physical address of the building."
-        address: String!
-
-        "Category of the building."
-        type: String!
+        "Number of floors the building has."
+        type: Int!
 
         "Arrays of department ID's associated with the building."
         departments: [String!]!
@@ -47,16 +50,16 @@ const buildingSchema = `
         _id: ID!
 
         "The unique identifier for the building used internally."
-        buildingID: String
+        buildingId: String
+
+        "The unique identifier for the location used internally."
+        locationId: String
 
         "Name of the building."
         name: String
 
-        "Physical address of the building."
-        address: String
-
-        "Category of the building."
-        type: String
+        "Number of floors the building has."
+        type: Int!
 
         "Arrays of department ID's associated with the building."
         departments: [String]
