@@ -1,0 +1,32 @@
+[
+    {
+        "_id": {
+            "$oid": "649642893014a3e11b469f18"
+        },
+        "googleId": "105508087896725444440",
+        "displayName": "Scott LeFoll",
+        "firstName": "Scott",
+        "lastName": "LeFoll",
+        "picture": "https://lh3.googleusercontent.com/a/AAcHTte6eIzPTRpSLQ-FVd3GkZAEyBO5Yejz9b_SoJbBCg=s96-c"
+    },
+    {
+        "_id": {
+            "$oid": "64973a6b121e7cd9f5d94421"
+        },
+        "googleId": "103947073870737383139",
+        "displayName": "McKay Thomas",
+        "firstName": "McKay",
+        "lastName": "Thomas",
+        "picture": "https://lh3.googleusercontent.com/a/AAcHTtdhVzm7ZwGy8ha8UD_QgfjduUo2ZW9WqPQLJL0V=s96-c"
+    },
+    {
+        "_id": {
+            "$oid": "649edfed997c9550d8de2ea9"
+        },
+        "googleId": "103300875232809958420",
+        "displayName": "Miguel López",
+        "firstName": "Miguel",
+        "lastName": "López",
+        "picture": "https://lh3.googleusercontent.com/a/AAcHTteZRJEjUVww2hM9c1jXDZHVd20VufnnCyHL0doZwJVBzio=s96-c"
+    }
+]

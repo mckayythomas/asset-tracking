@@ -1,0 +1,200 @@
+[
+    {
+        "_id": {
+            "$oid": "64827a5d5ac374af573948df"
+        },
+        "departmentId": "D003",
+        "name": "Sales and Marketing",
+        "location": "Los Angeles, California",
+        "head": "Michael Johnson",
+        "employeesCount": 200,
+        "description": "Responsible for promoting and selling Tesla vehicles and managing customer relationships."
+    },
+    {
+        "_id": {
+            "$oid": "64827a5d5ac374af573948e2"
+        },
+        "departmentId": "D006",
+        "name": "Engineering",
+        "location": "Hawthorne, California",
+        "head": "Emily Wilson",
+        "employeesCount": 250,
+        "description": "Handles various engineering disciplines, including electrical, mechanical, and software engineering."
+    },
+    {
+        "_id": {
+            "$oid": "64827a5d5ac374af573948e3"
+        },
+        "departmentId": "D007",
+        "name": "Human Resources",
+        "location": "Palo Alto, California",
+        "head": "David Thompson",
+        "employeesCount": 100,
+        "description": "Manages employee recruitment, benefits, training, and overall personnel management."
+    },
+    {
+        "_id": {
+            "$oid": "64827a5d5ac374af573948dd"
+        },
+        "departmentId": "D001",
+        "name": "Research and Development",
+        "location": "Palo Alto, California",
+        "head": "John Doe",
+        "employeesCount": 100,
+        "description": "Responsible for innovation, design, and development of new electric vehicle technologies."
+    },
+    {
+        "_id": {
+            "$oid": "64827a5d5ac374af573948e0"
+        },
+        "departmentId": "D004",
+        "name": "Supply Chain and Logistics",
+        "location": "Reno, Nevada",
+        "head": "Sarah Williams",
+        "employeesCount": 300,
+        "description": "Manages the procurement, warehousing, and distribution of materials and components for Tesla operations."
+    },
+    {
+        "_id": {
+            "$oid": "64827a5d5ac374af573948e1"
+        },
+        "departmentId": "D005",
+        "name": "Quality Assurance",
+        "location": "Austin, Texas",
+        "head": "Robert Davis",
+        "employeesCount": 150,
+        "description": "Ensures that Tesla vehicles meet high quality and safety standards through rigorous testing and inspection."
+    },
+    {
+        "_id": {
+            "$oid": "64827a5d5ac374af573948e4"
+        },
+        "departmentId": "D008",
+        "name": "Finance and Accounting",
+        "location": "San Mateo, California",
+        "head": "Jennifer Lee",
+        "employeesCount": 150,
+        "description": "Handles financial planning, budgeting, reporting, and accounting activities for Tesla."
+    },
+    {
+        "_id": {
+            "$oid": "64827a5d5ac374af573948e6"
+        },
+        "departmentId": "D010",
+        "name": "Legal and Compliance",
+        "location": "Fremont, California",
+        "head": "Laura Johnson",
+        "employeesCount": 50,
+        "description": "Handles legal matters, contracts, intellectual property, and regulatory compliance for Tesla."
+    },
+    {
+        "_id": {
+            "$oid": "64827a5d5ac374af573948de"
+        },
+        "departmentId": "D002",
+        "name": "Manufacturing",
+        "location": "Fremont, California",
+        "head": "Jane Smith",
+        "employeesCount": 5000,
+        "description": "Oversees the production and assembly of Tesla vehicles and components."
+    },
+    {
+        "_id": {
+            "$oid": "64827a5d5ac374af573948e5"
+        },
+        "departmentId": "D009",
+        "name": "Information Technology",
+        "location": "Palo Alto, California",
+        "head": "Daniel Brown",
+        "employeesCount": 100,
+        "description": "Manages the IT infrastructure, systems, and services to support Tesla's operations and innovation."
+    },
+    {
+        "_id": {
+            "$oid": "64827a715ac374af573948e8"
+        },
+        "departmentId": "D011",
+        "name": "Battery Technology",
+        "location": "Gigafactory 1, Nevada",
+        "head": "Alex Johnson",
+        "employeesCount": 50,
+        "description": "Focuses on developing advanced battery technologies for Tesla vehicles and energy products."
+    },
+    {
+        "_id": {
+            "$oid": "64827a715ac374af573948e9"
+        },
+        "departmentId": "D012",
+        "name": "Autonomous Driving",
+        "location": "Palo Alto, California",
+        "head": "Michelle Lee",
+        "employeesCount": 80,
+        "description": "Responsible for the research and development of Tesla's autonomous driving technologies."
+    },
+    {
+        "_id": {
+            "$oid": "64827a7d5ac374af573948ec"
+        },
+        "departmentId": "D014",
+        "name": "Powertrain",
+        "location": "Gigafactory 1, Nevada",
+        "head": "Jessica Martinez",
+        "employeesCount": 150,
+        "description": "Focuses on manufacturing and development of electric powertrains for Tesla vehicles."
+    },
+    {
+        "_id": {
+            "$oid": "64827a7d5ac374af573948eb"
+        },
+        "departmentId": "D013",
+        "name": "Body Shop",
+        "location": "Fremont, California",
+        "head": "Andrew Brown",
+        "employeesCount": 200,
+        "description": "Handles the production and assembly of vehicle bodies for Tesla's manufacturing operations."
+    },
+    {
+        "_id": {
+            "$oid": "64827ac75ac374af573948ee"
+        },
+        "departmentId": "D017",
+        "name": "Software Development",
+        "location": "Palo Alto, California",
+        "head": "Kevin Thompson",
+        "employeesCount": 100,
+        "description": "Focuses on the development of software systems and applications for Tesla vehicles and services."
+    },
+    {
+        "_id": {
+            "$oid": "64827ac75ac374af573948ef"
+        },
+        "departmentId": "D018",
+        "name": "Advanced Materials",
+        "location": "Gigafactory 1, Nevada",
+        "head": "Natalie Davis",
+        "employeesCount": 50,
+        "description": "Researches and develops new materials for enhanced performance and sustainability in Tesla products."
+    },
+    {
+        "_id": {
+            "$oid": "64827ad35ac374af573948f1"
+        },
+        "departmentId": "D015",
+        "name": "Paint Shop",
+        "location": "Fremont, California",
+        "head": "Mark Johnson",
+        "employeesCount": 150,
+        "description": "Responsible for the painting and finishing of Tesla vehicles during the manufacturing process."
+    },
+    {
+        "_id": {
+            "$oid": "64827ad35ac374af573948f2"
+        },
+        "departmentId": "D016",
+        "name": "Assembly Line 1",
+        "location": "Fremont, California",
+        "head": "Samantha Williams",
+        "employeesCount": 300,
+        "description": "Oversees the assembly and integration of various components to build Tesla vehicles on the production line."
+    }
+]
