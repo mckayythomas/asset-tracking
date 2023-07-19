@@ -10,7 +10,12 @@ const config: Config.InitialOptions = {
     testRegex: "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
     moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
     collectCoverage: true,
-    coveragePathIgnorePatterns: ["/node_modules/", "<rootDir>/src/db/", "<rootDir>/src/utils/", "<rootDir>/src/oauth/"],
+    coveragePathIgnorePatterns: [
+        "/node_modules/",
+        "<rootDir>/src/db/",
+        "<rootDir>/src/utils/",
+        "<rootDir>/src/oauth/"
+    ],
     clearMocks: true,
     globals: {}
 };

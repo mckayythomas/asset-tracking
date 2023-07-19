@@ -112,13 +112,15 @@ describe("buildingResolver testing", () => {
 
     it("Creates a new building using createBuilding resolver", async () => {
         const context = mockContext({});
-        const params = {input:{
-            buildingId: "B003",
-            locationId: "L003",
-            name: "New Building",
-            floors: 5,
-            departments: ["Sales", "Operations"]
-        }};
+        const params = {
+            input: {
+                buildingId: "B003",
+                locationId: "L003",
+                name: "New Building",
+                floors: 5,
+                departments: ["Sales", "Operations"]
+            }
+        };
 
         const result: any = await buildingResolvers.Mutation.createBuilding(null, params, context);
 
@@ -128,9 +130,11 @@ describe("buildingResolver testing", () => {
 
     it("Throws an error from createBuilding resolver with missing required fields", async () => {
         const context = mockContext({});
-        const params = {input:{
-            // Missing required fields
-        }};
+        const params = {
+            input: {
+                // Missing required fields
+            }
+        };
 
         await expect(
             buildingResolvers.Mutation.createBuilding(null, params, context)
@@ -139,12 +143,14 @@ describe("buildingResolver testing", () => {
 
     it("Updates an existing building using updateBuilding resolver", async () => {
         const context = mockContext({});
-        const params = {input:{
-            _id: "64b0b0a31859bbb2a05c75de",
-            name: "Updated Building",
-            floors: 6,
-            departments: ["Sales", "Operations"]
-        }};
+        const params = {
+            input: {
+                _id: "64b0b0a31859bbb2a05c75de",
+                name: "Updated Building",
+                floors: 6,
+                departments: ["Sales", "Operations"]
+            }
+        };
 
         const result: any = await buildingResolvers.Mutation.updateBuilding(null, params, context);
 
@@ -154,10 +160,12 @@ describe("buildingResolver testing", () => {
 
     it("Throws an error from updateBuilding resolver with incorrect buildingId", async () => {
         const context = mockContext({});
-        const params = {input:{
-            _id: "fakeBuildingId"
-            // Other fields
-        }};
+        const params = {
+            input: {
+                _id: "fakeBuildingId"
+                // Other fields
+            }
+        };
 
         await expect(
             buildingResolvers.Mutation.updateBuilding(null, params, context)

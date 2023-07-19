@@ -8,7 +8,7 @@ const departmentResolvers = {
             try {
                 checkAuthentication(context);
                 const buildings = await Department.find();
-                console.log(buildings)
+                // console.log(buildings)
                 return buildings;
             } catch (error) {
                 throw new GraphQLError("Failed to get buildings details");
@@ -34,7 +34,7 @@ const departmentResolvers = {
         createDepartment: async (parent: any, args: any, context: any) => {
             try {
                 checkAuthentication(context);
-                console.log(args)
+                // console.log(args)
                 checkRequiredFields(args.input, [
                     "departmentId",
                     "name",
@@ -43,10 +43,11 @@ const departmentResolvers = {
                     "employeesCount",
                     "description"
                 ]);
-                const { departmentId, name, location, head, employeesCount, description } = args.input;
+                const { departmentId, name, location, head, employeesCount, description } =
+                    args.input;
                 const department = await Department.create({
                     departmentId,
-                    name, 
+                    name,
                     location,
                     head,
                     employeesCount,
@@ -71,7 +72,9 @@ const departmentResolvers = {
                 const updatedDepartment = await updateDepartment.save();
                 return updatedDepartment;
             } catch (err) {
-                throw new GraphQLError("Cannot update department, something went wrong Please try again");
+                throw new GraphQLError(
+                    "Cannot update department, something went wrong Please try again"
+                );
             }
         },
         deleteDepartment: async (parent: any, args: any, context: any) => {

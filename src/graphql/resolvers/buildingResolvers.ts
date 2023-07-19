@@ -28,7 +28,13 @@ const buildingResolvers = {
     Mutation: {
         createBuilding: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
-            checkRequiredFields(args.input,["buildingId", "departments", "floors", "locationId", "name"]);
+            checkRequiredFields(args.input, [
+                "buildingId",
+                "departments",
+                "floors",
+                "locationId",
+                "name"
+            ]);
             try {
                 const building: any = await Building.create(args.input);
                 return building;

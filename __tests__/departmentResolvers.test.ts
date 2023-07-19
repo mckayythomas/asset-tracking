@@ -13,7 +13,6 @@ describe("departmentResolver testing", () => {
     let updateOneSpy: jest.SpyInstance;
     let deleteOneSpy: jest.SpyInstance;
 
-
     beforeAll(async () => {
         mongoServer = new MongoMemoryServer();
         await mongoServer.start();
@@ -28,23 +27,24 @@ describe("departmentResolver testing", () => {
 
         const testDepartment1 = new Department({
             _id: "64827a5d5ac374af573948df",
-            "departmentId": "D003",
-            "name": "Sales and Marketing",
-            "location": "Los Angeles, California",
-            "head": "Michael Johnson",
-            "employeesCount": 200,
-            "description": "Responsible for promoting and selling Tesla vehicles and managing customer relationships."
+            departmentId: "D003",
+            name: "Sales and Marketing",
+            location: "Los Angeles, California",
+            head: "Michael Johnson",
+            employeesCount: 200,
+            description:
+                "Responsible for promoting and selling Tesla vehicles and managing customer relationships."
         });
         await testDepartment1.save();
 
         const testDepartment2 = new Department({
             _id: "64827a5d5ac374af573948de",
-            "departmentId": "D004",
-            "name": "Technology",
-            "location": "Portland, Oregon",
-            "head": "Greg Doucette",
-            "employeesCount": 100,
-            "description": "Responsible for regional technology solutions."
+            departmentId: "D004",
+            name: "Technology",
+            location: "Portland, Oregon",
+            head: "Greg Doucette",
+            employeesCount: 100,
+            description: "Responsible for regional technology solutions."
         });
         await testDepartment2.save();
 
@@ -97,30 +97,37 @@ describe("departmentResolver testing", () => {
         expect(result.location).toEqual("Los Angeles, California");
         expect(result.head).toEqual("Michael Johnson");
         expect(result.employeesCount).toEqual(200);
-        expect(result.description).toEqual("Responsible for promoting and selling Tesla vehicles and managing customer relationships.");
+        expect(result.description).toEqual(
+            "Responsible for promoting and selling Tesla vehicles and managing customer relationships."
+        );
     }, 15000);
 
     it("Returns an error from an incorrect departmentId", async () => {
         const context = mockContext({});
         const params = { departmentId: "fakeDepartmentId" };
-        await expect(departmentResolvers.Query.getDepartment(null, params, context)).rejects.toThrowError(
-            GraphQLError
-        );
+        await expect(
+            departmentResolvers.Query.getDepartment(null, params, context)
+        ).rejects.toThrowError(GraphQLError);
     });
 
     it("Creates a new department using createDepartment resolver", async () => {
         const context = mockContext({});
-        const args = {input :
-            {
-            departmentId: "B003",
-            name: "New Department",
-            location: "New Location",
-            head: "Greg Doucette",
-            employeesCount: 230,
-            description: "The New Department for unit testing"}
+        const args = {
+            input: {
+                departmentId: "B003",
+                name: "New Department",
+                location: "New Location",
+                head: "Greg Doucette",
+                employeesCount: 230,
+                description: "The New Department for unit testing"
+            }
         };
 
-        const result: any = await departmentResolvers.Mutation.createDepartment(null, args, context);
+        const result: any = await departmentResolvers.Mutation.createDepartment(
+            null,
+            args,
+            context
+        );
 
         expect(createSpy).toHaveBeenCalledTimes(1);
         expect(result.name).toEqual("New Department");
@@ -153,23 +160,25 @@ describe("departmentResolver testing", () => {
         expect(result.location).toEqual("Los Angeles, California");
         expect(result.head).toEqual("Dwayne Cutler");
         expect(result.employeesCount).toEqual(200);
-        expect(result.description).toEqual("Responsible for promoting and selling Tesla vehicles and managing customer relationships.");
+        expect(result.description).toEqual(
+            "Responsible for promoting and selling Tesla vehicles and managing customer relationships."
+        );
     });
 
     it("Checks that updating with wrong id throws errors and doesn't work", async () => {
         const context = mockContext({});
         const params = { input: { _id: "falseId", head: "Dwayne Cutler" } };
-        await expect(departmentResolvers.Mutation.updateDepartment(null, params, context)).rejects.toThrowError(
-            GraphQLError
-        );
+        await expect(
+            departmentResolvers.Mutation.updateDepartment(null, params, context)
+        ).rejects.toThrowError(GraphQLError);
     });
 
     it("Checks that having missing parameters or null parameters turns back an error.", async () => {
         const context = mockContext({});
         const params = { input: { _id: "falseId", head: null } };
-        await expect(departmentResolvers.Mutation.updateDepartment(null, params, context)).rejects.toThrowError(
-            GraphQLError
-        );
+        await expect(
+            departmentResolvers.Mutation.updateDepartment(null, params, context)
+        ).rejects.toThrowError(GraphQLError);
     });
 
     it("Deletes a departments information from the database based on id", async () => {
@@ -182,8 +191,8 @@ describe("departmentResolver testing", () => {
     it("Checks that delete department returns error if ID is faulty", async () => {
         const context = mockContext({});
         const params = { departmentId: null };
-        await expect(departmentResolvers.Mutation.deleteDepartment(null, params, context)).rejects.toThrowError(
-            GraphQLError
-        );
+        await expect(
+            departmentResolvers.Mutation.deleteDepartment(null, params, context)
+        ).rejects.toThrowError(GraphQLError);
     });
 });
