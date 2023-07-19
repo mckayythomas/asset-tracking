@@ -38,6 +38,7 @@ describe("userResolver testing", () => {
 
     beforeEach(() => {
         findByIdSpy.mockReset();
+        updateOneSpy.mockReset();
     });
 
     afterAll(async () => {

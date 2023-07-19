@@ -27,9 +27,6 @@ const departmentSchema = `
     "Input for the creation of a department. All fields are required, which create a corresponding Department object."
     input DepartmentCreateData {
 
-        "The unique department ID used internally in the database."
-        _id: ID!
-
         "The human-readable, abbreviated ID for a department."
         departmentId: String!
 
@@ -75,10 +72,16 @@ const departmentSchema = `
 
         "Query to obtain a department's info by id."
         getDepartment( departmentId: ID! ): Department!
+
+        "Query to get all departments info."
+        getDepartments: [Department!]
         
     }
 
     type Mutation {
+
+        "Create a new department document in the database."
+        createDepartment( input: DepartmentCreateData! ): Department!
 
         "Update a department object."
         updateDepartment( input: DepartmentUpdateData! ): Department!

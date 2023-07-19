@@ -1,8 +1,6 @@
 import { User } from "../../models/user";
 import { GraphQLError } from "graphql";
 import { checkId, checkAuthentication } from "../../utils/validation";
-import { ObjectId } from "mongoose";
-import { error } from "console";
 
 const userResolvers = {
     Query: {

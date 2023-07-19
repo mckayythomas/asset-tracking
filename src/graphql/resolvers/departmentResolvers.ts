@@ -1,11 +1,19 @@
 import { Department } from "../../models/department";
 import { GraphQLError } from "graphql";
-import { checkId, checkAuthentication } from "../../utils/validation";
-import { ObjectId } from "mongoose";
-import { error } from "console";
+import { checkId, checkAuthentication, checkRequiredFields } from "../../utils/validation";
 
 const departmentResolvers = {
     Query: {
+        getDepartments: async (parent: any, args: any, context: any) => {
+            try {
+                checkAuthentication(context);
+                const buildings = await Department.find();
+                console.log(buildings)
+                return buildings;
+            } catch (error) {
+                throw new GraphQLError("Failed to get buildings details");
+            }
+        },
         getDepartment: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
             const id = args.departmentId;
@@ -23,6 +31,32 @@ const departmentResolvers = {
         }
     },
     Mutation: {
+        createDepartment: async (parent: any, args: any, context: any) => {
+            try {
+                checkAuthentication(context);
+                console.log(args)
+                checkRequiredFields(args.input, [
+                    "departmentId",
+                    "name",
+                    "location",
+                    "head",
+                    "employeesCount",
+                    "description"
+                ]);
+                const { departmentId, name, location, head, employeesCount, description } = args.input;
+                const department = await Department.create({
+                    departmentId,
+                    name, 
+                    location,
+                    head,
+                    employeesCount,
+                    description
+                });
+                return department;
+            } catch (error) {
+                throw new GraphQLError("Failed to create new department");
+            }
+        },
         updateDepartment: async (parent: any, args: any, context: any) => {
             checkAuthentication(context);
             const id = args.input._id;
