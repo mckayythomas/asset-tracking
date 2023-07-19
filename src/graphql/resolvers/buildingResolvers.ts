@@ -16,10 +16,10 @@ const buildingResolvers = {
         getBuilding: async (parent: any, args: any, context: any) => {
             try {
                 checkAuthentication(context);
-                const id = args._id;
+                console.log(args)
+                const id = args.buildingId;
                 checkId(id);
                 const building = await Building.findById(id);
-                console.log(building)
                 return building;
             } catch (error) {
                 throw new GraphQLError("Failed to get building details");
