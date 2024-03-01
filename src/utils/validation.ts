@@ -20,17 +20,19 @@ export const checkRequiredFields = (data: any, fields: string[] = []) => {
     }
 };
 
-export const checkValidFields = (data: any, validFields: string[] = []) => {
-    const fields: any = {};
-    if (data) {
-        for (const field of validFields) {
-            if (data[field]) {
-                fields[field] = data[field];
+export class FieldValidator {
+    checkValidFields(data:any, validFields = []) {
+        const fields = {};
+        if (data) {
+            for (const field of validFields) {
+                if (data[field]) {
+                    fields[field] = data[field];
+                }
             }
         }
+        return fields;
     }
-    return fields;
-};
+}
 
 export const checkAuthentication = (request: Request) => {
     if (!request.isAuthenticated()) {
